@@ -10,15 +10,15 @@
 	crossorigin="anonymous">
 
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Operator Registration</title>
 </head>
 <body>
 
-	<form name="login" action="${pageContext.request.contextPath}/login"
+	<form name="operatorReg" action="${pageContext.request.contextPath}/OperatorReg"
 		method="POST">
 		<div class="container">
 			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>Infinity Operator Registration</h3>
+				<h3>BravoTV Operator Registration</h3>
 			</div>
 			<div class="card">
 				<div class="card-body">
