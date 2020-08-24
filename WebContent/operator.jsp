@@ -20,6 +20,9 @@
 			<div style="margin-top: 1%; margin-bottom: 1%">
 				<h3>BravoTV Operator Registration</h3>
 			</div>
+			
+			<br>
+			
 			<div class="card">
 				<div class="card-body">
 					<div class="form-group">
