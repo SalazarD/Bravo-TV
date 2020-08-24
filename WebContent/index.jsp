@@ -9,7 +9,7 @@
 <script>
 
 window.onload = function() {
-    window.location.href = "${pageContext.request.contextPath}/operator.jsp";
+    window.location.href = "${pageContext.request.contextPath}/login.jsp";
  }
 </script>
 
