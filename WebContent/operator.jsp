@@ -14,15 +14,15 @@
 </head>
 <body>
 
-	<form name="operatorReg" action="${pageContext.request.contextPath}/OperatorReg"
-		method="POST">
+	<form name="operatorReg"
+		action="${pageContext.request.contextPath}/OperatorReg" method="POST">
 		<div class="container">
 			<div style="margin-top: 1%; margin-bottom: 1%">
 				<h3>BravoTV Operator Registration</h3>
 			</div>
-			
+
 			<br>
-			
+
 			<div class="card">
 				<div class="card-body">
 					<div class="form-group">
@@ -79,18 +79,17 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Max No. of Customers to be managed</label> <input
-							type="text" class="form-control" name="max"
+						<label for="exampleInputEmail1">Max No. of Customers to be
+							managed</label> <input type="text" class="form-control" name="max"
 							aria-describedby="emailHelp" placeholder="Enter Max customers"
 							required>
 					</div>
-						<div class="form-group">
+					<div class="form-group">
 						<label for="exampleInputEmail1">Creation Date</label> <input
 							type="text" class="form-control" name="date"
-							aria-describedby="emailHelp" placeholder="Creation Date"
-							required>
+							aria-describedby="emailHelp" placeholder="Creation Date" required>
 					</div>
-					
+
 					<button type="submit" class="btn btn-primary">Register</button>
 				</div>
 			</div>

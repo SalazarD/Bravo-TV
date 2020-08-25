@@ -78,7 +78,8 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="example-date-input" class="col-2 col-form-label">Creation Date</label>
+						<label for="example-date-input" class="col-2 col-form-label">Creation
+							Date</label>
 						<div class="col-10">
 							<input class="form-control" type="date" value="2020-08-24"
 								id="example-date-input">
@@ -87,13 +88,13 @@
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Operator Name</label> <input
-							type="text" class="form-control" name="date"
+							type="text" class="form-control" name="O_name"
 							aria-describedby="emailHelp" placeholder="" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Retailer Name</label> <input
-							type="text" class="form-control" name="date"
+							type="text" class="form-control" name="R_name"
 							aria-describedby="emailHelp" placeholder="" required>
 					</div>
 
