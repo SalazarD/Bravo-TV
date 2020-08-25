@@ -15,15 +15,15 @@ public class Case_Customer {
 	private String customer_creation_date;
 	private String assigned_operator;
 	private String assigned_retailer;
-	private int purchased_stb;
-	private int purchased_package;
-	private int purchased_channel;
+	private Integer purchased_stb;
+	private Integer purchased_package;
+	private Integer purchased_channel;
 	private String password;
 	private Boolean first_time_user;
 	public Case_Customer(int customer_id, String first_name, String last_name, String email_id, String phone_number,
 			String address_one, String address_two, String land_mark, int zip_code, String city, String state,
-			String customer_creation_date, String assigned_operator, String assigned_retailer, int purchased_stb,
-			int purchased_package, int purchased_channel, String password, Boolean first_time_user) {
+			String customer_creation_date, String assigned_operator, String assigned_retailer, Integer purchased_stb,
+			Integer purchased_package, Integer purchased_channel, String password, Boolean first_time_user) {
 		super();
 		this.customer_id = customer_id;
 		this.first_name = first_name;
@@ -44,6 +44,33 @@ public class Case_Customer {
 		this.purchased_channel = purchased_channel;
 		this.password = password;
 		this.first_time_user = first_time_user;
+	}
+	public Case_Customer(String first_name, String last_name, String email_id, String phone_number, String address_one,
+			String address_two, String land_mark, int zip_code, String city, String state,
+			String customer_creation_date, String assigned_operator, String assigned_retailer, Integer purchased_stb,
+			Integer purchased_package, Integer purchased_channel, String password, Boolean first_time_user) {
+		super();
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.email_id = email_id;
+		this.phone_number = phone_number;
+		this.address_one = address_one;
+		this.address_two = address_two;
+		this.land_mark = land_mark;
+		this.zip_code = zip_code;
+		this.city = city;
+		this.state = state;
+		this.customer_creation_date = customer_creation_date;
+		this.assigned_operator = assigned_operator;
+		this.assigned_retailer = assigned_retailer;
+		this.purchased_stb = purchased_stb;
+		this.purchased_package = purchased_package;
+		this.purchased_channel = purchased_channel;
+		this.password = password;
+		this.first_time_user = first_time_user;
+	}
+	public Case_Customer() {
+		super();
 	}
 	public int getCustomer_id() {
 		return customer_id;
@@ -129,22 +156,22 @@ public class Case_Customer {
 	public void setAssigned_retailer(String assigned_retailer) {
 		this.assigned_retailer = assigned_retailer;
 	}
-	public int getPurchased_stb() {
+	public Integer getPurchased_stb() {
 		return purchased_stb;
 	}
-	public void setPurchased_stb(int purchased_stb) {
+	public void setPurchased_stb(Integer purchased_stb) {
 		this.purchased_stb = purchased_stb;
 	}
-	public int getPurchased_package() {
+	public Integer getPurchased_package() {
 		return purchased_package;
 	}
-	public void setPurchased_package(int purchased_package) {
+	public void setPurchased_package(Integer purchased_package) {
 		this.purchased_package = purchased_package;
 	}
-	public int getPurchased_channel() {
+	public Integer getPurchased_channel() {
 		return purchased_channel;
 	}
-	public void setPurchased_channel(int purchased_channel) {
+	public void setPurchased_channel(Integer purchased_channel) {
 		this.purchased_channel = purchased_channel;
 	}
 	public String getPassword() {
@@ -159,4 +186,6 @@ public class Case_Customer {
 	public void setFirst_time_user(Boolean first_time_user) {
 		this.first_time_user = first_time_user;
 	}
+
+	
 }
