@@ -22,8 +22,7 @@ public class Case_Customer {
 	private Boolean first_time_user;
 	public Case_Customer(int customer_id, String first_name, String last_name, String email_id, String phone_number,
 			String address_one, String address_two, String land_mark, int zip_code, String city, String state,
-			String customer_creation_date, String assigned_operator, String assigned_retailer, int purchased_stb,
-			int purchased_package, int purchased_channel, String password, Boolean first_time_user) {
+			String customer_creation_date, String assigned_operator, String assigned_retailer, String password, Boolean first_time_user) {
 		super();
 		this.customer_id = customer_id;
 		this.first_name = first_name;
@@ -185,4 +184,15 @@ public class Case_Customer {
 	public void setFirst_time_user(Boolean first_time_user) {
 		this.first_time_user = first_time_user;
 	}
+
+	@Override
+	public String toString() {
+		return "Case_Customer [customer_id=" + customer_id + ", first_name=" + first_name + ", last_name=" + last_name
+				+ ", email_id=" + email_id + ", phone_number=" + phone_number + ", address_one=" + address_one
+				+ ", address_two=" + address_two + ", land_mark=" + land_mark + ", zip_code=" + zip_code + ", city="
+				+ city + ", state=" + state + ", customer_creation_date=" + customer_creation_date
+				+ ", assigned_operator=" + assigned_operator + ", assigned_retailer=" + assigned_retailer
+				+ ", password=" + password + ", first_time_user=" + first_time_user + "]";
+	}
+	
 }
