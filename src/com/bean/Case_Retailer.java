@@ -16,18 +16,21 @@ public class Case_Retailer {
 	private BigDecimal credit_limit;
 	private BigDecimal commission_rate;
 	private BigDecimal service_charges;
-	private String inventory_list;
+//	private String inventory_list;				// Removed from table
 	private String retailer_creation_date;
 	private BigDecimal total_cost_of_inventory;
-	private String oncreate_retailer;
-	private String total_reatiler_in_city;
+//	private String oncreate_retailer;			// Removed from table
+//	private String total_reatiler_in_city;		// Removed from table
 	private String password;
 	private Boolean first_time_user;
+	private String distributor;					// Newly added to table
+	
+	// Constructor with everything
 	public Case_Retailer(int retailer_id, String retailer_name, String contact_num1, String contact_num2,
 			String address_1, String address_2, String zip_code, String city, String state_province,
 			String set_top_box_limit, BigDecimal credit_limit, BigDecimal commission_rate, BigDecimal service_charges,
-			String inventory_list, String retailer_creation_date, BigDecimal total_cost_of_inventory,
-			String oncreate_retailer, String total_reatiler_in_city, String password, Boolean first_time_user) {
+			String retailer_creation_date, BigDecimal total_cost_of_inventory, String password, Boolean first_time_user,
+			String distributor) {
 		super();
 		this.retailer_id = retailer_id;
 		this.retailer_name = retailer_name;
@@ -42,20 +45,19 @@ public class Case_Retailer {
 		this.credit_limit = credit_limit;
 		this.commission_rate = commission_rate;
 		this.service_charges = service_charges;
-		this.inventory_list = inventory_list;
 		this.retailer_creation_date = retailer_creation_date;
 		this.total_cost_of_inventory = total_cost_of_inventory;
-		this.oncreate_retailer = oncreate_retailer;
-		this.total_reatiler_in_city = total_reatiler_in_city;
 		this.password = password;
 		this.first_time_user = first_time_user;
+		this.distributor = distributor;
 	}
 	
+	// Constructor without Retailer ID
 	public Case_Retailer(String retailer_name, String contact_num1, String contact_num2, String address_1,
 			String address_2, String zip_code, String city, String state_province, String set_top_box_limit,
-			BigDecimal credit_limit, BigDecimal commission_rate, BigDecimal service_charges, String inventory_list,
-			String retailer_creation_date, BigDecimal total_cost_of_inventory, String oncreate_retailer,
-			String total_reatiler_in_city, String password, Boolean first_time_user) {
+			BigDecimal credit_limit, BigDecimal commission_rate, BigDecimal service_charges,
+			String retailer_creation_date, BigDecimal total_cost_of_inventory, String password, Boolean first_time_user,
+			String distributor) {
 		super();
 		this.retailer_name = retailer_name;
 		this.contact_num1 = contact_num1;
@@ -69,15 +71,14 @@ public class Case_Retailer {
 		this.credit_limit = credit_limit;
 		this.commission_rate = commission_rate;
 		this.service_charges = service_charges;
-		this.inventory_list = inventory_list;
 		this.retailer_creation_date = retailer_creation_date;
 		this.total_cost_of_inventory = total_cost_of_inventory;
-		this.oncreate_retailer = oncreate_retailer;
-		this.total_reatiler_in_city = total_reatiler_in_city;
 		this.password = password;
 		this.first_time_user = first_time_user;
+		this.distributor = distributor;
 	}
-	
+
+	// Empty Constructor
 	public Case_Retailer() {
 		super();
 	}
@@ -160,12 +161,6 @@ public class Case_Retailer {
 	public void setService_charges(BigDecimal service_charges) {
 		this.service_charges = service_charges;
 	}
-	public String getInventory_list() {
-		return inventory_list;
-	}
-	public void setInventory_list(String inventory_list) {
-		this.inventory_list = inventory_list;
-	}
 	public String getRetailer_creation_date() {
 		return retailer_creation_date;
 	}
@@ -177,18 +172,6 @@ public class Case_Retailer {
 	}
 	public void setTotal_cost_of_inventory(BigDecimal total_cost_of_inventory) {
 		this.total_cost_of_inventory = total_cost_of_inventory;
-	}
-	public String getOncreate_retailer() {
-		return oncreate_retailer;
-	}
-	public void setOncreate_retailer(String oncreate_retailer) {
-		this.oncreate_retailer = oncreate_retailer;
-	}
-	public String getTotal_reatiler_in_city() {
-		return total_reatiler_in_city;
-	}
-	public void setTotal_reatiler_in_city(String total_reatiler_in_city) {
-		this.total_reatiler_in_city = total_reatiler_in_city;
 	}
 	public String getPassword() {
 		return password;
@@ -202,6 +185,13 @@ public class Case_Retailer {
 	public void setFirst_time_user(Boolean first_time_user) {
 		this.first_time_user = first_time_user;
 	}
+	public String getDistributor() {
+		return distributor;
+	}
+
+	public void setDistributor(String distributor) {
+		this.distributor = distributor;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
@@ -209,10 +199,8 @@ public class Case_Retailer {
 				this.getContact_num2() + " " + this.getAddress_1() + " " + this.getAddress_2() + " " + 
 				this.getZip_code() + " " + this.getCity() + " " + this.getState_province() + " " +
 				this.getSet_top_box_limit() + " " + this.getCredit_limit() + " " + this.getCommission_rate() + " " + 
-				this.getService_charges() + " " + this.getInventory_list() + " " + this.getRetailer_creation_date() + " " + 
-				this.getTotal_reatiler_in_city() + " " + this.getFirst_time_user();
-				
-				
+				this.getService_charges() + " " + this.getRetailer_creation_date() + " " + 
+				this.getFirst_time_user() + " " + this.getDistributor();
 	}
 	
 }
