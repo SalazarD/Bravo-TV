@@ -10,7 +10,7 @@
 	crossorigin="anonymous">
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Channel Package</title>
 </head>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js">
@@ -26,18 +26,16 @@
 </script>
 
 <body>
-<jsp:include page="./menu.jsp" />
-	<form name="ChannelPackage" action="/BravoTV/ChannelPackage"
+	<jsp:include page="./menu.jsp" />
+	<form name="ChannelPackage" action="${pageContext.request.contextPath}/ChannelPackage"
 		method="POST">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Add Channel Package</h3>
-			</div>
-
-			<br>
-
 			<div class="card">
 				<div class="card-body">
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">Add Channel Package</h3>
+					</div>
+					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Package Name</label> <input
 							type="text" class="form-control" name="packageName"
@@ -87,8 +85,7 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Select Channels</label> <select
-							class="form-control" name="packageCategory" id="select1"
-							required>
+							class="form-control" name="packageCategory" id="select1" required>
 							<option value="starMovies">Star Movies</option>
 							<option value="starSports">Star Sports</option>
 							<option value="hbo">HBO</option>

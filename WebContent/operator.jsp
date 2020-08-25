@@ -4,7 +4,7 @@
 <%@ page import="java.text.SimpleDateFormat, java.util.*"%>
 <!DOCTYPE html>
 <%
-String pattern = "MM/dd/yyyy";
+	String pattern = "MM/dd/yyyy";
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 String date = simpleDateFormat.format(new Date());
 %>
@@ -20,8 +20,8 @@ String date = simpleDateFormat.format(new Date());
 <title>Operator Registration</title>
 </head>
 <script>
-		document.getElementById('date').value = (new Date()).format("m/dd/yy");
-	</script>
+	document.getElementById('date').value = (new Date()).format("m/dd/yy");
+</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -31,18 +31,16 @@ String date = simpleDateFormat.format(new Date());
 	crossorigin="anonymous"></script>
 
 <body>
-<jsp:include page="./menu.jsp" />
+	<jsp:include page="./menu.jsp" />
 	<form name="OperatorReg"
 		action="${pageContext.request.contextPath}/OperatorReg" method="POST">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Operator Registration</h3>
-			</div>
-
-			<br>
-
 			<div class="card">
 				<div class="card-body">
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">Operator Registration</h3>
+					</div>
+					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">First Name</label> <input
 							type="text" class="form-control" name="firstName"
@@ -97,7 +95,8 @@ String date = simpleDateFormat.format(new Date());
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Shift End Time</label> <input type="text" class="form-control" name="endTime"
+						<label for="exampleInputEmail1">Shift End Time</label> <input
+							type="text" class="form-control" name="endTime"
 							aria-describedby="emailHelp" placeholder="Enter Shift End Time"
 							required>
 					</div>

@@ -44,6 +44,10 @@
 					href="${pageContext.request.contextPath}/customer.jsp"
 					style="color: white"><button type="button"
 							class="btn btn-outline-light">Customer</button></a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="${pageContext.request.contextPath}/AO_PackageCharging.jsp"
+					style="color: white"><button type="button"
+							class="btn btn-outline-light">Package Charging</button></a></li>
 
 			</ul>
 		</div>

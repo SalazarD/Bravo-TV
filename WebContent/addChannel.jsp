@@ -10,21 +10,17 @@
 	crossorigin="anonymous">
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Channel</title>
 </head>
 <body>
-<jsp:include page="./menu.jsp" />
+	<jsp:include page="./menu.jsp" />
 	<form name="AddChannel"
 		action="${pageContext.request.contextPath}/AddChannel" method="POST">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Add Channels</h3>
-			</div>
-
-			<br>
-
 			<div class="card">
 				<div class="card-body">
+					<h3 style="text-align: center">Add Channels</h3>
+					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Channel Name</label> <input
 							type="text" class="form-control" name="channelName"

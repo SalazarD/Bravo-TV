@@ -26,35 +26,31 @@
 
 
 <script>
+	function add_number() {
 
-function add_number() {
+		var price = parseFloat(document.getElementById("price").value);
+		var charge = parseFloat(document.getElementById("installCharge").value);
+		var deposit = parseFloat(document.getElementById("depoistAmount").value);
+		var discount = parseFloat(document.getElementById("discount").value);
+		var tax = parseFloat(document.getElementById("tax").value);
+		var result = price + charge + deposit;
+		var fTotal = (result - (result * ((discount) / 100))) + tax;
 
-    var price = parseFloat(document.getElementById("price").value);
-    var charge = parseFloat(document.getElementById("installCharge").value);
-    var deposit = parseFloat(document.getElementById("depoistAmount").value);
-    var discount = parseFloat(document.getElementById("discount").value);
-    var tax = parseFloat(document.getElementById("tax").value);
-    var result = price + charge + deposit;
-    var fTotal = (result - (result * ((discount) / 100))) + tax;
-
-    document.getElementById("total").value = fTotal;
-}
-
+		document.getElementById("total").value = fTotal;
+	}
 </script>
 
 <body>
-<jsp:include page="./menu.jsp" />
-	<form name="P_SetupBox"
-		action="${pageContext.request.contextPath}/P_SetupBox" method="POST">
+	<jsp:include page="./menu.jsp" />
+	<form name="P_SetupBoxT"
+		action="${pageContext.request.contextPath}/P_SetupBoxT" method="POST">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Purchase Set Top Box</h3>
-			</div>
-
-			<br>
-
 			<div class="card">
 				<div class="card-body">
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">Purchase Set Top Box</h3>
+					</div>
+					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Customer Name</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
@@ -80,36 +76,38 @@ function add_number() {
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Price</label> <input
-							type="text" value="150" id="price" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
-					</div>
-
-					<div class="form-group">
-						<label for="exampleInputEmail1">Installation Charge</label> <input
-							type="text" value="20" id="installCharge" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
-					</div>
-
-					<div class="form-group">
-						<label for="exampleInputEmail1">Refundable Deposit Amount</label>
-						<input type="text" value="50" id="depoistAmount" class="form-control"
+							type="text" value="150" id="price" class="form-control"
 							aria-describedby="emailHelp" placeholder="">
 					</div>
 
 					<div class="form-group">
+						<label for="exampleInputEmail1">Installation Charge</label> <input
+							type="text" value="20" id="installCharge" class="form-control"
+							aria-describedby="emailHelp" placeholder="">
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Refundable Deposit Amount</label>
+						<input type="text" value="50" id="depoistAmount"
+							class="form-control" aria-describedby="emailHelp" placeholder="">
+					</div>
+
+					<div class="form-group">
 						<label for="exampleInputEmail1">Discount %</label> <input
-							type="text" value="10" id="discount" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" value="10" id="discount" class="form-control"
+							aria-describedby="emailHelp" placeholder="">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Tax</label> <input type="text"
-							class="form-control" value="23.76" id="tax" aria-describedby="emailHelp" placeholder="">
+							class="form-control" value="23.76" id="tax"
+							aria-describedby="emailHelp" placeholder="">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Amount Payable</label> <input
-							type="text" id="total"  onClick="add_number();" class="form-control" aria-describedby="emailHelp"
+							type="text" id="total" onClick="add_number();"
+							class="form-control" aria-describedby="emailHelp"
 							placeholder="Click to see the total">
 					</div>
 

@@ -13,18 +13,16 @@
 <title>Customer Registration</title>
 </head>
 <body>
-<jsp:include page="./menu.jsp" />
+	<jsp:include page="./menu.jsp" />
 	<form name="customerReg"
 		action="${pageContext.request.contextPath}/CustomerReg" method="POST">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Customer Registration</h3>
-			</div>
-
-			<br>
-
 			<div class="card">
 				<div class="card-body">
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">Customer Registration</h3>
+					</div>
+					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">First Name</label> <input
 							type="text" class="form-control" name="firstname"

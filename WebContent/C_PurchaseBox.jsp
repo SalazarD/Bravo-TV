@@ -24,18 +24,16 @@
 </style>
 
 <body>
-<jsp:include page="./menu.jsp" />
+	<jsp:include page="./menu.jsp" />
 	<form name="P_SetupBox"
 		action="${pageContext.request.contextPath}/P_SetupBox" method="POST">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Purchase Set Top Box</h3>
-			</div>
-
-			<br>
-
 			<div class="card">
 				<div class="card-body">
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">Purchase Set Top Box</h3>
+					</div>
+					<br>
 					<div class="form-group">
 						<label for="formGroupExampleInput2">Charging Type</label>
 						<div class="form-group">
@@ -64,9 +62,18 @@
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Dimensions in inches</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+						<label for="exampleInputEmail1">Dimensions in inches</label>
+						<div class="form-row">
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Height">
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Width">
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Length">
+							</div>
+						</div>
 					</div>
 
 					<div class="form-group">

@@ -8,6 +8,7 @@
 </head>
 <body>
 <jsp:include page="./menu.jsp" />
+<br>
 <h1 style="text-align:center">Welcome Admin<h1>
 </body>
 </html>

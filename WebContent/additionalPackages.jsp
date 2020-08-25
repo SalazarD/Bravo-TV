@@ -10,20 +10,17 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Additional Packages</title>
 </head>
 <body>
-<jsp:include page="./menu.jsp" />
-	<form name="AdditionalPackages" action="additionalPackages.jsp"
+	<jsp:include page="./menu.jsp" />
+	<form name="AdditionalPackages" action="${pageContext.request.contextPath}/AdditionalPackages"
 		method="POST">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>Purchase Additional Packages</h3>
-			</div>
-			<br>
 			<div class="card">
 				<div class="card-body">
-
+					<h3 style="text-align: center">Purchase Additional Packages</h3>
+					<br>
 					<table class="table table-bordered">
 						<th colspan="3">Amount is in US Dollars</th>
 						<tr>
@@ -56,9 +53,9 @@
 								for="inlineCheckbox1">Kids Kart</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id = "id2" name="id2"
-								value="option2"> <label class="form-check-label"
-								for="inlineCheckbox2">Drama</label>
+							<input class="form-check-input" type="checkbox" id="id2"
+								name="id2" value="option2"> <label
+								class="form-check-label" for="inlineCheckbox2">Drama</label>
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="checkbox" name="id3"
@@ -66,7 +63,7 @@
 								for="inlineCheckbox3">Food and Travel</label>
 						</div>
 					</div>
-					
+
 					<br>
 
 					<table class="table">
@@ -142,10 +139,10 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Total Amount</label> <input
 							type="text" class="form-control" name="totalAmount"
-							aria-describedby="emailHelp" value="8.5"
-							required>
+							aria-describedby="emailHelp" value="8.5" required>
 					</div>
-					<button type="submit" class="btn btn-primary">Purchase Additional Packages</button>
+					<button type="submit" class="btn btn-primary">Purchase
+						Additional Packages</button>
 				</div>
 			</div>
 		</div>
