@@ -110,7 +110,7 @@ String date = simpleDateFormat.format(new Date());
 					<div class="form-group">
 						<label for="exampleInputEmail1">Creation Date</label> <input
 							type="text" class="form-control" name="date"
-							aria-describedby="emailHelp" placeholder="<%=date%>" required>
+							aria-describedby="emailHelp" value="<%=date%>" required>
 					</div>
 
 					<button type="submit" class="btn btn-primary">Register</button>
