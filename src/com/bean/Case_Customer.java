@@ -39,12 +39,38 @@ public class Case_Customer {
 		this.customer_creation_date = customer_creation_date;
 		this.assigned_operator = assigned_operator;
 		this.assigned_retailer = assigned_retailer;
+		this.password = password;
+		this.first_time_user = first_time_user;
+	}
+	
+	public Case_Customer() {
+		super();
+	}
+
+	public Case_Customer(String first_name, String last_name, String email_id, String phone_number, String address_one,
+			String address_two, String land_mark, int zip_code, String city, String state,
+			String customer_creation_date, String assigned_operator, String assigned_retailer, String password, Boolean first_time_user) {
+		super();
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.email_id = email_id;
+		this.phone_number = phone_number;
+		this.address_one = address_one;
+		this.address_two = address_two;
+		this.land_mark = land_mark;
+		this.zip_code = zip_code;
+		this.city = city;
+		this.state = state;
+		this.customer_creation_date = customer_creation_date;
+		this.assigned_operator = assigned_operator;
+		this.assigned_retailer = assigned_retailer;
 		this.purchased_stb = purchased_stb;
 		this.purchased_package = purchased_package;
 		this.purchased_channel = purchased_channel;
 		this.password = password;
 		this.first_time_user = first_time_user;
 	}
+
 	public int getCustomer_id() {
 		return customer_id;
 	}
