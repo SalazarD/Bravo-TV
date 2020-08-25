@@ -23,9 +23,9 @@ private static String table = "CASE_Retailer";
 			String qry = "INSERT INTO " + table + 
 					" (retailer_name, contact_num1, contact_num2, address_1, address_2, " +
 					"zip_code, city, state_province, set_top_box_limit, credit_limit, " + 
-					"commission_rate, service_charges, inventory_list, retailer_creation_date, " +
-					"total_cost_of_inventory, oncreate_retailer, total_retailer_in_city, password, first_time_user) " +
-					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					"commission_rate, service_charges, retailer_creation_date, " +
+					"total_cost_of_inventory, password, first_time_user, distributor) " +
+					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement st = con.prepareStatement(qry);
 			
@@ -41,13 +41,11 @@ private static String table = "CASE_Retailer";
 			st.setBigDecimal(10, obj.getCredit_limit());
 			st.setBigDecimal(11, obj.getCommission_rate());
 			st.setBigDecimal(12, obj.getService_charges());
-			st.setString(13, obj.getInventory_list());
-			st.setString(14, obj.getRetailer_creation_date());
-			st.setBigDecimal(15, obj.getTotal_cost_of_inventory());
-			st.setString(16, obj.getOncreate_retailer());
-			st.setString(17, obj.getTotal_reatiler_in_city());
-			st.setString(18, obj.getPassword());
-			st.setBoolean(19, obj.getFirst_time_user());
+			st.setString(13, obj.getRetailer_creation_date());
+			st.setBigDecimal(14, obj.getTotal_cost_of_inventory());
+			st.setString(15, obj.getPassword());
+			st.setBoolean(16, obj.getFirst_time_user());
+			st.setString(17, obj.getDistributor());
 
 			code = st.executeUpdate();			
 			
@@ -68,7 +66,7 @@ private static String table = "CASE_Retailer";
 		try {
 			String qry = "UPDATE " + table + 
 					" SET retailer_name=?, contact_num1=?, contact_num2=?, address_1=?, address_2=?, zip_code=?, city=?, state_province=?, set_top_box_limit=?, credit_limit=?, " + 
-					"commission_rate=?, service_charges=?, inventory_list=?, retailer_creation_date=?, total_cost_of_inventory=?, oncreate_retailer=?, total_retailer_in_city=?, password=?, first_time_user=? " +
+					"commission_rate=?, service_charges=?, retailer_creation_date=?, total_cost_of_inventory=?, password=?, first_time_user=?, distributor=?" +
 					"WHERE retailer_id=?";
 			
 			PreparedStatement st = con.prepareStatement(qry);
@@ -85,14 +83,12 @@ private static String table = "CASE_Retailer";
 			st.setBigDecimal(10, retailer.getCredit_limit());
 			st.setBigDecimal(11, retailer.getCommission_rate());
 			st.setBigDecimal(12, retailer.getService_charges());
-			st.setString(13, retailer.getInventory_list());
-			st.setString(14, retailer.getRetailer_creation_date());
-			st.setBigDecimal(15, retailer.getTotal_cost_of_inventory());
-			st.setString(16, retailer.getOncreate_retailer());
-			st.setString(17, retailer.getTotal_reatiler_in_city());
-			st.setString(18, retailer.getPassword());
-			st.setBoolean(19, retailer.getFirst_time_user());
-			st.setInt(20, retailer.getRetailer_id());
+			st.setString(13, retailer.getRetailer_creation_date());
+			st.setBigDecimal(14, retailer.getTotal_cost_of_inventory());
+			st.setString(15, retailer.getPassword());
+			st.setBoolean(16, retailer.getFirst_time_user());
+			st.setString(17, retailer.getDistributor());
+			st.setInt(18, retailer.getRetailer_id());
 			
 			code = st.executeUpdate();
 			
@@ -155,13 +151,11 @@ private static String table = "CASE_Retailer";
 				retailer.setCredit_limit(rs.getBigDecimal("credit_limit"));
 				retailer.setCommission_rate(rs.getBigDecimal("commission_rate"));
 				retailer.setService_charges(rs.getBigDecimal("service_charges"));
-				retailer.setInventory_list(rs.getString("inventory_list"));
 				retailer.setRetailer_creation_date(rs.getString("retailer_creation_date"));
 				retailer.setTotal_cost_of_inventory(rs.getBigDecimal("total_cost_of_inventory"));
-				retailer.setOncreate_retailer(rs.getString("oncreate_retailer"));
-				retailer.setTotal_reatiler_in_city(rs.getString("total_retailer_in_city"));
 				retailer.setPassword(rs.getString("password"));
 				retailer.setFirst_time_user(rs.getBoolean("first_time_user"));
+				retailer.setDistributor(rs.getString("distributor"));
 			}
 			
 		} catch (Exception e) {
@@ -201,13 +195,11 @@ private static String table = "CASE_Retailer";
 				retailer.setCredit_limit(rs.getBigDecimal("credit_limit"));
 				retailer.setCommission_rate(rs.getBigDecimal("commission_rate"));
 				retailer.setService_charges(rs.getBigDecimal("service_charges"));
-				retailer.setInventory_list(rs.getString("inventory_list"));
 				retailer.setRetailer_creation_date(rs.getString("retailer_creation_date"));
 				retailer.setTotal_cost_of_inventory(rs.getBigDecimal("total_cost_of_inventory"));
-				retailer.setOncreate_retailer(rs.getString("oncreate_retailer"));
-				retailer.setTotal_reatiler_in_city(rs.getString("total_retailer_in_city"));
 				retailer.setPassword(rs.getString("password"));
 				retailer.setFirst_time_user(rs.getBoolean("first_time_user"));
+				retailer.setDistributor(rs.getString("distributor"));
 
 				retailers.add(retailer);
 			}
