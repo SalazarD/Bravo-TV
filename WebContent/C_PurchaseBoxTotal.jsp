@@ -23,6 +23,25 @@
 }
 </style>
 
+
+
+<script>
+
+function add_number() {
+
+    var price = parseFloat(document.getElementById("price").value);
+    var charge = parseFloat(document.getElementById("installCharge").value);
+    var deposit = parseFloat(document.getElementById("depoistAmount").value);
+    var discount = parseFloat(document.getElementById("discount").value);
+    var tax = parseFloat(document.getElementById("tax").value);
+    var result = price + charge + deposit;
+    var fTotal = (result - (result * ((discount) / 100))) + tax;
+
+    document.getElementById("total").value = fTotal;
+}
+
+</script>
+
 <body>
 
 	<form name="P_SetupBox"
@@ -61,37 +80,37 @@
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Price</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
+							type="text" value="150" id="price" class="form-control" aria-describedby="emailHelp"
 							placeholder="">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Installation Charge</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
+							type="text" value="20" id="installCharge" class="form-control" aria-describedby="emailHelp"
 							placeholder="">
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Refundable Discount Amount</label>
-						<input type="text" class="form-control"
+						<label for="exampleInputEmail1">Refundable Deposit Amount</label>
+						<input type="text" value="50" id="depoistAmount" class="form-control"
 							aria-describedby="emailHelp" placeholder="">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Discount %</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
+							type="text" value="10" id="discount" class="form-control" aria-describedby="emailHelp"
 							placeholder="">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Tax</label> <input type="text"
-							class="form-control" aria-describedby="emailHelp" placeholder="">
+							class="form-control" value="23.76" id="tax" aria-describedby="emailHelp" placeholder="">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Amount Payable</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" id="total"  onClick="add_number();" class="form-control" aria-describedby="emailHelp"
+							placeholder="Click to see the total">
 					</div>
 
 					<button type="submit" class="btn btn-primary">Purchase</button>
