@@ -18,8 +18,8 @@ public class CustomerDAO {
 			String qry = "insert into "+table+" (first_name, last_name, email_id, phone_number,"+
 							" address_one, oddress_two, land_mark, zip_code, city, state,"+
 							" customer_creation_date, assigned_operator, assigned_retailer,"+
-							" purchased_stb, purchased_package, purchased_channel, password, first_time_user) "+
-							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+							" password, first_time_user) "+
+							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement st = con.prepareStatement(qry);
 			
@@ -36,11 +36,8 @@ public class CustomerDAO {
 			st.setString(11, obj.getCustomer_creation_date());
 			st.setString(12, obj.getAssigned_operator());
 			st.setString(13, obj.getAssigned_retailer());
-			st.setInt(14, obj.getPurchased_stb());
-			st.setInt(15, obj.getPurchased_package());
-			st.setInt(16, obj.getPurchased_channel());
-			st.setString(17, obj.getPassword());
-			st.setBoolean(18, obj.getFirst_time_user());
+			st.setString(14, obj.getPassword());
+			st.setBoolean(15, obj.getFirst_time_user());
 			
 			code = st.executeUpdate();
 			
@@ -61,7 +58,7 @@ public class CustomerDAO {
 		try {
 			String qry = "update "+table+" set first_name=?, last_name=?, email_id=?, phone_number=?, "
 					+ "address_one=?, address_two=?, land_mark=?, zip_code=?, city=?, state=?, customer_creation_date=?, "
-					+ "assigned_operator=?, assigned_retailer=?, purchased_stb=?, purchased_package=?, purchased_channel=?, password=?, first_time_user=?"
+					+ "assigned_operator=?, assigned_retailer=?, password=?, first_time_user=?"
 					+ " where customer_id=?";
 			
 			PreparedStatement st = con.prepareStatement(qry);
@@ -79,12 +76,9 @@ public class CustomerDAO {
 			st.setString(11, obj.getCustomer_creation_date());
 			st.setString(12, obj.getAssigned_operator());
 			st.setString(13, obj.getAssigned_retailer());
-			st.setInt(14, obj.getPurchased_stb());
-			st.setInt(15, obj.getPurchased_package());
-			st.setInt(16, obj.getPurchased_channel());
-			st.setString(17, obj.getPassword());
-			st.setBoolean(18, obj.getFirst_time_user());
-			st.setInt(19, obj.getCustomer_id());
+			st.setString(14, obj.getPassword());
+			st.setBoolean(15, obj.getFirst_time_user());
+			st.setInt(16, obj.getCustomer_id());
 			
 			code = st.executeUpdate();
 		} catch(Exception e) {
@@ -149,10 +143,8 @@ public class CustomerDAO {
 				customer.setCustomer_creation_date(rs.getString(12));
 				customer.setAssigned_operator(rs.getString(13));
 				customer.setAssigned_retailer(rs.getString(14));
-				customer.setPurchased_stb(rs.getInt(15));
-				customer.setPurchased_package(rs.getInt(16));
-				customer.setPurchased_channel(rs.getInt(17));
-				customer.setFirst_time_user(rs.getBoolean(19));
+				customer.setPassword(rs.getString(15));
+				customer.setFirst_time_user(rs.getBoolean(16));
 			}
 			
 		} catch(Exception e) {
@@ -191,11 +183,8 @@ public class CustomerDAO {
 				customer.setCustomer_creation_date(rs.getString(12));
 				customer.setAssigned_operator(rs.getString(13));
 				customer.setAssigned_retailer(rs.getString(14));
-				customer.setPurchased_stb(rs.getInt(15));
-				customer.setPurchased_package(rs.getInt(16));
-				customer.setPurchased_channel(rs.getInt(17));
-				customer.setPassword(rs.getString(18));
-				customer.setFirst_time_user(rs.getBoolean(19));
+				customer.setPassword(rs.getString(15));
+				customer.setFirst_time_user(rs.getBoolean(16));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
