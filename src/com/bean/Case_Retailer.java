@@ -50,6 +50,38 @@ public class Case_Retailer {
 		this.password = password;
 		this.first_time_user = first_time_user;
 	}
+	
+	public Case_Retailer(String retailer_name, String contact_num1, String contact_num2, String address_1,
+			String address_2, String zip_code, String city, String state_province, String set_top_box_limit,
+			BigDecimal credit_limit, BigDecimal commission_rate, BigDecimal service_charges, String inventory_list,
+			String retailer_creation_date, BigDecimal total_cost_of_inventory, String oncreate_retailer,
+			String total_reatiler_in_city, String password, Boolean first_time_user) {
+		super();
+		this.retailer_name = retailer_name;
+		this.contact_num1 = contact_num1;
+		this.contact_num2 = contact_num2;
+		this.address_1 = address_1;
+		this.address_2 = address_2;
+		this.zip_code = zip_code;
+		this.city = city;
+		this.state_province = state_province;
+		this.set_top_box_limit = set_top_box_limit;
+		this.credit_limit = credit_limit;
+		this.commission_rate = commission_rate;
+		this.service_charges = service_charges;
+		this.inventory_list = inventory_list;
+		this.retailer_creation_date = retailer_creation_date;
+		this.total_cost_of_inventory = total_cost_of_inventory;
+		this.oncreate_retailer = oncreate_retailer;
+		this.total_reatiler_in_city = total_reatiler_in_city;
+		this.password = password;
+		this.first_time_user = first_time_user;
+	}
+	
+	public Case_Retailer() {
+		super();
+	}
+
 	public int getRetailer_id() {
 		return retailer_id;
 	}
@@ -169,6 +201,18 @@ public class Case_Retailer {
 	}
 	public void setFirst_time_user(Boolean first_time_user) {
 		this.first_time_user = first_time_user;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getRetailer_id() + " " + this.getRetailer_name()+ " " + this.getContact_num1() + " " + 
+				this.getContact_num2() + " " + this.getAddress_1() + " " + this.getAddress_2() + " " + 
+				this.getZip_code() + " " + this.getCity() + " " + this.getState_province() + " " +
+				this.getSet_top_box_limit() + " " + this.getCredit_limit() + " " + this.getCommission_rate() + " " + 
+				this.getService_charges() + " " + this.getInventory_list() + " " + this.getRetailer_creation_date() + " " + 
+				this.getTotal_reatiler_in_city() + " " + this.getFirst_time_user();
+				
+				
 	}
 	
 }
