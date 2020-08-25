@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="./menu.jsp" />
 	<form name="AddChannel"
 		action="${pageContext.request.contextPath}/AddChannel" method="POST">
 		<div class="container">

@@ -43,7 +43,7 @@ function add_number() {
 </script>
 
 <body>
-
+<jsp:include page="./menu.jsp" />
 	<form name="P_SetupBox"
 		action="${pageContext.request.contextPath}/P_SetupBox" method="POST">
 		<div class="container">

@@ -31,7 +31,7 @@ String date = simpleDateFormat.format(new Date());
 	crossorigin="anonymous"></script>
 
 <body>
-
+<jsp:include page="./menu.jsp" />
 	<form name="OperatorReg"
 		action="${pageContext.request.contextPath}/OperatorReg" method="POST">
 		<div class="container">

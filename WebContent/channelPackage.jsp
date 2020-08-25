@@ -26,6 +26,7 @@
 </script>
 
 <body>
+<jsp:include page="./menu.jsp" />
 	<form name="ChannelPackage" action="/BravoTV/ChannelPackage"
 		method="POST">
 		<div class="container">

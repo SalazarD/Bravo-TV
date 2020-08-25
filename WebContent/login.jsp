@@ -34,7 +34,9 @@
 							aria-describedby="emailHelp" placeholder="Enter Password"
 							required>
 					</div>
-					<button type="submit" class="btn btn-primary">Login</button>
+				<input class="btn btn-primary" type="button"
+							onclick="location.href='/BravoTV/homepage.jsp';"
+							value="Login" />
 				</div>
 			</div>
 		</div>

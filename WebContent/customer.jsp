@@ -13,7 +13,7 @@
 <title>Customer Registration</title>
 </head>
 <body>
-
+<jsp:include page="./menu.jsp" />
 	<form name="customerReg"
 		action="${pageContext.request.contextPath}/CustomerReg" method="POST">
 		<div class="container">
