@@ -7,8 +7,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * @author Christopher Madrigal
- * 
  * Denotes a field that corresponds to a column in a table.
  */
 @Target({ FIELD })

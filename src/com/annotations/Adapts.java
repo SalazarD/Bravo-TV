@@ -9,8 +9,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * @author Christopher Madrigal
- * 
  * Denotes that a field uses an adapter class
  * to transform data from the field type (input) to the
  * column type (output) in a table.

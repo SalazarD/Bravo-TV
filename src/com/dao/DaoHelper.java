@@ -31,7 +31,8 @@ public class DaoHelper {
 	 *  &#64;Value int age;
 	 *}</pre></code>
 	 * ...assuming those fields match the tuple element types. Fields must be marked with
-	 * the {@link Value} annotation to be converted between formats.
+	 * the {@link Value} annotation to be converted between formats. The target class must
+	 * also implement a no-args constructor.
 	 * </div>
 	 * 
 	 * @param <T> The type of the object to return.
@@ -119,6 +120,7 @@ public class DaoHelper {
 	}
 	
 	/**
+	 * DO NOT USE
 	 * Gets the appropriate Java type from the ResultSet at the give index.
 	 * @param rs The ResultSet containing tuples.
 	 * @param metadata The ResultSet's metadata
@@ -141,6 +143,7 @@ public class DaoHelper {
 	}
 
 	/**
+	 * DO NOT USE
 	 * Instantiates and deserializes an object initializing its fields
 	 * with the corresponding entries in the given map
 	 * @param <T> The type of the object to return
@@ -197,6 +200,13 @@ public class DaoHelper {
 		return result;
 	}
 
+	/**
+	 * DO NOT USE
+	 * @param <T>
+	 * @param o
+	 * @param clazz
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	private static final <T> Map<String, Object> serialize(T o, Class<T> clazz) {
 
