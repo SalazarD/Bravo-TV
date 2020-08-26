@@ -9,6 +9,10 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+
 <meta charset="ISO-8859-1">
 <title>Update Customer</title>
 </head>
@@ -50,7 +54,8 @@
 
 					<div class="form-group">
 						<label for="inputAddress">Address</label> <input type="text"
-							class="form-control" id="inputAddress_U" placeholder="1234 Main St">
+							class="form-control" id="inputAddress_U"
+							placeholder="1234 Main St">
 					</div>
 					<div class="form-group">
 						<label for="inputAddress2">Address 2</label> <input type="text"
@@ -64,8 +69,8 @@
 						</div>
 						<div class="col-md-3 mb-3">
 							<label for="validationCustom04">State</label> <input type="text"
-								class="form-control" id="validationCustom04_U" placeholder="State"
-								required>
+								class="form-control" id="validationCustom04_U"
+								placeholder="State" required>
 							<div class="invalid-feedback">Please provide a valid state.
 							</div>
 						</div>

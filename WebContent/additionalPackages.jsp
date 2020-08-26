@@ -9,12 +9,18 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+
 <meta charset="ISO-8859-1">
 <title>Additional Packages</title>
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />
-	<form name="AdditionalPackages" action="${pageContext.request.contextPath}/AdditionalPackages"
+	<form name="AdditionalPackages"
+		action="${pageContext.request.contextPath}/AdditionalPackages"
 		method="POST">
 		<div class="container">
 			<div class="card">

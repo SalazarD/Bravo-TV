@@ -35,7 +35,7 @@ table {
 </style>
 
 <body>
-<jsp:include page="./menu.jsp" />
+	<jsp:include page="./menu.jsp" />
 	<div>
 		<div>
 			<div class="card">
@@ -61,8 +61,8 @@ table {
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<div class="card-body">
 		<table class="table table-striped">
 			<thead class="thead-dark">
@@ -86,6 +86,6 @@ table {
 			</tbody>
 		</table>
 	</div>
-	
+
 </body>
 </html>

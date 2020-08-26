@@ -9,6 +9,10 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+
 <meta charset="ISO-8859-1">
 <title>Login</title>
 </head>
@@ -36,9 +40,8 @@
 					</div>
 					<input class="btn btn-primary" type="button"
 						onclick="location.href='/BravoTV/homepage.jsp';" value="Login" />
-					<br><br> 
-						<a
-						href="${pageContext.request.contextPath}/customer.jsp">Customer
+					<br>
+					<br> <a href="${pageContext.request.contextPath}/customer.jsp">Customer
 						Registration</a>
 
 				</div>

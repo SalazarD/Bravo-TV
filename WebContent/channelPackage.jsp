@@ -9,6 +9,10 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+
 <meta charset="ISO-8859-1">
 <title>Channel Package</title>
 </head>
@@ -27,7 +31,8 @@
 
 <body>
 	<jsp:include page="./menu.jsp" />
-	<form name="ChannelPackage" action="${pageContext.request.contextPath}/ChannelPackage"
+	<form name="ChannelPackage"
+		action="${pageContext.request.contextPath}/ChannelPackage"
 		method="POST">
 		<div class="container">
 			<div class="card">
