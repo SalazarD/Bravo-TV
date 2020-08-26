@@ -28,6 +28,18 @@
       <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/PackageCharging.jsp">Package and Charging</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/customer.jsp">Customer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/operator.jsp">Operator</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/retailerRegistration.jsp">Retailer</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/customerList.jsp">Customer List</a>
+      </li>
     </ul>
   </div>
 </nav>

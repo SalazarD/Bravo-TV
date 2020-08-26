@@ -33,6 +33,7 @@ String date = simpleDateFormat.format(new Date());
 <title>Retailer Registration</title>
 </head>
 <body>
+<jsp:include page="./menu.jsp" />
 	<form name="RetailerReg"
 		action="${pageContext.request.contextPath}/RetailerReg" method="post">
 		<div class="container">
