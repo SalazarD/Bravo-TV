@@ -191,7 +191,7 @@ public abstract class AbstractDao<T extends Bean> {
 			AbstractDao.prepareValue(ps, columnValues[0], 1);
 
 			// Execute and get the result
-			successful = (ps.executeUpdate() > 1);
+			successful = (ps.executeUpdate() == 1);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
