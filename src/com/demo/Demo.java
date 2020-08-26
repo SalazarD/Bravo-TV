@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 import com.bean.Customer;
 import com.bean.Retailer;
-import com.dao.CustomerDAO;
+import com.dao.CustomerDao;
 import com.dao.OperatorDao;
 import com.dao.RetailerDao;
 
