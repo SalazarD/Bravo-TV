@@ -3,9 +3,12 @@ package com.bean;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import com.annotations.Alias;
+
 public class Retailer implements Bean {
 
-	private int retailer_id;
+	@Alias("retailer_id")
+	private int retailerID;
 	private String retailer_name;
 	private String contact_num1;
 	private String contact_num2;
@@ -23,8 +26,8 @@ public class Retailer implements Bean {
 	private boolean first_time_user;
 	private int assigned_distributor_id;
 	
-	public int getRetailer_id() {
-		return retailer_id;
+	public int getRetailerID() {
+		return retailerID;
 	}
 	public String getRetailer_name() {
 		return retailer_name;
@@ -74,8 +77,8 @@ public class Retailer implements Bean {
 	public int getAssigned_distributor_id() {
 		return assigned_distributor_id;
 	}
-	public void setRetailer_id(int retailer_id) {
-		this.retailer_id = retailer_id;
+	public void setRetailerID(int retailer_id) {
+		this.retailerID = retailer_id;
 	}
 	public void setRetailer_name(String retailer_name) {
 		this.retailer_name = retailer_name;
@@ -128,7 +131,7 @@ public class Retailer implements Bean {
 
 	@Override
 	public String toString() {
-		return "Retailer [retailer_id=" + retailer_id
+		return "Retailer [retailerID=" + retailerID
 				+ ", retailer_name=" + retailer_name
 				+ ", contact_num1=" + contact_num1
 				+ ", contact_num2=" + contact_num2

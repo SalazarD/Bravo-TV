@@ -12,7 +12,7 @@ public class Demo {
 	public static void main(String[] args) {
 		RetailerDao dao = new RetailerDao();
 		Retailer retailer = new Retailer();
-		retailer.setRetailer_id(0);
+		retailer.setRetailerID(0);
 		retailer.setRetailer_name("My Retailer");
 		retailer.setContact_num1("1234567");
 		retailer.setContact_num2("9875");

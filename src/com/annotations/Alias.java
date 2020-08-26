@@ -7,17 +7,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * Denotes a field that corresponds to a column in a table.
+ * Denotes the name used by a database if different from that of the field.
  */
 @Target({ FIELD })
 @Retention(RUNTIME)
-public @interface Value {
-	
-	public static final String DEFAULT = "";
+public @interface Alias {
 	
 	/**
-	 * The name of the field in the table, if different
-	 * from the field's name.
+	 * The name of the field in its table.
 	 */
-	public String name() default DEFAULT;
+	public String value();
 }
