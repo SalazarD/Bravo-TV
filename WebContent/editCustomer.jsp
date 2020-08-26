@@ -10,7 +10,7 @@
 	crossorigin="anonymous">
 
 <meta charset="ISO-8859-1">
-<title>Customer Registration</title>
+<title>Update Customer</title>
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />

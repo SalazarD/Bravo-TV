@@ -23,6 +23,32 @@
 }
 </style>
 
+<script>
+	function showHideUpgradationCharge() {
+		if (document.getElementById('topBoxType').value == "SD") {
+			document.getElementById("upgradationCharge").disabled = true;
+			document.getElementById("upgradationCharge").value = 0;
+		} else {
+			document.getElementById("upgradationCharge").disabled = false;
+		}
+
+	}
+	function showHideRefundable() {
+		var radios = document.getElementsByName('billingType');
+
+		for (var i = 0, length = radios.length; i < length; i++) {
+			if (radios[i].checked) {
+				if (radios[i].value == "Postpaid") {
+					document.getElementById("refundableDepositAmount").disabled = true;
+					document.getElementById("refundableDepositAmount").value = 0;
+				} else {
+					document.getElementById("refundableDepositAmount").disabled = false;
+				}
+			}
+		}
+	}
+</script>
+
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="P_SetupBox"
@@ -38,18 +64,22 @@
 						<label for="formGroupExampleInput2">Charging Type</label>
 						<div class="form-group">
 							<label class="radio-inline"> <input type="radio"
-								name="chargeType" value="Prepaid" required> Prepaid
+								name="billingType" onClick="showHideRefundable()" id="Prepaid"
+								value="Prepaid" required> Prepaid
 							</label> <label class="radio-inline"> <input type="radio"
-								name="chargeType" value="Postpaid" required> Postpaid
+								name="billingType" onClick="showHideRefundable()" id="Postpaid"
+								value="Postpaid" required> Postpaid
 							</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Set Top Box Type</label> <select
-							name="major" class="form-control" id="exampleFormControlSelect1">
+							name="topBoxType" class="form-control" id="topBoxType"
+							onClick="showHideUpgradationCharge()" required>
 							<option value="HD">High Definition - HD</option>
 							<option value="SD">Standard Definition - SD</option>
-							<option value="UHD">Ultra High Definition - UHD</option>
+							<option value="HDR">High Definition Recorder - HD+</option>
+							<option value="IPTV">IPTV</option>
 						</select>
 					</div>
 					<div>
@@ -89,8 +119,8 @@
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Upgradation Charge</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" name="upgradationCharge" id="upgradationCharge"
+							class="form-control" aria-describedby="emailHelp" placeholder="">
 					</div>
 
 					<div class="form-group">
@@ -107,8 +137,8 @@
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Refundable Discount Amount</label>
-						<input type="text" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+						<input type="text" id="refundableDepositAmount"
+							class="form-control" aria-describedby="emailHelp" placeholder="1">
 					</div>
 					<div>
 						<input class="btn btn-primary" type="button"
