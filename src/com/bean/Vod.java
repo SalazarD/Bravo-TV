@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Vod implements Bean{
+	
 	private int video_id;
 	private String video_name;
 	private String video_category;
@@ -74,35 +75,8 @@ public class Vod implements Bean{
 				+ ", cost=" + cost + "]";
 	}
 	
-	private static final String[] COLUMN_NAMES = new String[] {
-			"video_id", "video_name", "video_category", "duration", "frequency",
-			"video_start_time", "video_end_time", "cost"
-	};
-
 	@Override
-	public String[] getColumnNames() {
-		return COLUMN_NAMES;
+	public String getUniqueIDName() {
+		return "video_id";
 	}
-	@Override
-	public Object[] getColumnValues() {
-		return new Object[] { video_id, video_name, video_category, duration, frequency,
-				video_start_time, video_end_time, cost
-				
-		};
-	}
-	@Override
-	public void setColumnValues(Object[] values) {
-		video_id = (int) values[0];
-		video_name = (String) values[1];
-		video_category = (String) values[2];
-		duration = (int) values[3];
-		frequency = (String) values[4];
-		video_start_time = (Timestamp) values[5];
-		video_end_time = (Timestamp) values[6];
-		cost = (BigDecimal) values[7];
-		
-	}
-	
-	
-	
 }

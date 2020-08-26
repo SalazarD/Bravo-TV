@@ -3,6 +3,7 @@ package com.bean;
 import java.math.BigDecimal;
 
 public class StbType implements Bean{
+	
 	private int stb_type_id;
 	private String type;
 	private BigDecimal length;
@@ -96,37 +97,8 @@ public class StbType implements Bean{
 				+ ", refundable_deposit=" + refundable_deposit + "]";
 	}
 	
-	private static final String[] COLUMN_NAMES = new String[] {
-			"stb_type_id", "type", "length", "breadth", "width",
-			"price", "install_charges", "upgrade_charge", "discount", "billing_type",
-			"refundable_deposit"
-	};
-
 	@Override
-	public String[] getColumnNames() {
-		return COLUMN_NAMES;
+	public String getUniqueIDName() {
+		return "stb_type_id";
 	}
-	@Override
-	public Object[] getColumnValues() {
-		return new Object[] {
-			stb_type_id, type, length, breadth, width, price, install_charges, upgrade_charge, discount,
-			billing_type, refundable_deposit
-		};
-	}
-	@Override
-	public void setColumnValues(Object[] values) {
-		stb_type_id = (int) values[0];
-		type = (String) values[1];
-		length = (BigDecimal) values[2];
-		breadth = (BigDecimal) values[3];
-		width = (BigDecimal) values[4];
-		price = (BigDecimal) values[5];
-		install_charges = (BigDecimal) values[6];
-		upgrade_charge = (BigDecimal) values[7];
-		discount = (int) values[8];
-		billing_type = (String) values[9];
-		refundable_deposit = (BigDecimal) values[10];
-		
-	}
-		
 }

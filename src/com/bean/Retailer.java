@@ -149,7 +149,6 @@ public class Retailer implements Bean {
 				+ ", first_time_user=" + first_time_user
 				+ ", assigned_distributor_id=" + assigned_distributor_id + "]";
 	}
-	
 	@Override
 	public String getUniqueIDName() {
 		return "retailer_id";

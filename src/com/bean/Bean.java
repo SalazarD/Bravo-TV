@@ -13,9 +13,9 @@ public interface Bean {
 	
 	/**
 	 * Gets the name of the Bean's unique identifier in its table.
-	 * It is advised to return a string literal.
+	 * When overriding, it is advised to return a string literal.
 	 * 
-	 * @return The name of the Bean's unique identifier
+	 * @return The name of the Bean's unique identifier, or null if none exists
 	 */
 	String getUniqueIDName();
 	
@@ -31,15 +31,11 @@ public interface Bean {
 		
 		HashMap<String, Object> properties = new HashMap<String, Object>();
 		Field[] declaredFields = this.getClass().getDeclaredFields();
-		String propertyName;
 		
 		for (Field f : declaredFields) try {
 			
 			// Property name may differ from field name
-			propertyName = f.getName();
-			if (f.getDeclaredAnnotation(Alias.class) != null) {
-				propertyName = f.getDeclaredAnnotation(Alias.class).value();
-			}
+			String propertyName;propertyName = Bean.getFieldName(f);
 			
 			// Briefly set field to be accessible and read its value
 			boolean flag = f.isAccessible();
@@ -61,15 +57,11 @@ public interface Bean {
 	default void setProperties(Map<String, Object> properties) {
 		
 		Field[] declaredFields = this.getClass().getDeclaredFields();
-		String propertyName;
 		
 		for (Field f : declaredFields) {
 			
 			// Property name may differ from field name
-			propertyName = f.getName();
-			if (f.getDeclaredAnnotation(Alias.class) != null) {
-				propertyName = f.getDeclaredAnnotation(Alias.class).value();
-			}
+			String propertyName = Bean.getFieldName(f);
 
 			if (properties.containsKey(propertyName)) try {
 				// Briefly set field to be accessible and change its value
@@ -80,6 +72,15 @@ public interface Bean {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	static String getFieldName(Field f) {
+		if (f.getDeclaredAnnotation(Alias.class) != null) {
+			return f.getDeclaredAnnotation(Alias.class).value();
+		}
+		else {
+			return f.getName();
 		}
 	}
 }

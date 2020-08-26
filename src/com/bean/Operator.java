@@ -3,6 +3,7 @@ package com.bean;
 import java.sql.Timestamp;
 
 public class Operator implements Bean {
+	
 	private int operator_id;
 	private String first_name;
 	private String last_name;

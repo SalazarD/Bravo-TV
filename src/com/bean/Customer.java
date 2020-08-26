@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Customer implements Bean {
+
 	private int customer_id;
 	private String first_name;
 	private String last_name;

@@ -2,7 +2,8 @@ package com.bean;
 
 import java.math.BigDecimal;
 
-public class Distributor implements Bean{
+public class Distributor implements Bean {
+
 	private int distributor_id;
 	private String distributor_name;
 	private String contact_num1;
@@ -96,37 +97,8 @@ public class Distributor implements Bean{
 				+ ", credit_limit=" + credit_limit + "]";
 	}
 	
-	private static final String[] COLUMN_NAMES = new String[] {
-			"distributor_id", "distributor_name", "contact_num1", "contact_num2", "address_1",
-			"address_2", "zip_code", "city", "zone", "set_top_box_limit", "credit_limit"
-	};
-
 	@Override
-	public String[] getColumnNames() {
-		return COLUMN_NAMES;
+	public String getUniqueIDName() {
+		return "distributor_id";
 	}
-	@Override
-	public Object[] getColumnValues() {
-		return new Object[] {
-				distributor_id, distributor_name, contact_num1, contact_num2, address_1, address_2,
-				zip_code, city, zone, set_top_box_limit, credit_limit
-		};
-	}
-	@Override
-	public void setColumnValues(Object[] values) {
-		distributor_id = (int) values[0];
-		distributor_name = (String) values[1];
-		contact_num1 = (String) values[2];
-		contact_num2 = (String) values[3];
-		address_1 = (String) values[4];
-		address_2 = (String) values[5];
-		zip_code = (int) values[6];
-		city = (String) values[7];
-		zone = (String) values[8];
-		set_top_box_limit = (int) values[9];
-		credit_limit = (BigDecimal) values[10];
-		
-	}
-	
-	
 }

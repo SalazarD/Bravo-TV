@@ -3,6 +3,7 @@ package com.bean;
 import java.math.BigDecimal;
 
 public class Channel implements Bean{
+
 	private int channel_id;
 	private String channel_name;
 	private String channel_band;
@@ -71,36 +72,9 @@ public class Channel implements Bean{
 				+ ", channel_transmission=" + channel_transmission 
 				+ ", channel_charge=" + channel_charge + "]";
 	}
-	
-	private static final String[] COLUMN_NAMES = new String[] { "channel_id", "channel_name", "channel_band",
-			"video_carrier_frequency", "audio_carrier_frequency", "channel_charge_type", "channel_transmission",
-			"channel_charge"
-			
-	};
 
 	@Override
-	public String[] getColumnNames() {
-		return COLUMN_NAMES;
+	public String getUniqueIDName() {
+		return "channel_id";
 	}
-	@Override
-	public Object[] getColumnValues() {
-		return new Object[] { channel_id, channel_name, channel_band, video_carrier_frequency, audio_carrier_frequency,
-				channel_charge_type, channel_transmission, channel_charge
-				
-		};
-	}
-	@Override
-	public void setColumnValues(Object[] values) {
-		channel_id = (int) values[0];
-		channel_name = (String) values[1];
-		channel_band = (String) values[2];
-		video_carrier_frequency = (int) values[3];
-		audio_carrier_frequency = (int) values[4];
-		channel_charge_type = (String) values[5];
-		channel_transmission = (String) values[6];
-		channel_charge = (BigDecimal) values[7];
-		
-	}
-	
-	
 }

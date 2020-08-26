@@ -21,7 +21,7 @@ import com.utilities.DbCon;
  * Java types should map to the following MySQL types:
  * 
  * null                 <=> NULL
- * Integer              <=> INT
+ * Integer              <=> INT, BIGINT
  * Boolean              <=> BOOLEAN, BIT
  * String               <=> VARCHAR
  * java.math.BigDecimal <=> DECIMAL
@@ -53,16 +53,16 @@ public abstract class AbstractDao<T extends Bean> {
 			if (!(properties.size() > 0)) {
 				throw new SQLException("Property map is not at least size 1.");
 			}
-			properties.remove(bean.getUniqueIDName());
+			properties.put(bean.getUniqueIDName(), null);
 
 			// INSERT INTO <table> (<key1>, <key2>, ..., <keyN>) VALUES (?, ?, ..., ?)
 			PreparedStatement ps = AbstractDao.prepareInsertStatement(con, this.getTableName(), properties);
 
 			// Execute and get the new unique id
 			successful = (ps.executeUpdate() == 1);
-			ResultSet keySet = ps.getGeneratedKeys();
-			if (keySet.next()) {
-				properties.put(bean.getUniqueIDName(), keySet.getInt(1));
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				properties.put(bean.getUniqueIDName(), AbstractDao.getValueByIndex(rs, rs.getMetaData(), 1));
 				bean.setProperties(properties);
 			}
 
@@ -400,6 +400,7 @@ public abstract class AbstractDao<T extends Bean> {
 	protected static final Object getValueByIndex(ResultSet rs, ResultSetMetaData metadata, int columnIndex) throws SQLException {
 		int typeCode = metadata.getColumnType(columnIndex);
 		switch (typeCode) {
+			case java.sql.Types.BIGINT:
 			case java.sql.Types.INTEGER:
 				return rs.getInt(columnIndex);
 			case java.sql.Types.BOOLEAN:

@@ -37,6 +37,7 @@ public class Demo {
 			r.setRetailer_creation_date(time);
 			dao.update(r);
 			System.out.println(r);
+			dao.delete(r);
 		}
 	}
 
