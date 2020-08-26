@@ -13,5 +13,4 @@ public class OperatorDao extends AbstractDao<Operator> {
 	protected Operator getNewBean() {
 		return new Operator();
 	}
-	
 }
