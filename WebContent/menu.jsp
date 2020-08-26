@@ -26,10 +26,7 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/C_PurchaseBox.jsp">Purchase SetTop Box</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/AO_PackageCharging.jsp">Package and Charging</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/deductBalance.jsp">Balance</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/PackageCharging.jsp">Package and Charging</a>
       </li>
     </ul>
   </div>

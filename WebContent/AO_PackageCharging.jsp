@@ -65,7 +65,7 @@ table {
 	
 	<div class="card-body">
 		<table class="table table-striped">
-			<thead style="background-color: #e3f2fd;">
+			<thead class="thead-dark">
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">Bills</th>
