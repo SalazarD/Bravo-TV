@@ -49,35 +49,71 @@
 						</thead>
 						<tr id="row1">
 							<td>CST004</td>
-							<td id="CB-row1">85</td>
-							<td id="DB_row1">15</td>
-							<td><input type="button" id="edit_button1" value="Edit"
-								class="edit" onclick="edit_row('1')"> <input
-								type="button" id="save_button1" value="Save" class="save"
-								onclick="save_row('1')"></td>
+							<td><div id="nonEditableCB1" style="display: inline;">
+									<p id="cbValue1">85</p>
+									<input type="button" value="Edit" class="btn btn-primary"
+										onclick="editCB('1')">
+								</div>
+								<div id="editableCB1" style="display: none;">
+									<input type="text" id="cbEdit1"><input type="button"
+										value="Done" class="btn btn-primary" onclick="confirmCB('1')">
+								</div></td>
+							<td><div id="nonEditableDB1" style="display: inline;">
+									<p id="dbValue1">15</p>
+									<input type="button" value="Edit" class="btn btn-primary"
+										onclick="editDB('1')">
+								</div>
+								<div id="editableDB1" style="display: none;">
+									<input type="text" id="dbEdit1"><input type="button"
+										value="Done" class="btn btn-primary onclick="confirmDB('1')">
+								</div></td>
 						</tr>
-						<tr>
+						<tr id="row2">
 							<td>CST007</td>
-							<td id="CB_row2">15</td>
-							<td id="DB_row2">85</td>
-							<td><input type="button" id="edit_button2" value="Edit"
-								class="edit" onclick="edit_row('2')"> <input
-								type="button" id="save_button2" value="Save" class="save"
-								onclick="save_row('2')"></td>
+							<td><div id="nonEditableCB2" style="display: inline;">
+									<p id="cbValue2">15</p>
+									<input type="button" value="Edit" class="btn btn-primary"
+										onclick="editCB('2')">
+								</div>
+								<div id="editableCB2" style="display: none;">
+									<input type="text" id="cbEdit2"><input type="button"
+										value="Done" class="btn btn-primary" onclick="confirmCB('2')">
+								</div></td>
+							<td><div id="nonEditableDB2" style="display: inline;">
+									<p id="dbValue2">85</p>
+									<input type="button" value="Edit" class="btn btn-primary"
+										onclick="editDB('2')">
+								</div>
+								<div id="editableDB2" style="display: none;">
+									<input type="text" id="dbEdit2"><input type="button"
+										value="Done" class="btn btn-primary" onclick="confirmDB('2')">
+								</div></td>
 						</tr>
-						<tr>
-							<td>CST008</td>
-							<td id="CB-row3"">30</td>
-							<td id="DB_row3">70</td>
-							<td><input type="button" id="edit_button3" value="Edit"
-								class="edit" onclick="edit_row('3')"> <input
-								type="button" id="save_button3" value="Save" class="save"
-								onclick="save_row('3')"></td>
+						<tr id="row3">
+							<td>CST003</td>
+							<td><div id="nonEditableCB3" style="display: inline;">
+									<p id="cbValue3">70</p>
+									<input type="button" value="Edit" class="btn btn-primary"
+										onclick="editCB('3')">
+								</div>
+								<div id="editableCB3" style="display: none;">
+									<input type="text" id="cbEdit3"><input type="button"
+										value="Done" class="btn btn-primary" onclick="confirmCB('3')">
+								</div></td>
+							<td><div id="nonEditableDB3" style="display: inline;">
+									<p id="dbValue3">30</p>
+									<input type="button" value="Edit" class="btn btn-primary"
+										onclick="editDB('3')">
+								</div>
+								<div id="editableDB3" style="display: none;">
+									<input type="text" id="dbEdit3"><input type="button"
+										value="Done" class="btn btn-primary" onclick="confirmDB('3')">
+								</div></td>
 						</tr>
-
-						</div>
-						</div>
-						</div>
-						</form>
+					</table>
+				</div>
+			</div>
+		</div>
+	</form>
 </body>
 </html>

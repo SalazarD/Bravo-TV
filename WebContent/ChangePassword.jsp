@@ -27,31 +27,33 @@
 						<h3 style="text-align: center">Change Password</h3>
 					</div>
 					<br>
-					<div class="form-group">
-						<label for="userName">User Name: </label><input type="text"
-							id="userName" name="userName" class="form-control"
-							placeholder="Enter your user name" required>
+					<div class="container" style="width:50%">
+						<div class="form-group">
+							<label for="userName">User Name: </label><input type="text"
+								id="userName" name="userName" class="form-control"
+								placeholder="Enter your user name" required>
+						</div>
+						<div class="form-group">
+							<label for="oldPassword">Old Password: </label><input type="text"
+								id="oldPassword" name="oldPassword" class="form-control"
+								placeholder="Enter your current Password" required>
+						</div>
+						<div class="form-group">
+							<label for="oldPassword">New Password: </label><input
+								type="text" id="changePassword" name="changePassword"
+								class="form-control" placeholder="Enter a new password" required>
+						</div>
+						<div class="form-group">
+							<label for="oldPassword">Confirm New Password: </label><input
+								type="text" id="confirmPassword" name="confirmPassword"
+								class="form-control" placeholder="Re-enter your new password"
+								required>
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary"
+								value="Change Password" />
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="oldPassword">Old Password: </label><input type="text"
-							id="oldPassword" name="oldPassword" class="form-control"
-							placeholder="Enter your current Password" required>
-					</div>
-					<div class="form-group">
-						<label for="oldPassword">Change Password: </label><input
-							type="text" id="changePassword" name="changePassword"
-							class="form-control" placeholder="Enter a new password" required>
-					</div>
-					<div class="form-group">
-						<label for="oldPassword">Confirm Password: </label><input
-							type="text" id="confirmPassword" name="confirmPassword"
-							class="form-control" placeholder="Re-enter your new password"
-							required>
-					</div>
-					<div class="form-group">
-						<input type="submit" class="btn btn-primary" value="Change Password" />
-					</div>
-
 				</div>
 			</div>
 		</div>
