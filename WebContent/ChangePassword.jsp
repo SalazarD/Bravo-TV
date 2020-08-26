@@ -21,13 +21,14 @@
 		action="${pageContext.request.contextPath}/ChangePassword"
 		method="post">
 		<div class="container">
+			<br> <br>
 			<div class="card">
 				<div class="card-body">
 					<div style="margin-top: 1%; margin-bottom: 1%">
 						<h3 style="text-align: center">Change Password</h3>
 					</div>
 					<br>
-					<div class="container" style="width:50%">
+					<div class="container" style="width: 50%">
 						<div class="form-group">
 							<label for="userName">User Name: </label><input type="text"
 								id="userName" name="userName" class="form-control"
@@ -39,9 +40,9 @@
 								placeholder="Enter your current Password" required>
 						</div>
 						<div class="form-group">
-							<label for="oldPassword">New Password: </label><input
-								type="text" id="changePassword" name="changePassword"
-								class="form-control" placeholder="Enter a new password" required>
+							<label for="oldPassword">New Password: </label><input type="text"
+								id="changePassword" name="changePassword" class="form-control"
+								placeholder="Enter a new password" required>
 						</div>
 						<div class="form-group">
 							<label for="oldPassword">Confirm New Password: </label><input

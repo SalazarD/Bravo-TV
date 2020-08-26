@@ -21,29 +21,34 @@
 	<form name="login" action="${pageContext.request.contextPath}/login"
 		method="POST">
 		<div class="container">
-			<div style="margin-top: 10%; margin-bottom: 2%">
-				<h3>Login</h3>
-			</div>
+			<br> <br>
 			<div class="card">
 				<div class="card-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1">Username</label> <input
-							type="text" class="form-control" name="username"
-							aria-describedby="emailHelp" placeholder="Enter Username"
-							required>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Password</label> <input
-							type="text" class="form-control" name="password"
-							aria-describedby="emailHelp" placeholder="Enter Password"
-							required>
-					</div>
-					<input class="btn btn-primary" type="button"
-						onclick="location.href='/BravoTV/homepage.jsp';" value="Login" />
+					<h3 style="text-align: center">Login</h3>
 					<br>
-					<br> <a href="${pageContext.request.contextPath}/customer.jsp">Customer
-						Registration</a>
-
+					<div class="container" style="width: 50%">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Username</label> <input
+								type="text" class="form-control" name="username"
+								aria-describedby="emailHelp" placeholder="Enter Username"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Password</label> <input
+								type="text" class="form-control" name="password"
+								aria-describedby="emailHelp" placeholder="Enter Password"
+								required>
+						</div>
+						<input class="btn btn-primary" type="button"
+							onclick="location.href='/BravoTV/homepage.jsp';" value="Login" />
+						<br> <br>
+						<p style="text-align: center">
+							<a href="${pageContext.request.contextPath}/customer.jsp">Customer
+								Registration</a> | <a
+								href="${pageContext.request.contextPath}/ChangePassword.jsp">Forgot/Change
+								Password</a>
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
