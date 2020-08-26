@@ -36,18 +36,12 @@ String date = simpleDateFormat.format(new Date());
 	<form name="RetailerReg"
 		action="${pageContext.request.contextPath}/RetailerReg" method="post">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Retailer Registration</h3>
-			</div>
 			<div class="card">
 				<div class="card-body">
-					<div class="form-group">
-						Welcome Admin
-						<%=userName%>
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">Retailer Registration</h3>
 					</div>
-					<div>Register Infinity Retailer</div>
-					<div class="form-group">All fields are mandatory. Amount is
-						in U.S. dollars</div>
+					<br>
 					<div class="form-group">
 						<label for="RetailerName">Name:</label> <input type="text"
 							name="RetailerName" id="RetailerName" class="form-control"

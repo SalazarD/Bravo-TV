@@ -18,6 +18,7 @@ function addFeature(){
 function showHideUpgradationCharge(){
 	if(document.getElementById('topBoxType').value == "Standard"){
 		document.getElementById("upgradationCharge").disabled = true;
+		document.getElementById("upgradationCharge").value = 0;
 	}else {
 		document.getElementById("upgradationCharge").disabled = false;
 	}
@@ -30,6 +31,7 @@ function showHideRefundable(){
 	  if (radios[i].checked) {
 	    if(radios[i].value == "postpaid"){
 			document.getElementById("refundableDepositAmount").disabled = true;
+			document.getElementById("refundableDepositAmount").value = 0;
 		}else {
 			document.getElementById("refundableDepositAmount").disabled = false;
 		}

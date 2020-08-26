@@ -6,12 +6,6 @@
 <%
 	ArrayList<Case_Customer> customers = (ArrayList<Case_Customer>) request.getAttribute("results");
 %>
-<%
-	String userName = (String) request.getAttribute("userName");
-if (userName == null) {
-	userName = "Unkown User";
-}
-%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -31,26 +25,18 @@ if (userName == null) {
 		action="${pageContext.request.contextPath}/DeductBalance"
 		method="post">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Deduct Balance for Prepaid Customers</h3>
-			</div>
-
-			<br>
-
 			<div class="card">
 				<div class="card-body">
-
-					<div class="form-group">
-						Welcome Admin
-						<%=userName%>
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">Deduct balance for Pre-Paid
+							Customers</h3>
 					</div>
-
-					<div class="form-group">Deduct Balance for pre-paid Customers
+					<br>
+					<div style="text-align: center;">
+						<button type="submit" class="btn btn-primary">Deduct
+							Balance</button>
 					</div>
-					<div class="form-group">
-						<input type="submit" class="btn btn-primary"
-							value="Deduct Balance" />
-					</div>
+					<br>
 					<table border="2" align="center" class="table">
 						<tr>
 							<th>Customer Id</th>

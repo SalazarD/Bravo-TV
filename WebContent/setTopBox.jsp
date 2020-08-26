@@ -4,12 +4,6 @@
 <%@ page import="java.text.SimpleDateFormat, java.util.*"%>
 
 <!DOCTYPE html>
-<%
-	String userName = (String) request.getAttribute("userName");
-if (userName == null) {
-	userName = "Unkown User";
-}
-%>
 <html lang="en">
 <head>
 <script type="text/javascript" src="topBox.js"></script>
@@ -29,25 +23,13 @@ if (userName == null) {
 	<form name="SetTopBox"
 		action="${pageContext.request.contextPath}/SetTopBox" method="post">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>BravoTV Set Top Box</h3>
-			</div>
-
-			<br>
-
 			<div class="card">
 				<div class="card-body">
-
-					<div class="form-group">
-						Welcome Admin
-						<%=userName%>
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">BravoTV Set Top Box</h3>
 					</div>
 
-					<div class="form-group">
-						Add Set Top Box<br> All fields are mandatory. Amount is in
-						U.S. dollars
-					</div>
-
+					<br>
 					<div class="form-group">
 						<label for="topBoxType">Set Top Box Type:</label> <select
 							name="topBoxType" id="topBoxType" class="form-control"
@@ -82,6 +64,7 @@ if (userName == null) {
 									for="pausePlay">Play/Pause</label>
 							</div>
 						</div>
+						<br>
 						<div class="form-group">
 							<label for="customFeature">Add a Custom Feature:</label> <input
 								type="text" name="customFeature" id="customFeature"
@@ -93,64 +76,60 @@ if (userName == null) {
 					</div>
 
 					<div class="form-row">
-						<div class="form-group col-3">
-							<label for="dimensions">Dimensions in inches:</label>
-						</div>
-						<div class="form-group col-3">
+						<div class="form-group col-md-4">
 							<label for="height">Height</label> <input type="text"
-								class="form-control" name="height" id="height" required>
+								class="form-control" name="height" id="height" placeholder="3" required>
 						</div>
-						<div class="form-group col-3">
+						<div class="form group col-md-4">
 							<label for="width">Width</label> <input type="text"
-								class="form-control" name="width" id="width" required>
+								class="form-control" name="width" id="width" placeholder="10" required>
 						</div>
-						<div class="form-group col-3">
+						<div class="form-group col-md-4">
 							<label for="length">Length</label> <input type="text"
-								class="form-control" name="length" id="length" required>
+								class="form-control" name="length" id="length" placeholder="8" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="price">Price:</label> <input type="number"
-							name="price" id="price" class="form-control" placeholder=""
+							name="price" id="price" class="form-control" placeholder="5"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="installationCharge">Installation Charge:</label> <input
 							type="number" name="installationCharge" id="installationCharge"
-							class="form-control" placeholder="" required>
+							class="form-control" placeholder="5" required>
 					</div>
 					<div class="form-group">
 						<label for="upgradationCharge">Upgradation Charge:</label> <input
 							type="number" name="upgradationCharge" id="upgradationCharge"
-							class="form-control" placeholder="" required>
+							class="form-control" placeholder="2" required>
 					</div>
 					<div class="form-group">
 						<label for="discountPercent">Discount %:</label> <input
 							type="number" min="1" max="100" name="discountPercent"
-							id="discountPercent" class="form-control" placeholder="" required>
+							id="discountPercent" class="form-control" placeholder="2" required>
 					</div>
-					<div class="form-row">
-						<div class="form-group col-2">
-							<label for="billingType">Billing Type:</label>
-						</div>
-						<div class="form-group col-2">
-							<label class="radio-inline"> <input type="radio"
-								name="billingType" id="prepaid" value="prepaid"
-								onClick="showHideRefundable()" required>Prepaid
+					<div class="form-group">
+						<label for="billingType">Billing Type:</label>
+						<div class="form-check">
+							<label class="form-check-label" for="exampleRadio"> <input
+								class="form-check-input" type="radio" name="billingType"
+								id="prepaid" value="prepaid" onClick="showHideRefundable()"
+								required>Prepaid
 							</label>
 						</div>
-						<div class="form-group col-2">
-							<label class="radio-inline"><input type="radio"
-								name="billingType" id="postpaid" value="postpaid"
-								onClick="showHideRefundable()"required">Postpaid</label>
+						<div class="form-check">
+							<label class="form-check-label" for="exampleRadio"><input
+								class="form-check-input" type="radio" name="billingType"
+								id="postpaid" value="postpaid" onClick="showHideRefundable()"required">Postpaid</label>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="refundableAmount">Refundable Deposit Amount:</label> <input
 							type="number" name="refundableDepositAmount"
-							id="refundableDepositAmount" class="form-control" required>
+							id="refundableDepositAmount" class="form-control" placeholder="5" required>
 					</div>
 					<div class="form-group">
 						<label for="inventoryDetails">Set Top Box Inventory
