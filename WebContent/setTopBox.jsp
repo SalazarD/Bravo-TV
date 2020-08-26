@@ -26,7 +26,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div style="margin-top: 1%; margin-bottom: 1%">
-						<h3 style="text-align: center">BravoTV Set Top Box</h3>
+						<h3 style="text-align: center">Set Top Box</h3>
 					</div>
 
 					<br>
@@ -75,18 +75,18 @@
 							onclick="addFeature()" />
 					</div>
 
-					<div class="form-row">
-						<div class="form-group col-md-4">
-							<label for="height">Height</label> <input type="text"
-								class="form-control" name="height" id="height" placeholder="3" required>
-						</div>
-						<div class="form group col-md-4">
-							<label for="width">Width</label> <input type="text"
-								class="form-control" name="width" id="width" placeholder="10" required>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="length">Length</label> <input type="text"
-								class="form-control" name="length" id="length" placeholder="8" required>
+					<div class="form-group">
+						<label for="dimensions">Dimensions in inches</label>
+						<div class="form-row">
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Height">
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Width">
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Length">
+							</div>
 						</div>
 					</div>
 
@@ -108,7 +108,8 @@
 					<div class="form-group">
 						<label for="discountPercent">Discount %:</label> <input
 							type="number" min="1" max="100" name="discountPercent"
-							id="discountPercent" class="form-control" placeholder="2" required>
+							id="discountPercent" class="form-control" placeholder="2"
+							required>
 					</div>
 					<div class="form-group">
 						<label for="billingType">Billing Type:</label>
@@ -129,7 +130,8 @@
 					<div class="form-group">
 						<label for="refundableAmount">Refundable Deposit Amount:</label> <input
 							type="number" name="refundableDepositAmount"
-							id="refundableDepositAmount" class="form-control" placeholder="5" required>
+							id="refundableDepositAmount" class="form-control" placeholder="5"
+							required>
 					</div>
 					<div class="form-group">
 						<label for="inventoryDetails">Set Top Box Inventory

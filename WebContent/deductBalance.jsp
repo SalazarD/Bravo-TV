@@ -37,12 +37,14 @@
 							Balance</button>
 					</div>
 					<br>
-					<table border="2" align="center" class="table">
+					<div class="card-body"></div>
+					<table class="table table-striped">
+					<thead class="thead-dark">
 						<tr>
 							<th>Customer Id</th>
 							<th>Current Balance</th>
 							<th>Deducted Balance</th>
-						</tr>
+						</tr></thead>
 						<tr>
 							<td>CST004</td>
 							<td>85</td>
