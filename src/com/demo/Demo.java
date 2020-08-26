@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.sql.Timestamp;
 
+import com.bean.Customer;
 import com.bean.Retailer;
+import com.dao.CustomerDAO;
+import com.dao.OperatorDao;
 import com.dao.RetailerDao;
 
 public class Demo {

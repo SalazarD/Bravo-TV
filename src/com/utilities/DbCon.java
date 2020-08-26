@@ -10,13 +10,13 @@ public class DbCon {
 
 	private static final String userName = "root";
 
-	private static final String password = "password";
+	private static final String password = "Xiaogang19960322";
 
 	private static final String serverName = "localhost";
 
 	private static final int portNumber = 3306;
 
-	private static final String dbName = "case";
+	private static final String dbName = "ILP_CASE_STUDY";
 
 	public static Connection getConnection()
 	{
