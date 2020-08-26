@@ -14,6 +14,48 @@
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+	var total1 = 0;
+	var total2 = 0;
+	var total3 = 0;
+
+	function valueChangedKK() {
+		if ($('#kidsKart').is(":checked")) {
+			$("#helloShow").show();
+			total1 = 2.5;
+		} else {
+			$("#helloShow").hide();
+			total1 = 0;
+		}
+	}
+
+	function valueChangedFT() {
+		if ($('#food').is(":checked")) {
+			$("#helloFT").show();
+			total2 = 3;
+		} else {
+			$("#helloFT").hide();
+			total2 = 0;
+		}
+	}
+
+	function valueChangedD() {
+		if ($('#drama').is(":checked")) {
+			$("#helloD").show();
+			total3 = 3;
+		} else {
+			$("#helloD").hide();
+			total3 = 0;
+		}
+	}
+
+	function add_number() {
+
+		var fTotal = total1 + total2 + total3;
+		document.getElementById("total").value = fTotal;
+
+	}
+</script>
 <meta charset="ISO-8859-1">
 <title>Additional Packages</title>
 </head>
@@ -52,21 +94,23 @@
 						Packages</button>
 					<br> <br>
 
-					<div id="top">
+					<div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="checkbox" name="id1"
-								value="option1"> <label class="form-check-label"
+								value="option1" value="1" onchange="valueChangedKK()"
+								id="kidsKart"> <label class="form-check-label"
 								for="inlineCheckbox1">Kids Kart</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="id2"
-								name="id2" value="option2"> <label
-								class="form-check-label" for="inlineCheckbox2">Drama</label>
+							<input class="form-check-input" type="checkbox" name="id2"
+								value="2" onchange="valueChangedFT()" id="food"> <label
+								class="form-check-label" for="inlineCheckbox3">Food and
+								Travel</label>
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="checkbox" name="id3"
-								value="option3"> <label class="form-check-label"
-								for="inlineCheckbox3">Food and Travel</label>
+								value="3" onchange="valueChangedD()" id="drama"> <label
+								class="form-check-label" for="inlineCheckbox2">Drama</label>
 						</div>
 					</div>
 
@@ -82,25 +126,26 @@
 							</tr>
 						</thead>
 						<tbody>
-							<td>Kids Kart</td>
-							<td>
-								<table class="table table-bordered">
-									<th>Channel Name</th>
-									<th>Channel Cost</th>
-									<tr>
-										<td>Cartoon Network</td>
-										<td>1</td>
-									</tr>
-									<tr>
-										<td>POGO</td>
-										<td>1.5</td>
-									</tr>
-								</table>
-							</td>
-							<td>10/20/2016</td>
-							<td>2.5</td>
-
-							<tr>
+							<tr id="helloShow" style="display: none">
+								<td>Kids Kart</td>
+								<td>
+									<table class="table table-bordered">
+										<th>Channel Name</th>
+										<th>Channel Cost</th>
+										<tr>
+											<td>Cartoon Network</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>POGO</td>
+											<td>1.5</td>
+										</tr>
+									</table>
+								</td>
+								<td>10/20/2016</td>
+								<td>2.5</td>
+							</tr>
+							<tr id="helloFT" style="display: none">
 								<td>Food and Travel</td>
 								<td>
 									<table class="table table-bordered">
@@ -120,7 +165,7 @@
 								<td>3</td>
 							</tr>
 
-							<tr>
+							<tr id="helloD" style="display: none">
 								<td>Drama</td>
 								<td>
 									<table class="table table-bordered">
@@ -144,8 +189,9 @@
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Total Amount</label> <input
-							type="text" class="form-control" name="totalAmount"
-							aria-describedby="emailHelp" value="8.5" required>
+							type="text" class="form-control" name="totalAmount" id="total"
+							onClick="add_number();" aria-describedby="emailHelp"
+							placeholder="Click to see the total">
 					</div>
 					<button type="submit" class="btn btn-primary">Purchase
 						Additional Packages</button>
