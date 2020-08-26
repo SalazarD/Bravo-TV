@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.bean.Bean;
 import com.utilities.DbCon;
@@ -20,7 +22,7 @@ import com.utilities.DbCon;
  * 
  * null                 <=> NULL
  * Integer              <=> INT
- * Boolean              <=> BOOLEAN
+ * Boolean              <=> BOOLEAN, BIT
  * String               <=> VARCHAR
  * java.math.BigDecimal <=> DECIMAL
  * java.sql.Date        <=> DATE
@@ -46,27 +48,22 @@ public abstract class AbstractDao<T extends Bean> {
 			// Get connection
 			Connection con = DbCon.getConnection();
 
-			// Get Bean values... this should have at least one element
-			String[] columnNames = bean.getColumnNames();
-			Object[] columnValues = bean.getColumnValues();
-			if (columnNames.length != columnValues.length) {
-				throw new SQLException("Name and value arrays are not the same length.");
+			// Get Bean properties... this should have at least one element
+			Map<String, Object> properties = bean.getProperties();
+			if (!(properties.size() > 0)) {
+				throw new SQLException("Property map is not at least size 1.");
 			}
+			properties.remove(bean.getUniqueIDName());
 
-			// INSERT INTO <table> (key1, key2, ..., keyN) VALUES (?, ?, ..., ?)
-			String sql = "INSERT INTO "+this.getTableName()+" "+AbstractDao.makeKeyList(columnNames)+" VALUES "+AbstractDao.makeEmptyArgumentList(columnNames.length);
-
-			// Prepare INSERT statement
-			PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			columnValues[0] = null;
-			AbstractDao.prepareStatement(ps, columnValues);
+			// INSERT INTO <table> (<key1>, <key2>, ..., <keyN>) VALUES (?, ?, ..., ?)
+			PreparedStatement ps = AbstractDao.prepareInsertStatement(con, this.getTableName(), properties);
 
 			// Execute and get the new unique id
 			successful = (ps.executeUpdate() == 1);
 			ResultSet keySet = ps.getGeneratedKeys();
 			if (keySet.next()) {
-				columnValues[0] = keySet.getInt(1);
-				bean.setColumnValues(columnValues);
+				properties.put(bean.getUniqueIDName(), keySet.getInt(1));
+				bean.setProperties(properties);
 			}
 
 		} catch (SQLException e) {
@@ -76,7 +73,6 @@ public abstract class AbstractDao<T extends Bean> {
 		}
 		return successful;
 	}
-	
 
 	/**
 	 * Reads the Bean's data from its table, matching the unique id
@@ -92,29 +88,28 @@ public abstract class AbstractDao<T extends Bean> {
 			// Get connection
 			Connection con = DbCon.getConnection();
 
-			// Get Bean values... this should have at least one element
-			String[] columnNames = bean.getColumnNames();
-			Object[] columnValues = bean.getColumnValues();
-			if (columnNames.length != columnValues.length) {
-				throw new SQLException("Name and value arrays are not the same length.");
+			// Get Bean properties... this should have at least one element
+			Map<String, Object> properties = bean.getProperties();
+			if (!(properties.size() > 0)) {
+				throw new SQLException("Property map is not at least size 1.");
 			}
 
-			// SELECT * FROM WHERE <uniqueId>=?
-			String sql = "SELECT * FROM "+this.getTableName()+" WHERE "+columnNames[0]+"=?";
+			// SELECT * FROM <table> WHERE <uniqueId>=?
+			String sql = "SELECT * FROM "+this.getTableName()+" WHERE "+bean.getUniqueIDName()+"=?";
 
 			// Prepare SELECT statement
 			PreparedStatement ps = con.prepareStatement(sql);
-			AbstractDao.prepareValue(ps, columnValues[0], 1);
+			AbstractDao.prepareValue(ps, properties.get(bean.getUniqueIDName()), 1);
 
 			// Get results
 			ResultSet rs = ps.executeQuery();
 			ResultSetMetaData metadata = rs.getMetaData();
 			if (successful = rs.next()) {
-				for (int i = 0; i < columnValues.length; i++) {
-					columnValues[i] = AbstractDao.getValueByName(rs, metadata, columnNames[i]);
+				for (Entry<String, Object> prop : properties.entrySet()) {
+					prop.setValue(AbstractDao.getValueByName(rs, metadata, prop.getKey()));
 				}
 
-				bean.setColumnValues(columnValues);
+				bean.setProperties(properties);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,21 +132,15 @@ public abstract class AbstractDao<T extends Bean> {
 			// Get connection
 			Connection con = DbCon.getConnection();
 
-			// Get Bean values... this should have at least one element
-			String[] columnNames = bean.getColumnNames();
-			Object[] columnValues = bean.getColumnValues();
-			if (columnNames.length != columnValues.length) {
-				throw new SQLException("Name and value arrays are not the same length.");
+			// Get Bean properties... this should have at least one element
+			Map<String, Object> properties = bean.getProperties();
+			if (!(properties.size() > 0)) {
+				throw new SQLException("Property map is not at least size 1.");
 			}
 
-			// UPDATE <table> SET key1=?, ..., keyN=? WHERE <uniqueId>=?
-			String sql = "UPDATE "+this.getTableName()+" SET "+AbstractDao.makeArgumentList(columnNames)+" WHERE "+columnNames[0]+"=?";
-
-			// Prepare UPDATE statement
-			PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			AbstractDao.prepareStatement(ps, columnValues);
-			AbstractDao.prepareValue(ps, columnValues[0], columnNames.length + 1);
-
+			// UPDATE <table> SET <key1>=?, <key2>=?, ..., <keyN>=? WHERE <uniqueId>=?
+			PreparedStatement ps = AbstractDao.prepareUpdateStatement(con, this.getTableName(), properties, bean.getUniqueIDName());
+			
 			// Execute and get the result
 			successful = (ps.executeUpdate() == 1);
 
@@ -162,7 +151,7 @@ public abstract class AbstractDao<T extends Bean> {
 		}
 		return successful;
 	}
-
+	
 	/**
 	 * Deletes a Bean's data from its table, matching the unique id
 	 * 
@@ -176,19 +165,18 @@ public abstract class AbstractDao<T extends Bean> {
 			// Get connection
 			Connection con = DbCon.getConnection();
 
-			// Get Bean values... this should have at least one element
-			String[] columnNames = bean.getColumnNames();
-			Object[] columnValues = bean.getColumnValues();
-			if (columnNames.length != columnValues.length) {
-				throw new SQLException("Name and value arrays are not the same length.");
+			// Get Bean properties... this should have at least one element
+			Map<String, Object> properties = bean.getProperties();
+			if (!(properties.size() > 0)) {
+				throw new SQLException("Property map is not at least size 1.");
 			}
 
 			// DELETE FROM <table> WHERE <uniqueId>=?
-			String sql = "DELETE FROM "+this.getTableName()+" WHERE "+columnNames[0]+"=?";
+			String sql = "DELETE FROM "+this.getTableName()+" WHERE "+bean.getUniqueIDName()+"=?";
 
 			// Prepare DELETE statement
 			PreparedStatement ps = con.prepareStatement(sql);
-			AbstractDao.prepareValue(ps, columnValues[0], 1);
+			AbstractDao.prepareValue(ps, properties.get(bean.getUniqueIDName()), 1);
 
 			// Execute and get the result
 			successful = (ps.executeUpdate() > 1);
@@ -213,23 +201,23 @@ public abstract class AbstractDao<T extends Bean> {
 			// Get connection
 			Connection con = DbCon.getConnection();
 			
-			// Query for all beans
+			// SELECT * FROM <table>
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM "+getTableName());
 			ResultSet rs = ps.executeQuery();
 			ResultSetMetaData metadata = rs.getMetaData();
 			
 			// Save results
+			T bean = this.getNewBean();
+			Map<String, Object> properties = bean.getProperties();
 			while(rs.next()) {
-				T bean = this.getNewBean();
-				String columnNames[] = bean.getColumnNames();
-				Object[] columnValues = new Object[columnNames.length];
-				
-				for (int i = 0; i < columnValues.length; i++) {
-					columnValues[i] = AbstractDao.getValueByName(rs, metadata, columnNames[i]);
+
+				for (Entry<String, Object> prop : properties.entrySet()) {
+					prop.setValue(AbstractDao.getValueByName(rs, metadata, prop.getKey()));
 				}
 
-				bean.setColumnValues(columnValues);
+				bean.setProperties(properties);
 				list.add(bean);
+				bean = this.getNewBean();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -240,7 +228,8 @@ public abstract class AbstractDao<T extends Bean> {
 	}
 
 	/**
-	 * Retrieves the table name on which the Dao operates
+	 * Retrieves the table name on which the Dao operates.
+	 * It is advised to return a String literal.
 	 * 
 	 * @return The table name on which the Dao operates.
 	 */
@@ -253,74 +242,90 @@ public abstract class AbstractDao<T extends Bean> {
 	 */
 	protected abstract T getNewBean();
 
+	
+	
+	/* Methods for internal use */
+	
 	/**
-	 * Generates an argument list of the form (?,?,...,?)
-	 * 
-	 * @param numArgs The number of arguments to generate
-	 * @return The argument string
+	 * Generates a PreparedStatement to execute an Insert operation
+	 * @param con The Connection for the PreparedStatement
+	 * @param tableName The name of the table in which to insert
+	 * @param properties The set of properties to insert into the table
+	 * @return A PreparedStatement that can return the last generated key
+	 * @throws SQLException If the statement could not be made
 	 */
-	protected static final String makeEmptyArgumentList(int numArgs) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("(");
+	private static PreparedStatement prepareInsertStatement(Connection con, String tableName, Map<String, Object> properties) throws SQLException {
 		
-		for (int i = 0; i < numArgs - 1; i++) {
-			sb.append("?,");
-		}
-		sb.append("?)");
-
-		return sb.toString();
-	}
-
-	/**
-	 * Generates a key list of the form (key1,key2,...,keyN)
-	 * 
-	 * @param numArgs The number of arguments to generate
-	 * @return The argument string
-	 */
-	protected static final String makeKeyList(String[] keys) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("(");
+		// Keep track of the values in the order we see them
+		Object[] valuesInOrder = new Object[properties.size()];
 		
-		for (int i = 0; i < keys.length - 1; i++) {
-			sb.append(keys[i]+",");
+		// Build the SQL command: INSERT INTO <table> (<key1>, <key2>, ..., <keyN>) VALUES (?, ?, ..., ?)
+		StringBuilder columns = new StringBuilder();
+		StringBuilder values = new StringBuilder();
+		
+		int index = 0;
+		for (Entry<String, Object> prop : properties.entrySet()) {
+			valuesInOrder[index] = prop.getValue();
+			columns.append(prop.getKey());
+			values.append('?');
+			if (index < properties.size() - 1) {
+				columns.append(',');
+				values.append(',');
+			}
+			index++;
 		}
-		sb.append(keys[keys.length - 1]+")");
-
-		return sb.toString();
+		
+		// Create the statement
+		String sql = String.format("INSERT INTO %s (%s) VALUES (%s)", tableName, columns.toString(), values.toString());
+		PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		
+		// prepare all the values into the insert statement
+		for (int i = 0; i < valuesInOrder.length; i++) {
+			AbstractDao.prepareValue(ps, valuesInOrder[i], i + 1);
+		}
+		
+		return ps;
 	}
 
 	/**
-	 * Generates an argument list of the form
-	 * 
-	 * key1=?, key2=?, ..., keyN=?
-	 * 
-	 * where N is the number of key names
-	 * 
-	 * @param keyNames The names of each key in order of use
-	 * @return The argument string
+	 * Generates a PreparedStatement to execute an Update operation
+	 * @param con The Connection for the PreparedStatement
+	 * @param tableName The name of the table in which to update
+	 * @param properties The set of properties to update into the table
+	 * @param uniqueIDName The name of the unique identifier that identifies the row to update
+	 * @return A PreparedStatement
+	 * @throws SQLException If the statement could not be made
 	 */
-	protected static final String makeArgumentList(String[] keyNames) {
-		StringBuilder sb = new StringBuilder();
+	private static PreparedStatement prepareUpdateStatement(Connection con, String tableName, Map<String, Object> properties, String uniqueIDName) throws SQLException {
 
-		for (int i = 0; i < keyNames.length - 1; i++) {
-			sb.append(String.format("%s=?, ", keyNames[i]));
+		// Keep track of the values in the order we see them
+		Object[] valuesInOrder = new Object[properties.size() + 1];
+		
+		// Build the command: UPDATE <table> SET <key1>=?, <key2>=?, ..., <keyN>=? WHERE <uniqueId>=?
+		StringBuilder args = new StringBuilder();
+		
+		int index = 0;
+		for (Entry<String, Object> prop : properties.entrySet()) {
+			valuesInOrder[index] = prop.getValue();
+			args.append(prop.getKey());
+			args.append("=?");
+			if (index < properties.size() - 1) {
+				args.append(',');
+			}
+			index++;
 		}
-		sb.append(String.format("%s=?", keyNames[keyNames.length - 1]));
-
-		return sb.toString();
-	}
-
-	/**
-	 * Prepares the values into the Prepared Statement
-	 * 
-	 * @param ps     The PreparedStatement to prepare
-	 * @param values The values with which to prepare the PreparedStatement
-	 * @throws SQLException If a value could not be prepared.
-	 */
-	protected static final void prepareStatement(PreparedStatement ps, Object[] values) throws SQLException {
-		for (int i = 0; i < values.length; i++) {
-			AbstractDao.prepareValue(ps, values[i], i + 1);
+		valuesInOrder[valuesInOrder.length - 1] = properties.get(uniqueIDName);
+		
+		// Create the statement
+		String sql = String.format("UPDATE %s SET %s WHERE %s=?", tableName, args.toString(), uniqueIDName);
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		// prepare all the values into the insert statement
+		for (int i = 0; i < valuesInOrder.length; i++) {
+			AbstractDao.prepareValue(ps, valuesInOrder[i], i + 1);
 		}
+		
+		return ps;
 	}
 
 	/**
@@ -336,42 +341,34 @@ public abstract class AbstractDao<T extends Bean> {
 		if (value == null) {
 			ps.setNull(paramIndex, java.sql.Types.NULL);
 		}
-		
 		else if (value instanceof Integer) {
 			ps.setInt(paramIndex, (Integer) value);
 		}
-		
 		else if (value instanceof Boolean) {
 			ps.setBoolean(paramIndex, (Boolean) value);
 		}
-		
 		else if (value instanceof String) {
 			ps.setString(paramIndex, (String) value);
 		}
-		
 		else if (value instanceof java.math.BigDecimal) {
 			ps.setBigDecimal(paramIndex, (java.math.BigDecimal) value);
 		}
-		
 		else if (value instanceof java.sql.Date) {
 			ps.setDate(paramIndex, (java.sql.Date) value);
 		}
-		
 		else if (value instanceof java.sql.Time) {
 			ps.setTime(paramIndex, (java.sql.Time) value);
 		}
-		
 		else if (value instanceof java.sql.Timestamp) {
 			ps.setTimestamp(paramIndex, (java.sql.Timestamp) value);
 		}
-		
 		else {
-			throw new SQLException("Unsupported Java type: " + value.getClass().getName());
+			throw new SQLException("Unsupported Java type " + value.getClass().getName());
 		}
 	}
 
 	/**
-	 * Gets an Object with the appropriate Java type from the Result Set at the
+	 * Gets an Object with the appropriate Java type from the ResultSet at the
 	 * given column
 	 * 
 	 * @param rs         The ResultSet
@@ -390,7 +387,7 @@ public abstract class AbstractDao<T extends Bean> {
 	}
 
 	/**
-	 * Gets an Object with the appropriate Java type from the Result Set at the
+	 * Gets an Object with the appropriate Java type from the ResultSet at the
 	 * given column
 	 * 
 	 * @param rs          The ResultSet

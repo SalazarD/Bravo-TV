@@ -11,7 +11,7 @@ public class Demo {
 
 	public static void main(String[] args) {
 		RetailerDao dao = new RetailerDao();
-		/*Retailer retailer = new Retailer();
+		Retailer retailer = new Retailer();
 		retailer.setRetailer_id(0);
 		retailer.setRetailer_name("My Retailer");
 		retailer.setContact_num1("1234567");
@@ -30,7 +30,7 @@ public class Demo {
 		else {
 			System.out.println("No bean could be made.");
 		}
-		System.out.println("---");*/
+		System.out.println("---");
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		List<Retailer> retailers = dao.getAll();
 		for(Retailer r : retailers) {

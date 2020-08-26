@@ -147,41 +147,8 @@ public class Retailer implements Bean {
 				+ ", assigned_distributor_id=" + assigned_distributor_id + "]";
 	}
 	
-	private static final String[] COLUMN_NAMES = new String[] { "retailer_id", "retailer_name", "contact_num1",
-			"contact_num2", "address_1", "address_2", "zip_code", "city", "state_province", "set_top_box_limit",
-			"credit_limit", "commission_rate", "service_charges", "retailer_creation_date",
-			"password", "first_time_user", "assigned_distributor_id" };
-
 	@Override
-	public String[] getColumnNames() {
-		return COLUMN_NAMES;
-	}
-
-	@Override
-	public Object[] getColumnValues() {
-		return new Object[] { retailer_id, retailer_name, contact_num1, contact_num2, address_1, address_2, zip_code,
-				city, state_province, set_top_box_limit, credit_limit, commission_rate, service_charges,
-				retailer_creation_date, password, first_time_user, assigned_distributor_id };
-	}
-
-	@Override
-	public void setColumnValues(Object[] values) {
-		retailer_id = (int) values[0];
-		retailer_name = (String) values[1];
-		contact_num1 = (String) values[2];
-		contact_num2 = (String) values[3];
-		address_1 = (String) values[4];
-		address_2 = (String) values[5];
-		zip_code = (int) values[6];
-		city = (String) values[7];
-		state_province = (String) values[8];
-		set_top_box_limit = (int) values[9];
-		credit_limit = (BigDecimal) values[10];
-		commission_rate = (int) values[11];
-		service_charges = (BigDecimal) values[12];
-		retailer_creation_date = (Timestamp) values[13];
-		password = (String) values[14];
-		first_time_user = (boolean) values[15];
-		assigned_distributor_id = (int) values[16];
+	public String getUniqueIDName() {
+		return "retailer_id";
 	}
 }

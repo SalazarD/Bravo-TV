@@ -1,43 +1,57 @@
 package com.bean;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A Bean interface that every bean should implement.
  */
 public interface Bean {
 	
 	/**
-	 * Gets an array of the Bean's column names. Each name should appear in
-	 * the same order as its value from Bean.getColumnValues().
+	 * Gets the name of the Bean's unique identifier.
+	 * It is advised to return a string literal.
 	 * 
-	 * The first name must be the name of the unique id used by the Bean.
-	 * Therefore, the array must have at least one element.
-	 * 
-	 * It is advisable to have a static and final pre-defined array in
-	 * your Bean class that is returned by this call.
-	 * 
-	 * @return An array of column names
+	 * @return The name of the Bean's unique identifier
 	 */
-	String[] getColumnNames();
+	String getUniqueIDName();
 	
 	/**
-	 * Gets an array of the Bean's column values. Each value should appear in
-	 * the same order as its name from Bean.getColumnNames().
+	 * Gets a map of the Bean's property names to their respective values.
 	 * 
-	 * The first value must be the unique id used by the Bean.
-	 * Therefore, the array must have at least one element.
+	 * Every Bean implements a unique identifier. Therefore, the map must have at least one element.
 	 * 
-	 * @return An array of values
+	 * @return The property map.
 	 */
-	Object[] getColumnValues();
+	default Map<String, Object> getProperties() {
+		HashMap<String, Object> properties = new HashMap<String, Object>();
+		Field[] declaredFields = this.getClass().getDeclaredFields();
+		for (Field f : declaredFields) try {
+			boolean flag = f.isAccessible();
+			f.setAccessible(true);
+			properties.put(f.getName(), f.get(this));
+			f.setAccessible(flag);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return properties;
+	}
 	
 	/**
-	 * Sets the Bean's column values. Each value should appear in
-	 * the same order as its name from Bean.getColumnNames().
+	 * Sets the Bean's properties according to the values in the map.
 	 * 
-	 * The first value is the unique id used by the Bean.
-	 * Therefore, the array will have at least one element.
-	 * 
-	 * @param values An array of values
+	 * Every Bean implements a unique identifier. Therefore, the map must have at least one element.
 	 */
-	void setColumnValues(Object[] values);
+	default void setProperties(Map<String, Object> properties) {
+		Field[] declaredFields = this.getClass().getDeclaredFields();
+		for (Field f : declaredFields) if (properties.containsKey(f.getName())) try {
+			boolean flag = f.isAccessible();
+			f.setAccessible(true);
+			f.set(this, properties.get(f.getName()));
+			f.setAccessible(flag);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

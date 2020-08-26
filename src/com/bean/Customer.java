@@ -154,43 +154,8 @@ public class Customer implements Bean {
 				+ ", assigned_retailer_id=" + assigned_retailer_id + "]";
 	}
 
-	private static final String[] COLUMN_NAMES = new String[] { "customer_id", "first_name", "last_name",
-			"email", "phone", "address_1", "address_2", "land_mark", "zip_code", "city",
-			"state_province", "customer_creation_date", "password", "first_time_user",
-			"pre_paid", "balance", "assigned_operator_id", "assigned_retailer_id" };
-
 	@Override
-	public String[] getColumnNames() {
-		return COLUMN_NAMES;
-	}
-
-	@Override
-	public Object[] getColumnValues() {
-		return new Object[] { customer_id, first_name, last_name,
-				email, phone, address_1, address_2, land_mark, zip_code, city,
-				state_province, customer_creation_date, password, first_time_user,
-				pre_paid, balance, assigned_operator_id, assigned_retailer_id };
-	}
-
-	@Override
-	public void setColumnValues(Object[] values) {
-		customer_id = (int) values[0];
-		first_name = (String) values[1];
-		last_name = (String) values[2];
-		email = (String) values[3];
-		phone = (String) values[4];
-		address_1 = (String) values[5];
-		address_2 = (String) values[6];
-		land_mark = (String) values[7];
-		zip_code = (int) values[8];
-		city = (String) values[9];
-		state_province = (String) values[10];
-		customer_creation_date = (Timestamp) values[11];
-		password = (String) values[12];
-		first_time_user = (boolean) values[13];
-		pre_paid = (boolean) values[14];
-		balance = (BigDecimal) values[15];
-		assigned_operator_id = (Integer) values[16];
-		assigned_retailer_id = (Integer) values[17];
+	public String getUniqueIDName() {
+		return "customer_id";
 	}
 }

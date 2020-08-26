@@ -108,31 +108,8 @@ public class Operator implements Bean {
 				+ ", first_time_user=" + first_time_user + "]";
 	}
 
-	private static final String[] COLUMN_NAMES = new String[] { "operator_id", "first_name", "last_name", "email",
-			"phone", "shift_start", "max_customers", "operator_creation_date", "password", "first_time_user" };
-
 	@Override
-	public String[] getColumnNames() {
-		return COLUMN_NAMES;
-	}
-
-	@Override
-	public Object[] getColumnValues() {
-		return new Object[] { operator_id, first_name, last_name, email, phone, shift_start, max_customers,
-				operator_creation_date, password, first_time_user };
-	}
-
-	@Override
-	public void setColumnValues(Object[] values) {
-		this.operator_id = (int) values[0];
-		this.first_name = (String) values[1];
-		this.last_name = (String) values[2];
-		this.email = (String) values[3];
-		this.phone = (String) values[4];
-		this.shift_start = (Timestamp) values[5];
-		this.max_customers = (int) values[6];
-		this.operator_creation_date = (Timestamp) values[7];
-		this.password = (String) values[8];
-		this.first_time_user = (Boolean) values[9];
+	public String getUniqueIDName() {
+		return "operator_id";
 	}
 }
