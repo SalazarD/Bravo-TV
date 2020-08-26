@@ -1,6 +1,6 @@
 package com.bean;
 
-public class Stb {
+public class Stb implements Bean{
 	private int std_id;
 	private int stb_type_id;
 	private String serial_num;
@@ -64,6 +64,49 @@ public class Stb {
 	}
 	public void setAssigned_customer_id(Integer assigned_customer_id) {
 		this.assigned_customer_id = assigned_customer_id;
+	}
+	
+	@Override
+	public String toString() {
+		return "Stb [std_id=" + std_id 
+				+ ", stb_type_id=" + stb_type_id 
+				+ ", serial_num=" + serial_num 
+				+ ", mac_id=" + mac_id 
+				+ ", remote_asset_id=" + remote_asset_id 
+				+ ", dish_asset_id=" + dish_asset_id 
+				+ ", status=" + status 
+				+ ", assigned_retailer_id=" + assigned_retailer_id 
+				+ ", assigned_customer_id=" + assigned_customer_id + "]";
+	}
+	
+	private static final String[] COLUMN_NAMES = new String[] {
+			"stb_id", "stb_type_id", "serial_num", "mac_id", "remote_asset_id", "dish_asset_id",
+			"status", "assigned_retailer_id", "assigned_customer_id"
+	};
+
+	@Override
+	public String[] getColumnNames() {
+		return COLUMN_NAMES;
+	}
+	@Override
+	public Object[] getColumnValues() {
+		return new Object[] { std_id, stb_type_id, serial_num, mac_id, remote_asset_id,
+				dish_asset_id, status, assigned_retailer_id, assigned_customer_id
+				
+		};
+	}
+	@Override
+	public void setColumnValues(Object[] values) {
+		std_id = (int) values[0];
+		stb_type_id = (int) values[1];
+		serial_num = (String) values[2];
+		mac_id = (String) values[3];
+		remote_asset_id = (String) values[4];
+		dish_asset_id = (String) values[5];
+		status = (String) values[6];
+		assigned_retailer_id = (Integer) values[7];
+		assigned_customer_id = (Integer) values[8];
+		
 	}
 	
 	

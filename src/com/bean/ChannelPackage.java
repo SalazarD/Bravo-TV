@@ -3,7 +3,7 @@ package com.bean;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class ChannelPackage {
+public class ChannelPackage implements Bean{
 	private int package_id;
 	private String package_name;
 	private String package_category;
@@ -68,4 +68,48 @@ public class ChannelPackage {
 	public void setAdded_by_default(boolean added_by_default) {
 		this.added_by_default = added_by_default;
 	}
+	@Override
+	public String toString() {
+		return "ChannelPackage [package_id=" + package_id 
+				+ ", package_name=" + package_name 
+				+ ", package_category=" + package_category 
+				+ ", package_charging_type=" + package_charging_type 
+				+ ", package_transmission_type=" + package_transmission_type 
+				+ ", package_cost=" + package_cost 
+				+ ", package_available_from_date=" + package_available_from_date 
+				+ ", package_available_to_date=" + package_available_to_date
+				+ ", added_by_default=" + added_by_default + "]";
+	}
+	
+	private static final String[] COLUMN_NAMES = new String[] {
+			"package_id", "package_name", "package_category", "package_charging_type", "package_transmission_type",
+			"package_cost", "package_available_from_date", "package_available_to_date", "added_by_default"
+	};
+
+	@Override
+	public String[] getColumnNames() {
+		return COLUMN_NAMES;
+	}
+	@Override
+	public Object[] getColumnValues() {
+		return new Object[] { package_id, package_name, package_category, package_charging_type, package_transmission_type,
+				package_cost, package_available_from_date, package_available_to_date, added_by_default
+				
+		};
+	}
+	@Override
+	public void setColumnValues(Object[] values) {
+		package_id = (int) values[0];
+		package_name = (String) values[1];
+		package_category = (String) values[2];
+		package_charging_type = (String) values[3];
+		package_transmission_type = (String) values[4];
+		package_cost = (BigDecimal) values[5];
+		package_available_from_date = (Timestamp) values[6];
+		package_available_to_date = (Timestamp) values[7];
+		added_by_default = (boolean) values[8];
+		
+	}
+	
+	
 }
