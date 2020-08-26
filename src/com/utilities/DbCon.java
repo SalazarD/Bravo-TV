@@ -10,15 +10,13 @@ public class DbCon {
 
 	private static final String userName = "root";
 
-	private static final String password = "";
+	private static final String password = "password";
 
 	private static final String serverName = "localhost";
 
 	private static final int portNumber = 3306;
 
-	private static final String dbName = "";
-
-	private static final String tableName = "";
+	private static final String dbName = "case";
 
 	public static Connection getConnection()
 	{
@@ -26,7 +24,7 @@ public class DbCon {
 		{
 			try
 			{
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 
 				Properties connectionProps = new Properties();
 				connectionProps.put("user", userName);

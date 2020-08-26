@@ -1,5 +1,6 @@
 package com.dao;
 
+<<<<<<< HEAD
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,21 @@ import com.bean.Case_Retailer;
 import com.utilities.DbCon;
 
 public class RetailerDao {
+=======
+import com.bean.Retailer;
+
+public class RetailerDao extends AbstractDao<Retailer> {
+
+	@Override
+	protected String getTableName() {
+		return "CASE_Retailer";
+	}
+
+	@Override
+	protected Retailer getNewBean() {
+		return new Retailer();
+	}
+>>>>>>> 653f9299d7593506e066e203904addc7a1d7b233
 
 private static String table = "CASE_Retailer";
 	
