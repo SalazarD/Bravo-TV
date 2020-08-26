@@ -110,10 +110,10 @@ String date = simpleDateFormat.format(new Date());
 							class="form-control" placeholder="Enter Service Charges" required>
 					</div>
 					<div class="form-group">
-						<label for="inventoryList">Inventory List:</label> <input
-							type="file" name="inventoryList" id="inventoryList"
-							class="form-control-file"
-							placeholder="browse for your inventory list file" required>
+						<label for="inventoryList">Inventory List:</label> <br> <label
+							class="btn btn-secondary"> Choose File <input type="file"
+							hidden>
+						</label>
 					</div>
 					<div class="form-group">
 						<label>Date</label>

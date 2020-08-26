@@ -139,9 +139,9 @@
 					</div>
 					<div class="form-group">
 						<label for="inventoryDetails">Set Top Box Inventory
-							Details:</label> <input type="file" name="inventoryDetails"
-							id="inventoryDetails" class="form-control-file"
-							placeholder="browse for your inventory details csv file" required>
+							Details:</label> <br> <label class="btn btn-secondary"> Choose
+							File <input type="file" hidden>
+						</label>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Add" />

@@ -51,63 +51,63 @@
 							<td>CST004</td>
 							<td><div id="nonEditableCB1" style="display: inline;">
 									<p id="cbValue1">85</p>
-									<input type="button" value="Edit" class="btn btn-primary"
+									<input type="button" value="Edit" class="btn btn-secondary"
 										onclick="editCB('1')">
 								</div>
 								<div id="editableCB1" style="display: none;">
 									<input type="text" id="cbEdit1"><input type="button"
-										value="Done" class="btn btn-primary" onclick="confirmCB('1')">
+										value="Done" class="btn btn-secondary" onclick="confirmCB('1')">
 								</div></td>
 							<td><div id="nonEditableDB1" style="display: inline;">
 									<p id="dbValue1">15</p>
-									<input type="button" value="Edit" class="btn btn-primary"
+									<input type="button" value="Edit" class="btn btn-secondary"
 										onclick="editDB('1')">
 								</div>
 								<div id="editableDB1" style="display: none;">
 									<input type="text" id="dbEdit1"><input type="button"
-										value="Done" class="btn btn-primary onclick="confirmDB('1')">
+										value="Done" class="btn btn-secondary" onclick="confirmDB('1')">
 								</div></td>
 						</tr>
 						<tr id="row2">
 							<td>CST007</td>
 							<td><div id="nonEditableCB2" style="display: inline;">
 									<p id="cbValue2">15</p>
-									<input type="button" value="Edit" class="btn btn-primary"
+									<input type="button" value="Edit" class="btn btn-secondary"
 										onclick="editCB('2')">
 								</div>
 								<div id="editableCB2" style="display: none;">
 									<input type="text" id="cbEdit2"><input type="button"
-										value="Done" class="btn btn-primary" onclick="confirmCB('2')">
+										value="Done" class="btn btn-secondary" onclick="confirmCB('2')">
 								</div></td>
 							<td><div id="nonEditableDB2" style="display: inline;">
 									<p id="dbValue2">85</p>
-									<input type="button" value="Edit" class="btn btn-primary"
+									<input type="button" value="Edit" class="btn btn-secondary"
 										onclick="editDB('2')">
 								</div>
 								<div id="editableDB2" style="display: none;">
 									<input type="text" id="dbEdit2"><input type="button"
-										value="Done" class="btn btn-primary" onclick="confirmDB('2')">
+										value="Done" class="btn btn-secondary" onclick="confirmDB('2')">
 								</div></td>
 						</tr>
 						<tr id="row3">
 							<td>CST003</td>
 							<td><div id="nonEditableCB3" style="display: inline;">
 									<p id="cbValue3">70</p>
-									<input type="button" value="Edit" class="btn btn-primary"
+									<input type="button" value="Edit" class="btn btn-secondary"
 										onclick="editCB('3')">
 								</div>
 								<div id="editableCB3" style="display: none;">
 									<input type="text" id="cbEdit3"><input type="button"
-										value="Done" class="btn btn-primary" onclick="confirmCB('3')">
+										value="Done" class="btn btn-secondary" onclick="confirmCB('3')">
 								</div></td>
 							<td><div id="nonEditableDB3" style="display: inline;">
 									<p id="dbValue3">30</p>
-									<input type="button" value="Edit" class="btn btn-primary"
+									<input type="button" value="Edit" class="btn btn-secondary"
 										onclick="editDB('3')">
 								</div>
 								<div id="editableDB3" style="display: none;">
 									<input type="text" id="dbEdit3"><input type="button"
-										value="Done" class="btn btn-primary" onclick="confirmDB('3')">
+										value="Done" class="btn btn-secondary" onclick="confirmDB('3')">
 								</div></td>
 						</tr>
 					</table>

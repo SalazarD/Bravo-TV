@@ -51,7 +51,7 @@
 					</div>
 
 					<table class="table table-striped">
-						<thead style="background-color: #e3f2fd;">
+						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Package Name</th>
 								<th scope="col">Package Cost</th>
