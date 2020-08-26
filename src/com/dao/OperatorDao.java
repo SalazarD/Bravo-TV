@@ -24,6 +24,7 @@ public class OperatorDao extends AbstractDao<Operator> {
 	}
 	
 	public ArrayList<Customer> getAllCustomerWithGivenOperator(int operatorID) {
+		System.out.print("test");
 		ArrayList<Customer> list = new ArrayList<Customer>();
 		try {
 			
