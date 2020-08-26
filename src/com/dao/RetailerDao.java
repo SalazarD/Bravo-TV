@@ -12,6 +12,6 @@ public class RetailerDao extends AbstractDao<Retailer> {
 	@Override
 	protected Retailer getNewBean() {
 		return new Retailer();
-	}
+  }
 
 }

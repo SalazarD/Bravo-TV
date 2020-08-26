@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.SimpleDateFormat, java.util.*"%>
 <!DOCTYPE html>
+<%
+	String pattern = "MM/dd/yyyy";
+SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+String date = simpleDateFormat.format(new Date());
+%>
 <html>
 <head>
 
@@ -9,28 +16,44 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 
-<meta charset="ISO-8859-1">
-<title>Login</title>
-</head>
-<body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
 
-	<form name="login" action="${pageContext.request.contextPath}/login"
-		method="POST">
+<meta charset="ISO-8859-1">
+<title>Operator Registration</title>
+</head>
+<script>
+	document.getElementById('date').value = (new Date()).format("m/dd/yy");
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+
+<body>
+	<jsp:include page="./menu.jsp" />
+	<form name="OperatorReg"
+		action="${pageContext.request.contextPath}/OperatorReg" method="POST">
 		<div class="container">
-			<div style="margin-top: 1%; margin-bottom: 1%">
-				<h3>Infinity Operator Registration</h3>
-			</div>
 			<div class="card">
 				<div class="card-body">
+					<div style="margin-top: 1%; margin-bottom: 1%">
+						<h3 style="text-align: center">Operator Registration</h3>
+					</div>
+					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">First Name</label> <input
-							type="text" class="form-control" name="firstname"
+							type="text" class="form-control" name="firstName"
 							aria-describedby="emailHelp" placeholder="Enter First Name"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Last Name</label> <input
-							type="text" class="form-control" name="lastname"
+							type="text" class="form-control" name="lastName"
 							aria-describedby="emailHelp" placeholder="Enter Last Name"
 							required>
 					</div>
@@ -76,18 +99,23 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Max No. of Customers to be managed</label> <input
-							type="text" class="form-control" name="max"
+						<label for="exampleInputEmail1">Shift End Time</label> <input
+							type="text" class="form-control" name="endTime"
+							aria-describedby="emailHelp" placeholder="Enter Shift End Time"
+							required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Max No. of Customers to be
+							managed</label> <input type="text" class="form-control" name="max"
 							aria-describedby="emailHelp" placeholder="Enter Max customers"
 							required>
 					</div>
-						<div class="form-group">
+					<div class="form-group">
 						<label for="exampleInputEmail1">Creation Date</label> <input
 							type="text" class="form-control" name="date"
-							aria-describedby="emailHelp" placeholder="Creation Date"
-							required>
+							aria-describedby="emailHelp" value="<%=date%>" required>
 					</div>
-					
+
 					<button type="submit" class="btn btn-primary">Register</button>
 				</div>
 			</div>

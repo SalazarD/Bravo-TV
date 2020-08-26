@@ -36,6 +36,7 @@ public class Demo {
 		System.out.println("---");*/
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		List<Retailer> retailers = dao.getAll();
+		
 		for(Retailer r : retailers) {
 			r.setRetailer_creation_date(time);
 			dao.update(r);
