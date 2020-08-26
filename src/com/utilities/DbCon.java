@@ -16,7 +16,7 @@ public class DbCon {
 
 	private static final int portNumber = 3306;
 
-	private static final String dbName = "test";
+	private static final String dbName = "case";
 
 	public static Connection getConnection()
 	{
