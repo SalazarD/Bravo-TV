@@ -21,7 +21,6 @@ public class Retailer implements Bean {
 	private Timestamp retailer_creation_date;
 	private String password;
 	private boolean first_time_user;
-	private int assigned_distributor_id;
 	
 	public int getRetailer_id() {
 		return retailer_id;
@@ -71,9 +70,6 @@ public class Retailer implements Bean {
 	public boolean isFirst_time_user() {
 		return first_time_user;
 	}
-	public int getAssigned_distributor_id() {
-		return assigned_distributor_id;
-	}
 	public void setRetailer_id(int retailer_id) {
 		this.retailer_id = retailer_id;
 	}
@@ -122,9 +118,6 @@ public class Retailer implements Bean {
 	public void setFirst_time_user(boolean first_time_user) {
 		this.first_time_user = first_time_user;
 	}
-	public void setAssigned_distributor_id(int assigned_distributor_id) {
-		this.assigned_distributor_id = assigned_distributor_id;
-	}
 
 	@Override
 	public String toString() {
@@ -143,14 +136,13 @@ public class Retailer implements Bean {
 				+ ", service_charges=" + service_charges
 				+ ", retailer_creation_date=" + retailer_creation_date
 				+ ", password=" + password
-				+ ", first_time_user=" + first_time_user
-				+ ", assigned_distributor_id=" + assigned_distributor_id + "]";
+				+ ", first_time_user=" + first_time_user + "]";
 	}
 	
 	private static final String[] COLUMN_NAMES = new String[] { "retailer_id", "retailer_name", "contact_num1",
 			"contact_num2", "address_1", "address_2", "zip_code", "city", "state_province", "set_top_box_limit",
 			"credit_limit", "commission_rate", "service_charges", "retailer_creation_date",
-			"password", "first_time_user", "assigned_distributor_id" };
+			"password", "first_time_user" };
 
 	@Override
 	public String[] getColumnNames() {
@@ -161,7 +153,7 @@ public class Retailer implements Bean {
 	public Object[] getColumnValues() {
 		return new Object[] { retailer_id, retailer_name, contact_num1, contact_num2, address_1, address_2, zip_code,
 				city, state_province, set_top_box_limit, credit_limit, commission_rate, service_charges,
-				retailer_creation_date, password, first_time_user, assigned_distributor_id };
+				retailer_creation_date, password, first_time_user };
 	}
 
 	@Override
@@ -182,6 +174,5 @@ public class Retailer implements Bean {
 		retailer_creation_date = (Timestamp) values[13];
 		password = (String) values[14];
 		first_time_user = (boolean) values[15];
-		assigned_distributor_id = (int) values[16];
 	}
 }
