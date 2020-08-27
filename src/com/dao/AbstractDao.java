@@ -7,7 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -90,9 +90,6 @@ public abstract class AbstractDao<T extends Bean> {
 
 			// Get Bean properties... this should have at least one element
 			Map<String, Object> properties = bean.getProperties();
-			if (!(properties.size() > 0)) {
-				throw new SQLException("Property map is not at least size 1.");
-			}
 
 			// SELECT * FROM <table> WHERE <uniqueId>=?
 			String sql = "SELECT * FROM "+this.getTableName()+" WHERE "+bean.getUniqueIDName()+"=?";
@@ -105,10 +102,7 @@ public abstract class AbstractDao<T extends Bean> {
 			ResultSet rs = ps.executeQuery();
 			ResultSetMetaData metadata = rs.getMetaData();
 			if (successful = rs.next()) {
-				for (Entry<String, Object> prop : properties.entrySet()) {
-					prop.setValue(AbstractDao.getValueByName(rs, metadata, prop.getKey()));
-				}
-
+				properties = AbstractDao.getProperties(rs, metadata);
 				bean.setProperties(properties);
 			}
 		} catch (SQLException e) {
@@ -134,9 +128,6 @@ public abstract class AbstractDao<T extends Bean> {
 
 			// Get Bean properties... this should have at least one element
 			Map<String, Object> properties = bean.getProperties();
-			if (!(properties.size() > 0)) {
-				throw new SQLException("Property map is not at least size 1.");
-			}
 
 			// UPDATE <table> SET <key1>=?, <key2>=?, ..., <keyN>=? WHERE <uniqueId>=?
 			PreparedStatement ps = AbstractDao.prepareUpdateStatement(con, this.getTableName(), properties, bean.getUniqueIDName());
@@ -167,9 +158,6 @@ public abstract class AbstractDao<T extends Bean> {
 
 			// Get Bean properties... this should have at least one element
 			Map<String, Object> properties = bean.getProperties();
-			if (!(properties.size() > 0)) {
-				throw new SQLException("Property map is not at least size 1.");
-			}
 
 			// DELETE FROM <table> WHERE <uniqueId>=?
 			String sql = "DELETE FROM "+this.getTableName()+" WHERE "+bean.getUniqueIDName()+"=?";
@@ -179,7 +167,7 @@ public abstract class AbstractDao<T extends Bean> {
 			AbstractDao.prepareValue(ps, properties.get(bean.getUniqueIDName()), 1);
 
 			// Execute and get the result
-			successful = (ps.executeUpdate() > 1);
+			successful = (ps.executeUpdate() == 1);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -190,11 +178,31 @@ public abstract class AbstractDao<T extends Bean> {
 	}
 	
 	/**
+	 * Retrieves a Bean
+	 * @param uniqueId
+	 * @return
+	 */
+	public T get(Object uniqueId) {
+		T bean = this.getNewBean();
+		Map<String, Object> properties = bean.getProperties();
+		if(properties.get(bean.getUniqueIDName()).getClass() != uniqueId.getClass()) {
+			throw new IllegalArgumentException("The given Unique ID is not the same type as in property map.");
+		}
+		properties.put(bean.getUniqueIDName(), uniqueId);
+		if (read(bean)) {
+			return bean;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Retrieves all Beans in the table.
 	 * 
 	 * @return A list of all beans in the table.
 	 */
-	public List<T> getAll() {
+	public ArrayList<T> getAll() {
 		ArrayList<T> list = new ArrayList<>();
 		try {
 			
@@ -207,17 +215,11 @@ public abstract class AbstractDao<T extends Bean> {
 			ResultSetMetaData metadata = rs.getMetaData();
 			
 			// Save results
-			T bean = this.getNewBean();
-			Map<String, Object> properties = bean.getProperties();
 			while(rs.next()) {
-
-				for (Entry<String, Object> prop : properties.entrySet()) {
-					prop.setValue(AbstractDao.getValueByName(rs, metadata, prop.getKey()));
-				}
-
+				HashMap<String, Object> properties = AbstractDao.getProperties(rs, metadata);
+				T bean = this.getNewBean();
 				bean.setProperties(properties);
 				list.add(bean);
-				bean = this.getNewBean();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -254,7 +256,7 @@ public abstract class AbstractDao<T extends Bean> {
 	 * @return A PreparedStatement that can return the last generated key
 	 * @throws SQLException If the statement could not be made
 	 */
-	private static PreparedStatement prepareInsertStatement(Connection con, String tableName, Map<String, Object> properties) throws SQLException {
+	protected static PreparedStatement prepareInsertStatement(Connection con, String tableName, Map<String, Object> properties) throws SQLException {
 		
 		// Keep track of the values in the order we see them
 		Object[] valuesInOrder = new Object[properties.size()];
@@ -296,7 +298,7 @@ public abstract class AbstractDao<T extends Bean> {
 	 * @return A PreparedStatement
 	 * @throws SQLException If the statement could not be made
 	 */
-	private static PreparedStatement prepareUpdateStatement(Connection con, String tableName, Map<String, Object> properties, String uniqueIDName) throws SQLException {
+	protected static PreparedStatement prepareUpdateStatement(Connection con, String tableName, Map<String, Object> properties, String uniqueIDName) throws SQLException {
 
 		// Keep track of the values in the order we see them
 		Object[] valuesInOrder = new Object[properties.size() + 1];
@@ -419,5 +421,20 @@ public abstract class AbstractDao<T extends Bean> {
 			default:
 				throw new SQLException("Unsupported SQL type (code " + typeCode + ")");
 		}
+	}
+	
+	/**
+	 * Retrieves the properties in the current record of the ResultSet
+	 * @param rs The ResultSet
+	 * @param metadata The ResultSet's metadata
+	 * @return A map of all column names to their values in the current row
+	 * @throws SQLException If data could not be read
+	 */
+	protected static HashMap<String, Object> getProperties(ResultSet rs, ResultSetMetaData metadata) throws SQLException {
+		HashMap<String, Object> properties = new HashMap<>();
+		for (int col = 1; col <= metadata.getColumnCount(); col ++) {
+			properties.put(metadata.getColumnName(col), AbstractDao.getValueByIndex(rs, metadata, col));
+		}
+		return properties;
 	}
 }

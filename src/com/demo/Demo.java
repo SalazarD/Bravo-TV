@@ -12,7 +12,7 @@ public class Demo {
 	public static void main(String[] args) {
 		RetailerDao dao = new RetailerDao();
 		Retailer retailer = new Retailer();
-		retailer.setRetailerID(0);
+		retailer.setRetailer_id(0);
 		retailer.setRetailer_name("My Retailer");
 		retailer.setContact_num1("1234567");
 		retailer.setContact_num2("9875");
@@ -23,7 +23,6 @@ public class Demo {
 		retailer.setCredit_limit(BigDecimal.valueOf(100.00));
 		retailer.setService_charges(BigDecimal.valueOf(3.40));
 		retailer.setRetailer_creation_date(new Timestamp(System.currentTimeMillis()));
-		retailer.setPassword("password");
 		if (dao.create(retailer)) {
 			System.out.println(retailer);
 		}
@@ -37,7 +36,7 @@ public class Demo {
 			r.setRetailer_creation_date(time);
 			dao.update(r);
 			System.out.println(r);
-			dao.delete(r);
+			//dao.delete(r);
 		}
 	}
 

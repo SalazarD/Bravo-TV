@@ -35,7 +35,7 @@ public interface Bean {
 		for (Field f : declaredFields) try {
 			
 			// Property name may differ from field name
-			String propertyName;propertyName = Bean.getFieldName(f);
+			String propertyName = Bean.resolveFieldName(f);
 			
 			// Briefly set field to be accessible and read its value
 			boolean flag = f.isAccessible();
@@ -61,7 +61,7 @@ public interface Bean {
 		for (Field f : declaredFields) {
 			
 			// Property name may differ from field name
-			String propertyName = Bean.getFieldName(f);
+			String propertyName = Bean.resolveFieldName(f);
 
 			if (properties.containsKey(propertyName)) try {
 				// Briefly set field to be accessible and change its value
@@ -75,7 +75,12 @@ public interface Bean {
 		}
 	}
 	
-	static String getFieldName(Field f) {
+	/**
+	 * Resolves the field's database name.
+	 * @param f The field 
+	 * @return The field's name, or its alias if annotated with Alias
+	 */
+	static String resolveFieldName(Field f) {
 		if (f.getDeclaredAnnotation(Alias.class) != null) {
 			return f.getDeclaredAnnotation(Alias.class).value();
 		}

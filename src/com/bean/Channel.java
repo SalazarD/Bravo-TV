@@ -61,6 +61,7 @@ public class Channel implements Bean{
 	public void setChannel_charge(BigDecimal channel_charge) {
 		this.channel_charge = channel_charge;
 	}
+	
 	@Override
 	public String toString() {
 		return "Channel [channel_id=" + channel_id 

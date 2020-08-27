@@ -17,8 +17,6 @@ public class Customer implements Bean {
 	private String city;
 	private String state_province;
 	private Timestamp customer_creation_date;
-	private String password;
-	private boolean first_time_user;
 	private boolean pre_paid;
 	private BigDecimal balance;
 	private Integer assigned_operator_id;
@@ -59,12 +57,6 @@ public class Customer implements Bean {
 	}
 	public Timestamp getCustomer_creation_date() {
 		return customer_creation_date;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public boolean isFirst_time_user() {
-		return first_time_user;
 	}
 	public boolean isPre_paid() {
 		return pre_paid;
@@ -114,12 +106,6 @@ public class Customer implements Bean {
 	public void setCustomer_creation_date(Timestamp customer_creation_date) {
 		this.customer_creation_date = customer_creation_date;
 	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public void setFirst_time_user(boolean first_time_user) {
-		this.first_time_user = first_time_user;
-	}
 	public void setPre_paid(boolean pre_paid) {
 		this.pre_paid = pre_paid;
 	}
@@ -147,8 +133,6 @@ public class Customer implements Bean {
 				+ ", city=" + city
 				+ ", state_province=" + state_province
 				+ ", customer_creation_date=" + customer_creation_date
-				+ ", password=" + password
-				+ ", first_time_user=" + first_time_user
 				+ ", pre_paid=" + pre_paid
 				+ ", balance=" + balance
 				+ ", assigned_operator_id=" + assigned_operator_id

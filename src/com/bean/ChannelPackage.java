@@ -69,6 +69,7 @@ public class ChannelPackage implements Bean{
 	public void setAdded_by_default(boolean added_by_default) {
 		this.added_by_default = added_by_default;
 	}
+	
 	@Override
 	public String toString() {
 		return "ChannelPackage [package_id=" + package_id 
