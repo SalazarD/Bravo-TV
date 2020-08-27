@@ -54,7 +54,7 @@ public class CustomerDao extends AbstractDao<Customer> {
 		try
 		{
 			String qry = "SELECT * FROM "+"case_customer"+ " "+
-					"WHERE student_id = ?";
+					"WHERE customer_id = ?";
 
 			PreparedStatement st = con.prepareStatement(qry);
 			st.setInt(1,customerId);

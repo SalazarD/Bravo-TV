@@ -76,6 +76,16 @@ public class WriteCustomerServlet extends HttpServlet {
 			session.setAttribute("message", "Customer added!");
 			request.getRequestDispatcher("List").forward(request, response);
 		}
+		else if (action.equals("update")) {
+			customer.setCustomer_id(Integer.parseInt(request.getParameter("customerId")));
+			System.out.println("Update " + customer);
+			customerService.update(customer);
+
+			HttpSession session = request.getSession();
+			session.setAttribute("message", "Customer updated.");
+			request.getRequestDispatcher("List").forward(request, response);
+
+		}
 
 	}
 
