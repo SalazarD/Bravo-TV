@@ -81,7 +81,7 @@
 					<a class="dropdown-item"
 						href="${pageContext.request.contextPath}/customer.jsp">Register
 						Customer</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/customerList.jsp">Customer
+						href="${pageContext.request.contextPath}/Customer/List">Customer
 						List</a>
 				</div></li>
 
