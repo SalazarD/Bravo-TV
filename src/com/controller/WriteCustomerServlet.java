@@ -15,36 +15,38 @@ import com.bean.Customer;
 import com.dao.CustomerDao;
 
 /**
- * Servlet implementation class CustomerWriteServlet
+ * Servlet implementation class WriteCustomerServlet
  */
-//@WebServlet("/Customer/Add")
-public class CustomerWriteServlet extends HttpServlet {
+//@WebServlet("/WriteCustomerServlet")
+public class WriteCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CustomerWriteServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public WriteCustomerServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("Customer/List").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//doGet(request, response);
+
 		Customer customer = new Customer();
-		
+
 		//get the parameters
-		customer.setCustomer_id(Integer.parseInt(request.getParameter("customerId")));
 		customer.setFirst_name(request.getParameter("firstname"));
 		customer.setLast_name(request.getParameter("lastname"));
 		customer.setEmail(request.getParameter("email")); //make sure to set this in the auth table
@@ -56,36 +58,25 @@ public class CustomerWriteServlet extends HttpServlet {
 		customer.setCity(request.getParameter("city"));
 		customer.setState_province(request.getParameter("state"));
 		customer.setCustomer_creation_date(Timestamp.valueOf(request.getParameter("date")+" 00:00:00")); //need to set default to the day's date
-		//customer.setPassword(request.getParameter("password"));  MAKE SURE TO SET THIS TO DEFAULT IN THE AUTH TABLE
-		//customer.setFirst_time_user(Boolean.getBoolean(request.getParameter("firstTime"))); SET THIS IN THE AUTH TABLE
 		customer.setPre_paid(Boolean.getBoolean(request.getParameter("prePaid")));
 		customer.setBalance(new BigDecimal(request.getParameter("balance")));
 		customer.setAssigned_operator_id(Integer.parseInt(request.getParameter("O_name")));
 		customer.setAssigned_retailer_id(Integer.parseInt(request.getParameter("R_name")));
-		
-		
+
 		String action = request.getParameter("action");
-		
+
 		CustomerDao customerService = new CustomerDao();
-		
-		//Waiting on Charles to create this function.
-		//LoginDao authTable = new LoginDao();
-		//System.out.println(customer.toString());
-		boolean success = false;
-		
-		if(action.equals("add")) {
-			success = customerService.create(customer);
-			
-			//Waiting on Charles.
-			//authTable.insertUser(customer.getEmail(), "defaultpassword", "customer", true);
-			//HttpSession session = request.getSession();
-			//session.setAttribute("message", "Customer Added.");
-			//request.getRequestDispatcher("Customer/List").forward(request, response);
-		} else {
-			success = customerService.update(customer);
+
+		if (action.equals("add")) {
+			//customer.setCustomer_id(Integer.parseInt(request.getParameter("customer_id")));
+			customerService.create(customer);
+			System.out.println("Added!");
+
+			HttpSession session = request.getSession();
+			session.setAttribute("message", "Customer added!");
+			request.getRequestDispatcher("List").forward(request, response);
 		}
-		
-		//doGet(request, response);
+
 	}
 
 }
