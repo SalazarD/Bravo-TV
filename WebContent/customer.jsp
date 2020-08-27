@@ -91,13 +91,6 @@
 								id="example-date-input">
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="example-password-input" class="col-2 col-form-label">Password </label>
-						<div class="col-10">
-							<input class="form-control" type="text" name="password" placeholder="Password"
-								id="example-password-input" required>
-						</div>
-					</div>
 					<div class="form-group">
 						<label for="prePaid">Pre-paid?</label>
 					</div>
