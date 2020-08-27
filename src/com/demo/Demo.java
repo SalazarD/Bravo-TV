@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.sql.Timestamp;
 
+import com.bean.Customer;
 import com.bean.Retailer;
+import com.dao.CustomerDao;
+import com.dao.OperatorDao;
 import com.dao.RetailerDao;
 
 public class Demo {
@@ -33,6 +36,7 @@ public class Demo {
 		System.out.println("---");*/
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		List<Retailer> retailers = dao.getAll();
+		
 		for(Retailer r : retailers) {
 			r.setRetailer_creation_date(time);
 			dao.update(r);

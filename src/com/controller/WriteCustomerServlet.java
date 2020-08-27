@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bean.Customer;
 import com.dao.CustomerDao;
+import com.dao.LoginDao;
 
 /**
  * Servlet implementation class WriteCustomerServlet
@@ -66,10 +67,12 @@ public class WriteCustomerServlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 		CustomerDao customerService = new CustomerDao();
-
+		LoginDao authTable = new LoginDao();
+		
 		if (action.equals("add")) {
 			//customer.setCustomer_id(Integer.parseInt(request.getParameter("customer_id")));
 			customerService.create(customer);
+			authTable.insertUser(customer.getEmail(), "defaultpassword", "customer", true);
 			System.out.println("Added!");
 
 			HttpSession session = request.getSession();
