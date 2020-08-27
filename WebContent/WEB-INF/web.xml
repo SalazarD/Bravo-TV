@@ -37,4 +37,14 @@
   	<servlet-name>RetailerWriteServlet</servlet-name>
   	<url-pattern>/Retailer</url-pattern>
   </servlet-mapping>
+  	<servlet>
+		<description></description>
+		<display-name>writeOperatorServlet</display-name>
+		<servlet-name>writeOperatorServlet</servlet-name>
+		<servlet-class>com.controller.writeOperatorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>writeOperatorServlet</servlet-name>
+		<url-pattern>/OperatorReg</url-pattern>
+	</servlet-mapping>
 </web-app>
