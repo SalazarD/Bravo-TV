@@ -89,7 +89,7 @@ public class LoginDao {
 
 		return exists;
 	}
-	public void insertUser(String user_name, String user_password, String user_type, String first_time_user) {
+	public void insertUser(String user_name, String user_password, String user_type, boolean first_time_user) {
 		System.out.println("called addperson");
 		String sql="insert into Case_Auth (user_name,user_password,user_type,first_time_user) values "
 				+ "(?,?,?,?)";
@@ -102,7 +102,7 @@ public class LoginDao {
 			stmt.setString(1,user_name);
 			stmt.setString(2,user_password);
 			stmt.setString(3,user_type);
-			stmt.setString(4,first_time_user);
+			stmt.setBoolean(4,first_time_user);
 			resultset=stmt.executeUpdate();
 		}catch(Exception e){
 			System.out.println(e);
