@@ -21,4 +21,12 @@
   	<servlet-name>ReadCustomerServlet</servlet-name>
   	<url-pattern>/Customer/List</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>CustomerWriteServlet</servlet-name>
+  	<servlet-class>com.controller.CustomerWriteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CustomerWriteServlet</servlet-name>
+  	<url-pattern>/Customer/Add</url-pattern>
+  </servlet-mapping>
 </web-app>

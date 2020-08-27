@@ -34,7 +34,7 @@ public class CustomerWriteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("Customer/List").forward(request, response);
+		request.getRequestDispatcher("/customer.jsp").forward(request, response);
 	}
 
 	/**
@@ -80,7 +80,8 @@ public class CustomerWriteServlet extends HttpServlet {
 			//authTable.insertUser(customer.getEmail(), "defaultpassword", "customer", true);
 			//HttpSession session = request.getSession();
 			//session.setAttribute("message", "Customer Added.");
-			//request.getRequestDispatcher("Customer/List").forward(request, response);
+			//request.getRequestDispatcher("/customerList.jsp").forward(request, response);
+			request.getRequestDispatcher("/Customer/List").forward(request, response);
 		} else {
 			success = customerService.update(customer);
 		}
