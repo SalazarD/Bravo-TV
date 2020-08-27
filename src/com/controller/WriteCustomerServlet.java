@@ -58,7 +58,6 @@ public class WriteCustomerServlet extends HttpServlet {
 		customer.setZip_code(Integer.parseInt(request.getParameter("zip")));
 		customer.setCity(request.getParameter("city"));
 		customer.setState_province(request.getParameter("state"));
-		customer.setCustomer_creation_date(Timestamp.valueOf(request.getParameter("date")+" 00:00:00")); //need to set default to the day's date
 		customer.setPre_paid(Boolean.getBoolean(request.getParameter("prePaid")));
 		customer.setBalance(new BigDecimal(request.getParameter("balance")));
 		customer.setAssigned_operator_id(Integer.parseInt(request.getParameter("O_name")));
@@ -70,7 +69,7 @@ public class WriteCustomerServlet extends HttpServlet {
 		LoginDao authTable = new LoginDao();
 		
 		if (action.equals("add")) {
-			//customer.setCustomer_id(Integer.parseInt(request.getParameter("customer_id")));
+			customer.setCustomer_creation_date(Timestamp.valueOf(request.getParameter("date")+" 00:00:00")); //need to set default to the day's date
 			customerService.create(customer);
 			authTable.insertUser(customer.getEmail(), "defaultpassword", "customer", true);
 			System.out.println("Added!");
@@ -81,6 +80,8 @@ public class WriteCustomerServlet extends HttpServlet {
 		}
 		else if (action.equals("update")) {
 			customer.setCustomer_id(Integer.parseInt(request.getParameter("customerId")));
+			//System.out.println("Date: " + customer.getCustomer_creation_date());
+			customer.setCustomer_creation_date(Timestamp.valueOf(request.getParameter("date")));
 			System.out.println("Update " + customer);
 			customerService.update(customer);
 

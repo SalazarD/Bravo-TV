@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></script>
 
 <meta charset="ISO-8859-1">
-<title>Customer Registration</title>
+<title>Update Customer</title>
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />
@@ -24,7 +24,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div style="margin-top: 1%; margin-bottom: 1%">
-						<h3 style="text-align: center">Customer Registration</h3>
+						<h3 style="text-align: center">Update Customer</h3>
 					</div>
 					<br>
 					<div class="form-group">
@@ -88,9 +88,9 @@
 						<label for="example-date-input" class="col-2 col-form-label">Creation
 							Date</label>
 						<div class="col-10">
-							<input class="form-control" type="date" name="date"
+							<input class="form-control" type="text" name="date"
 								value="${customer.customer_creation_date}"
-								id="example-date-input">
+								id="example-date-input" readonly>
 						</div>
 					</div>
 					<div class="form-group">

@@ -170,11 +170,6 @@ public class CustomerDao extends AbstractDao<Customer> {
 		{
 			DbCon.closeConnection();
 		}
-		
-		for(int i = 0; i < customers.size(); i++)
-		{
-			System.out.println("First Name: " + customers.get(i).toString());
-		}
 
 		return customers;
 	}
