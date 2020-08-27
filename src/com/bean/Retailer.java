@@ -3,8 +3,6 @@ package com.bean;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-import com.annotations.Alias;
-
 public class Retailer implements Bean {
 
 	private int retailer_id;
