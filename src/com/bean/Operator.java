@@ -11,8 +11,6 @@ public class Operator implements Bean {
 	private Timestamp shift_start;
 	private int max_customers;
 	private Timestamp operator_creation_date;
-	private String password;
-	private Boolean first_time_user;
 
 	public int getOperator_id() {
 		return operator_id;
@@ -44,14 +42,6 @@ public class Operator implements Bean {
 
 	public Timestamp getOperator_creation_date() {
 		return operator_creation_date;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public Boolean getFirst_time_user() {
-		return first_time_user;
 	}
 
 	public void setOperator_id(int operator_id) {
@@ -86,14 +76,6 @@ public class Operator implements Bean {
 		this.operator_creation_date = operator_creation_date;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setFirst_time_user(Boolean first_time_user) {
-		this.first_time_user = first_time_user;
-	}
-
 	@Override
 	public String toString() {
 		return "Operator [operator_id=" + operator_id
@@ -103,13 +85,11 @@ public class Operator implements Bean {
 				+ ", phone=" + phone
 				+ ", shift_start=" + shift_start
 				+ ", max_customers=" + max_customers
-				+ ", operator_creation_date=" + operator_creation_date
-				+ ", password=" + password
-				+ ", first_time_user=" + first_time_user + "]";
+				+ ", operator_creation_date=" + operator_creation_date + "]";
 	}
 
 	private static final String[] COLUMN_NAMES = new String[] { "operator_id", "first_name", "last_name", "email",
-			"phone", "shift_start", "max_customers", "operator_creation_date", "password", "first_time_user" };
+			"phone", "shift_start", "max_customers", "operator_creation_date" };
 
 	@Override
 	public String[] getColumnNames() {
@@ -119,7 +99,7 @@ public class Operator implements Bean {
 	@Override
 	public Object[] getColumnValues() {
 		return new Object[] { operator_id, first_name, last_name, email, phone, shift_start, max_customers,
-				operator_creation_date, password, first_time_user };
+				operator_creation_date };
 	}
 
 	@Override
@@ -132,7 +112,5 @@ public class Operator implements Bean {
 		this.shift_start = (Timestamp) values[5];
 		this.max_customers = (int) values[6];
 		this.operator_creation_date = (Timestamp) values[7];
-		this.password = (String) values[8];
-		this.first_time_user = (Boolean) values[9];
 	}
 }

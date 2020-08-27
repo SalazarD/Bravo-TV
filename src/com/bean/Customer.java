@@ -16,8 +16,6 @@ public class Customer implements Bean {
 	private String city;
 	private String state_province;
 	private Timestamp customer_creation_date;
-	private String password;
-	private boolean first_time_user;
 	private boolean pre_paid;
 	private BigDecimal balance;
 	private Integer assigned_operator_id;
@@ -58,12 +56,6 @@ public class Customer implements Bean {
 	}
 	public Timestamp getCustomer_creation_date() {
 		return customer_creation_date;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public boolean isFirst_time_user() {
-		return first_time_user;
 	}
 	public boolean isPre_paid() {
 		return pre_paid;
@@ -113,12 +105,6 @@ public class Customer implements Bean {
 	public void setCustomer_creation_date(Timestamp customer_creation_date) {
 		this.customer_creation_date = customer_creation_date;
 	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public void setFirst_time_user(boolean first_time_user) {
-		this.first_time_user = first_time_user;
-	}
 	public void setPre_paid(boolean pre_paid) {
 		this.pre_paid = pre_paid;
 	}
@@ -146,8 +132,6 @@ public class Customer implements Bean {
 				+ ", city=" + city
 				+ ", state_province=" + state_province
 				+ ", customer_creation_date=" + customer_creation_date
-				+ ", password=" + password
-				+ ", first_time_user=" + first_time_user
 				+ ", pre_paid=" + pre_paid
 				+ ", balance=" + balance
 				+ ", assigned_operator_id=" + assigned_operator_id
@@ -156,7 +140,7 @@ public class Customer implements Bean {
 
 	private static final String[] COLUMN_NAMES = new String[] { "customer_id", "first_name", "last_name",
 			"email", "phone", "address_1", "address_2", "land_mark", "zip_code", "city",
-			"state_province", "customer_creation_date", "password", "first_time_user",
+			"state_province", "customer_creation_date",
 			"pre_paid", "balance", "assigned_operator_id", "assigned_retailer_id" };
 
 	@Override
@@ -168,7 +152,7 @@ public class Customer implements Bean {
 	public Object[] getColumnValues() {
 		return new Object[] { customer_id, first_name, last_name,
 				email, phone, address_1, address_2, land_mark, zip_code, city,
-				state_province, customer_creation_date, password, first_time_user,
+				state_province, customer_creation_date,
 				pre_paid, balance, assigned_operator_id, assigned_retailer_id };
 	}
 
@@ -186,11 +170,9 @@ public class Customer implements Bean {
 		city = (String) values[9];
 		state_province = (String) values[10];
 		customer_creation_date = (Timestamp) values[11];
-		password = (String) values[12];
-		first_time_user = (boolean) values[13];
-		pre_paid = (boolean) values[14];
-		balance = (BigDecimal) values[15];
-		assigned_operator_id = (Integer) values[16];
-		assigned_retailer_id = (Integer) values[17];
+		pre_paid = (boolean) values[12];
+		balance = (BigDecimal) values[13];
+		assigned_operator_id = (Integer) values[14];
+		assigned_retailer_id = (Integer) values[15];
 	}
 }

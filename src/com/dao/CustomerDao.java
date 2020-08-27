@@ -72,8 +72,6 @@ public class CustomerDao extends AbstractDao<Customer> {
 				customer.setCustomer_creation_date(rs.getTimestamp(12));
 				customer.setAssigned_operator_id(rs.getInt(13));
 				customer.setAssigned_retailer_id(rs.getInt(14));
-				customer.setPassword(rs.getString(15));
-				customer.setFirst_time_user(rs.getBoolean(16));
 			}
 
 		} catch(Exception e) {
