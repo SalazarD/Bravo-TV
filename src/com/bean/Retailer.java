@@ -19,8 +19,6 @@ public class Retailer implements Bean {
 	private int commission_rate;
 	private BigDecimal service_charges;
 	private Timestamp retailer_creation_date;
-	private String password;
-	private boolean first_time_user;
 	
 	public int getRetailer_id() {
 		return retailer_id;
@@ -64,12 +62,6 @@ public class Retailer implements Bean {
 	public Timestamp getRetailer_creation_date() {
 		return retailer_creation_date;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public boolean isFirst_time_user() {
-		return first_time_user;
-	}
 	public void setRetailer_id(int retailer_id) {
 		this.retailer_id = retailer_id;
 	}
@@ -112,12 +104,6 @@ public class Retailer implements Bean {
 	public void setRetailer_creation_date(Timestamp retailer_creation_date) {
 		this.retailer_creation_date = retailer_creation_date;
 	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public void setFirst_time_user(boolean first_time_user) {
-		this.first_time_user = first_time_user;
-	}
 
 	@Override
 	public String toString() {
@@ -134,15 +120,12 @@ public class Retailer implements Bean {
 				+ ", credit_limit=" + credit_limit
 				+ ", commission_rate=" + commission_rate
 				+ ", service_charges=" + service_charges
-				+ ", retailer_creation_date=" + retailer_creation_date
-				+ ", password=" + password
-				+ ", first_time_user=" + first_time_user + "]";
+				+ ", retailer_creation_date=" + retailer_creation_date;
 	}
 	
 	private static final String[] COLUMN_NAMES = new String[] { "retailer_id", "retailer_name", "contact_num1",
 			"contact_num2", "address_1", "address_2", "zip_code", "city", "state_province", "set_top_box_limit",
-			"credit_limit", "commission_rate", "service_charges", "retailer_creation_date",
-			"password", "first_time_user" };
+			"credit_limit", "commission_rate", "service_charges", "retailer_creation_date" };
 
 	@Override
 	public String[] getColumnNames() {
@@ -153,7 +136,7 @@ public class Retailer implements Bean {
 	public Object[] getColumnValues() {
 		return new Object[] { retailer_id, retailer_name, contact_num1, contact_num2, address_1, address_2, zip_code,
 				city, state_province, set_top_box_limit, credit_limit, commission_rate, service_charges,
-				retailer_creation_date, password, first_time_user };
+				retailer_creation_date };
 	}
 
 	@Override
@@ -172,7 +155,5 @@ public class Retailer implements Bean {
 		commission_rate = (int) values[11];
 		service_charges = (BigDecimal) values[12];
 		retailer_creation_date = (Timestamp) values[13];
-		password = (String) values[14];
-		first_time_user = (boolean) values[15];
 	}
 }
