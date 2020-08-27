@@ -19,7 +19,7 @@
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="EditCustomer"
-		action="${pageContext.request.contextPath}/EditCustomer" method="POST">
+		action="${pageContext.request.contextPath}/Customer/List" method="POST">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
