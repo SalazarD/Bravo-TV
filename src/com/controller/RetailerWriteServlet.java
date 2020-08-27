@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bean.Retailer;
 import com.dao.RetailerDao;
@@ -18,7 +19,7 @@ import com.dao.RetailerDao;
 /**
  * Servlet implementation class RetailerWriteServlet
  */
-@WebServlet("/Retailer/Add")
+//@WebServlet("/Retailer/Add")
 public class RetailerWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -67,6 +68,9 @@ public class RetailerWriteServlet extends HttpServlet {
 		RetailerDao retailerDao = new RetailerDao();
 		if (retailerDao.create(retailer)) {
 			System.out.println("Successfully created retailer");
+			HttpSession session = request.getSession();
+			session.setAttribute("message", "Retialer created.");
+			request.getRequestDispatcher("homepage.jsp").forward(request, response);
 		} else {
 			System.out.println("Usuccessful to creat retailer");
 		}

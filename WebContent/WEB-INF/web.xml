@@ -29,4 +29,12 @@
   	<servlet-name>WriteCustomerServlet</servlet-name>
   	<url-pattern>/Customer/Add</url-pattern>
   </servlet-mapping>
+   <servlet>
+  	<servlet-name>RetailerWriteServlet</servlet-name>
+  	<servlet-class>com.controller.RetailerWriteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RetailerWriteServlet</servlet-name>
+  	<url-pattern>/Retailer</url-pattern>
+  </servlet-mapping>
 </web-app>

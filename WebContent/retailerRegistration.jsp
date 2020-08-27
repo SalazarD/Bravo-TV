@@ -39,7 +39,7 @@ String date = simpleDateFormat.format(new Date());
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="RetailerReg"
-		action="${pageContext.request.contextPath}/Retailer/Add" method="post">
+		action="${pageContext.request.contextPath}/Retailer" method="post">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
