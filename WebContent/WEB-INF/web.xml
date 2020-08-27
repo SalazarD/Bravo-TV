@@ -22,11 +22,11 @@
   	<url-pattern>/Customer/List</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>CustomerWriteServlet</servlet-name>
-  	<servlet-class>com.controller.CustomerWriteServlet</servlet-class>
+  	<servlet-name>WriteCustomerServlet</servlet-name>
+  	<servlet-class>com.controller.WriteCustomerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>CustomerWriteServlet</servlet-name>
+  	<servlet-name>WriteCustomerServlet</servlet-name>
   	<url-pattern>/Customer/Add</url-pattern>
   </servlet-mapping>
 </web-app>

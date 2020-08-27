@@ -54,7 +54,8 @@
 
 					<div class="form-group">
 						<label for="inputAddress">Address</label> <input type="text"
-							class="form-control" name="address_1" id="inputAddress" placeholder="1234 Main St">
+							class="form-control" name="address_1" id="inputAddress"
+							placeholder="1234 Main St">
 					</div>
 					<div class="form-group">
 						<label for="inputAddress2">Address 2</label> <input type="text"
@@ -73,8 +74,8 @@
 						</div>
 						<div class="col-md-3 mb-3">
 							<label for="validationCustom04">State</label> <input type="text"
-								class="form-control" name="state" id="validationCustom04" placeholder="State"
-								required>
+								class="form-control" name="state" id="validationCustom04"
+								placeholder="State" required>
 							<div class="invalid-feedback">Please provide a valid state.
 							</div>
 						</div>
@@ -87,20 +88,22 @@
 						<label for="example-date-input" class="col-2 col-form-label">Creation
 							Date</label>
 						<div class="col-10">
-							<input class="form-control" type="date" name="date" value="2020-08-24"
-								id="example-date-input">
+							<input class="form-control" type="date" name="date"
+								value="2020-08-24" id="example-date-input">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="prePaid">Pre-paid?</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" id="prePaidTrue" name="prePaid" type="radio" value="true" required>
-						<label class="form-check-label" for="prePaidTrue">Yes</label>
+						<input class="form-check-input" id="prePaidTrue" name="prePaid"
+							type="radio" value="true" required> <label
+							class="form-check-label" for="prePaidTrue">Yes</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" id="prePaidFalse" name="prePaid" type="radio" value="false" required>
-						<label class="form-check-label" for="prePaidFalse">No</label>
+						<input class="form-check-input" id="prePaidFalse" name="prePaid"
+							type="radio" value="false" required> <label
+							class="form-check-label" for="prePaidFalse">No</label>
 					</div>
 					<br></br>
 					<div class="form-group">
@@ -119,9 +122,8 @@
 							type="text" class="form-control" name="R_name"
 							aria-describedby="emailHelp" placeholder="" required>
 					</div>
-					<input type="hidden" name="customerId" value="-1"/>
-					<input type="hidden" name="firstTime" value="true"/>
-					<input type="hidden" name="action" value="add"/>
+					<input type="hidden" name="customerId" value="${customer.customer_id}"><br />
+					<input type="hidden" name="action" value="add" />
 					<button type="submit" class="btn btn-primary">Register</button>
 				</div>
 			</div>
