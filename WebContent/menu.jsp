@@ -31,17 +31,17 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
+	<div class="collapse navbar-collapse" id="navbarNav" >
+		<ul class="navbar-nav"${menu_view}>
 
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Channels</a>
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Channels</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item"
-						href="${pageContext.request.contextPath}/addChannel.jsp">Add
+						href="${pageContext.request.contextPath}/addChannel.jsp" ${add_channel_view}>Add
 						Channel</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/channelList.jsp">Channel
+						href="${pageContext.request.contextPath}/channelList.jsp"${channel_list_view}>Channel
 						List</a>
 				</div></li>
 
@@ -51,9 +51,9 @@
 					Packages</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item"
-						href="${pageContext.request.contextPath}/channelPackage.jsp">Add
+						href="${pageContext.request.contextPath}/channelPackage.jsp"${add_package_view}>Add
 						Channel Package</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/additionalPackages.jsp">Purchase
+						href="${pageContext.request.contextPath}/additionalPackages.jsp"${package_purchase_view}>Purchase
 						Additional Package</a>
 				</div></li>
 
@@ -63,13 +63,13 @@
 					Box</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item"
-						href="${pageContext.request.contextPath}/setTopBox.jsp">Add
+						href="${pageContext.request.contextPath}/setTopBox.jsp"${add_stb_view}>Add
 						SetTop Box</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/C_PurchaseBox.jsp">Purchase
+						href="${pageContext.request.contextPath}/C_PurchaseBox.jsp"${stb_purchase_view}>Purchase
 						SetTop Box</a>
 				</div></li>
 
-			<li class="nav-item"><a class="nav-link"
+			<li class="nav-item" ${charge_view}><a class="nav-link"
 				href="${pageContext.request.contextPath}/PackageCharging.jsp">Package
 					& Charging</a></li>
 
@@ -79,17 +79,17 @@
 					Customer </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item"
-						href="${pageContext.request.contextPath}/customer.jsp">Register
+						href="${pageContext.request.contextPath}/customer.jsp"${register_customer_view}>Register
 						Customer</a> <a class="dropdown-item"
 						href="${pageContext.request.contextPath}/customerList.jsp">Customer
 						List</a>
 				</div></li>
 
 			<li class="nav-item"><a class="nav-link"
-				href="${pageContext.request.contextPath}/operator.jsp">Register
+				href="${pageContext.request.contextPath}/operator.jsp"${register_operator_view}>Register
 					Operator</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="${pageContext.request.contextPath}/retailerRegistration.jsp">Register
+				href="${pageContext.request.contextPath}/retailerRegistration.jsp"${register_retailer_view}>Register
 					Retailer</a></li>
 
 		</ul>
