@@ -15,7 +15,7 @@ public class DbCon {
 	private static final String serverName = "localhost";
 
 	private static final int portNumber = 3306;
-  
+
 	private static final String dbName = "ILP_CASE_STUDY";
 
 	private static final String tableName = "";
@@ -59,5 +59,5 @@ public class DbCon {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
