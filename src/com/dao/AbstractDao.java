@@ -34,7 +34,10 @@ public abstract class AbstractDao<T extends Bean> {
 
 	/**
 	 * Inserts the Bean's data into its table, and updates the Bean with
-	 * its new id.
+	 * its new unique identifier
+	 * 
+	 * It is advised to set the Bean's unique identifier to a known value
+	 * before this operation and verify that it has changed afterwards.
 	 * 
 	 * @param bean The Bean to insert into its table.
 	 * @return true if inserted successfully; false otherwise
@@ -76,10 +79,11 @@ public abstract class AbstractDao<T extends Bean> {
 		}
 		return successful;
 	}
-	
 
 	/**
-	 * Reads the Bean's data from its table, matching the unique id
+	 * Reads the Bean's data from its table by matching the Bean's
+	 * unique identifier to a record. The Bean's unique identifier should
+	 * be set before this operation.
 	 * 
 	 * @param bean     The Bean that will store the data, with the correct id set
 	 * @param uniqueId The unique id of the desired bean
@@ -123,9 +127,29 @@ public abstract class AbstractDao<T extends Bean> {
 		}
 		return successful;
 	}
+	
+	/**
+	 * Finds the Bean associated with the given unique identifier.
+	 * @param uniqueId The unique identifier for the bean
+	 * @return A Bean, or null if no Bean could be found.
+	 */
+	public T read(int uniqueId) {
+		T bean = this.getNewBean();
+		Object[] columnValues = bean.getColumnValues();
+		columnValues[0] = uniqueId;
+		bean.setColumnValues(columnValues);
+		if (read(bean)) {
+			return bean;
+		}
+		else {
+			return null;
+		}
+	}
 
 	/**
-	 * Updates the Bean's data into its table, matching the unique id
+	 * Updates the Bean's data to its table by matching the Bean's
+	 * unique identifier to a record. The Bean's unique identifier should
+	 * be set before this operation.
 	 * 
 	 * @param bean The bean whose data will be updated, with the correct id set
 	 * @return true if updated successfully; false otherwise
@@ -164,7 +188,8 @@ public abstract class AbstractDao<T extends Bean> {
 	}
 
 	/**
-	 * Deletes a Bean's data from its table, matching the unique id
+	 * Deletes the Bean's record from its table. The Bean's unique identifier should
+	 * be set before this operation.
 	 * 
 	 * @param bean The bean whose data will be deleted, with the correct id set
 	 * @return true if deleted successfully; false, otherwise
