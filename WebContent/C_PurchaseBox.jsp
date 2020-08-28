@@ -158,7 +158,7 @@
 					</div>
 					<div>
 						<input class="btn btn-primary" type="button"
-							onclick="location.href='/BravoTV/P_SetupBoxT';"
+							onclick="location.href='/BravoTV/P_SetupBoxT?id=${stbType.stb_type_id}';"
 							value="Next" />
 					</div>
 				</div>

@@ -34,9 +34,10 @@
 		var discount = parseFloat(document.getElementById("discount").value);
 		var tax = parseFloat(document.getElementById("tax").value);
 		var result = price + charge + deposit;
-		var fTotal = (result - (result * ((discount) / 100))) + tax;
+		var fTotal = (result - (result * ((discount) / 100)));
+		var finalTotal = (fTotal + (fTotal * ((tax) / 100)));
 
-		document.getElementById("total").value = fTotal;
+		document.getElementById("total").value = finalTotal;
 	}
 </script>
 
@@ -59,7 +60,7 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Type</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${stbType.type}">
 					</div>
 
 					<div class="form-group">
@@ -76,31 +77,31 @@
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Price</label> <input
-							type="text" value="150" id="price" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+							type="text" id="price" class="form-control"
+							aria-describedby="emailHelp" value="${stbType.price}">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Installation Charge</label> <input
-							type="text" value="20" id="installCharge" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+							type="text" id="installCharge" class="form-control"
+							aria-describedby="emailHelp" value="${stbType.install_charges}">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Refundable Deposit Amount</label>
-						<input type="text" value="50" id="depoistAmount"
-							class="form-control" aria-describedby="emailHelp" placeholder="">
+						<input type="text" id="depoistAmount"
+							class="form-control" aria-describedby="emailHelp" value="${stbType.refundable_deposit}">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Discount %</label> <input
-							type="text" value="10" id="discount" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+							type="text" id="discount" class="form-control"
+							aria-describedby="emailHelp" value="${stbType.discount}">
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Tax</label> <input type="text"
-							class="form-control" value="23.76" id="tax"
+						<label for="exampleInputEmail1">Tax %</label> <input type="text"
+							class="form-control" value="6" id="tax"
 							aria-describedby="emailHelp" placeholder="">
 					</div>
 
