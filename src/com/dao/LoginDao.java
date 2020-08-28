@@ -89,7 +89,8 @@ public class LoginDao {
 
 		return exists;
 	}
-	public void insertUser(String user_name, String user_password, String user_type, Boolean first_time_user) {
+
+	public void insertUser(String user_name, String user_password, String user_type, boolean first_time_user) {
 		System.out.println("called addperson");
 		String sql="insert into Case_Auth (user_name,user_password,user_type,first_time_user) values "
 				+ "(?,?,?,?)";
