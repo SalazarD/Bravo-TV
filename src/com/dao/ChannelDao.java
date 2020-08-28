@@ -13,5 +13,7 @@ public class ChannelDao extends AbstractDao<Channel> {
 	protected Channel getNewBean() {
 		return new Channel();
 	}
+	
+	
 
 }
