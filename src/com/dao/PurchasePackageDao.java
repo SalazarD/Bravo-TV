@@ -11,6 +11,12 @@ import com.utilities.DbCon;
 
 public class PurchasePackageDao {
 	
+	/**
+	 * Adds a package to the list of packages purchased by the customer.
+	 * @param customer_id The ID of the customer
+	 * @param package_id The ID of the package
+	 * @return True if the purchase was successful, false otherwise.
+	 */
 	public boolean addPackagePurchase(int customer_id, int package_id) {
 		boolean success = false;
 		Connection connection = DbCon.getConnection();
@@ -28,6 +34,12 @@ public class PurchasePackageDao {
 		return success;
 	}
 	
+	/**
+	 * Removes a package from the list of packages purchased by the customer.
+	 * @param customer_id The ID of the customer
+	 * @param package_id The ID of the package
+	 * @return True if successful, false otherwise.
+	 */
 	public boolean removePackagePurchase(int customer_id, int package_id) {
 		boolean success = false;
 		Connection connection = DbCon.getConnection();
@@ -45,6 +57,12 @@ public class PurchasePackageDao {
 		return success;
 	}
 	
+	/**
+	 * Whether the customer has purchased the package
+	 * @param customer_id The ID of the customer
+	 * @param package_id The ID of the package
+	 * @return True if the customer purchased the package; false otherwise, or if an error occurred
+	 */
 	public boolean hasPackagePurchase(int customer_id, int package_id) {
 		boolean success = false;
 		Connection connection = DbCon.getConnection();
@@ -65,6 +83,12 @@ public class PurchasePackageDao {
 		return success;
 	}
 	
+	/**
+	 * Gets a list of all packages purchased by the customer
+	 * @param customer_id The ID of the customer
+	 * @return A list with all the packages purchased by the customer. Empty if 
+	 *         the customer has no packages, or if the operation failed.
+	 */
 	public ArrayList<ChannelPackage> getPurchasedPackages(int customer_id) {
 		
 		// Get the ids of all purchased packages
