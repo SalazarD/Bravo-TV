@@ -5,11 +5,12 @@ import com.utilities.DbCon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class CustomerDao extends AbstractDao<Customer> {
-	
+
 	private static String TABLE_NAME = "CASE_Customer";
-	
+
 	@Override
 	protected String getTableName() {
 		return TABLE_NAME;
@@ -45,8 +46,48 @@ public class CustomerDao extends AbstractDao<Customer> {
 		return exists;
 	}
 
+
+	public Customer findById(int customerId) {
+
+		Connection con = DbCon.getConnection();
+		Customer c = null;
+		try
+		{
+			String qry = "SELECT * FROM "+"case_customer"+ " "+
+					"WHERE customer_id = ?";
+
+			PreparedStatement st = con.prepareStatement(qry);
+			st.setInt(1,customerId);
+			ResultSet rs=st.executeQuery();
+			while (rs.next()) {
+				c = new Customer();
+				c.setFirst_name(rs.getString("first_name"));
+				c.setLast_name(rs.getString("last_name"));
+				c.setEmail(rs.getString("email"));
+				c.setPhone(rs.getString("phone"));
+				c.setAddress_1(rs.getString("address_1"));
+				c.setAddress_2(rs.getString("address_2"));
+				c.setLand_mark(rs.getString("land_mark"));
+				c.setZip_code(rs.getInt("zip_code"));
+				c.setCity(rs.getString("city"));
+				c.setState_province(rs.getString("state_province"));
+				c.setCustomer_creation_date(rs.getTimestamp("customer_creation_date"));
+				c.setPre_paid(rs.getBoolean("pre_paid"));
+				c.setBalance(rs.getBigDecimal("balance"));
+				c.setAssigned_operator_id(rs.getInt("assigned_operator_id"));
+				c.setAssigned_retailer_id(rs.getInt("assigned_retailer_id"));
+				c.setCustomer_id(customerId);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
+
+
 	public Customer getCustomer(String email) {
-		Customer customer = new Customer();
+		Customer obj = new Customer();
 
 		Connection con = DbCon.getConnection();
 
@@ -58,22 +99,22 @@ public class CustomerDao extends AbstractDao<Customer> {
 
 			ResultSet rs = st.executeQuery();
 			while(rs.next()) {
-				customer.setCustomer_id(rs.getInt(1));
-				customer.setFirst_name(rs.getString(2));
-				customer.setLast_name(rs.getString(3));
-				customer.setEmail(rs.getString(4));
-				customer.setPhone(rs.getString(5));
-				customer.setAddress_1(rs.getString(6));
-				customer.setAddress_2(rs.getString(7));
-				customer.setLand_mark(rs.getString(8));
-				customer.setZip_code(rs.getInt(9));
-				customer.setCity(rs.getString(10));
-				customer.setState_province(rs.getString(11));
-				customer.setCustomer_creation_date(rs.getTimestamp(12));
-				customer.setAssigned_operator_id(rs.getInt(13));
-				customer.setAssigned_retailer_id(rs.getInt(14));
-				customer.setPassword(rs.getString(15));
-				customer.setFirst_time_user(rs.getBoolean(16));
+				obj.setCustomer_id(rs.getInt(1));
+				obj.setFirst_name(rs.getString(2));
+				obj.setLast_name(rs.getString(3));
+				obj.setEmail(rs.getString(4));
+				obj.setPhone(rs.getString(5));
+				obj.setAddress_1(rs.getString(6));
+				obj.setAddress_2(rs.getString(7));
+				obj.setLand_mark(rs.getString(8));
+				obj.setZip_code(rs.getInt(9));
+				obj.setCity(rs.getString(10));
+				obj.setState_province(rs.getString(11));
+				obj.setCustomer_creation_date(rs.getTimestamp(12));
+				obj.setPre_paid(rs.getBoolean(13));
+				obj.setBalance(rs.getBigDecimal(14));
+				obj.setAssigned_operator_id(rs.getInt(15));
+				obj.setAssigned_retailer_id(rs.getInt(16));
 			}
 
 		} catch(Exception e) {
@@ -82,6 +123,55 @@ public class CustomerDao extends AbstractDao<Customer> {
 			DbCon.closeConnection();
 		}
 
-		return customer;
+		return obj;
 	}
+
+
+	public ArrayList<Customer> findAllC() {
+		// TODO Auto-generated method stub
+		ArrayList<Customer> customers = new ArrayList<>();
+
+		try
+		{
+			Connection con = DbCon.getConnection();
+			String qry = "SELECT * FROM CASE_Customer";
+			PreparedStatement st = con.prepareStatement(qry);
+
+			ResultSet rs = st.executeQuery(qry);
+
+			while(rs.next())
+			{
+				Customer obj = new Customer();
+				obj.setCustomer_id(rs.getInt(1));
+				obj.setFirst_name(rs.getString(2));
+				obj.setLast_name(rs.getString(3));
+				obj.setEmail(rs.getString(4));
+				obj.setPhone(rs.getString(5));
+				obj.setAddress_1(rs.getString(6));
+				obj.setAddress_2(rs.getString(7));
+				obj.setLand_mark(rs.getString(8));
+				obj.setZip_code(rs.getInt(9));
+				obj.setCity(rs.getString(10));
+				obj.setState_province(rs.getString(11));
+				obj.setCustomer_creation_date(rs.getTimestamp(12));
+				obj.setPre_paid(rs.getBoolean(13));
+				obj.setBalance(rs.getBigDecimal(14));
+				obj.setAssigned_operator_id(rs.getInt(15));
+				obj.setAssigned_retailer_id(rs.getInt(16));
+
+				customers.add(obj);			
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DbCon.closeConnection();
+		}
+
+		return customers;
+	}
+
 }

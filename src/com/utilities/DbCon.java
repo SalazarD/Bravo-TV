@@ -10,7 +10,7 @@ public class DbCon {
 
 	private static final String userName = "root";
 
-	private static final String password = "batman";
+	private static final String password = "";
 
 	private static final String serverName = "localhost";
 
@@ -59,5 +59,4 @@ public class DbCon {
 			e.printStackTrace();
 		}
 	}
-
 }
