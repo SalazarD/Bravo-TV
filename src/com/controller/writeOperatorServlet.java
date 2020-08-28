@@ -57,9 +57,7 @@ public class writeOperatorServlet extends HttpServlet {
 			request.getRequestDispatcher("homepage.jsp").forward(request, response);
 		} 
 		else {
-			HttpSession session = request.getSession();
-			session.setAttribute("error", "Student "+action+" failed.");
-			request.getRequestDispatcher("${pageContext.request.contextPath}/StudentPages/Error.jsp").forward(request, response);
+			System.out.println("Unsuccessful! Could not register");
 		}
 	}
 
