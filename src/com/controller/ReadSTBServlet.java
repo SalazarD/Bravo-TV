@@ -30,20 +30,19 @@ public class ReadSTBServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("Reached the get function of the ReadSTBServlet");
 		StbTypeDao dao = new StbTypeDao();
 		StbType stb = new StbType();
-		
-		stb.setStb_type_id(1);
-		if (dao.read(stb)) {
-			System.out.println(stb);
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("stbType", stb);
-		} else {
-			System.out.println("Unsuccessful read for stbType");
-		}
-		
+		String billing_type = request.getParameter("billingType");
+		System.out.println("billing type: "+billing_type);
+		String box_type = request.getParameter("topBoxType");
+		System.out.println("bow type: "+box_type);
+		//stb.setStb_type_id(1);
+		stb = dao.getByTwoTypes(box_type, billing_type);
+		//System.out.println("Retrieved the box using two types");
+		//System.out.println(stb.toString());
+		HttpSession session = request.getSession();
+		session.setAttribute("stbType", stb);
 		request.getRequestDispatcher("/C_PurchaseBox.jsp").forward(request, response);
 		
 	}

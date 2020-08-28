@@ -60,4 +60,14 @@
 		<servlet-name>WriteSTBTypeServlet</servlet-name>
 		<url-pattern>/SetTopBox</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ReadSTBServlet</display-name>
+		<servlet-name>ReadSTBServlet</servlet-name>
+		<servlet-class>com.controller.ReadSTBServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadSTBServlet</servlet-name>
+		<url-pattern>/P_SetupBox</url-pattern>
+	</servlet-mapping>
 </web-app>

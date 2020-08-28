@@ -65,7 +65,7 @@
 					<a class="dropdown-item"
 						href="${pageContext.request.contextPath}/setTopBox.jsp"${add_stb_view}>Add
 						SetTop Box</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/C_PurchaseBox.jsp"${stb_purchase_view}>Purchase
+						href="${pageContext.request.contextPath}/P_SetupBox"${stb_purchase_view}>Purchase
 						SetTop Box</a>
 				</div></li>
 
