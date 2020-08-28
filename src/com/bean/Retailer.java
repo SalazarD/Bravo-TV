@@ -20,6 +20,19 @@ public class Retailer implements Bean {
 	private BigDecimal service_charges;
 	private Timestamp retailer_creation_date;
 	
+	public Retailer() {
+		retailer_name = "";
+		contact_num1 = "";
+		contact_num2 = "";
+		address_1 = "";
+		address_2 = "";
+		city = "";
+		state_province = "";
+		credit_limit = BigDecimal.ZERO;
+		service_charges = BigDecimal.ZERO;
+		retailer_creation_date = new Timestamp(System.currentTimeMillis());
+	}
+	
 	public int getRetailer_id() {
 		return retailer_id;
 	}

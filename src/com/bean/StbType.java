@@ -15,6 +15,18 @@ public class StbType implements Bean{
 	private String billing_type;
 	private BigDecimal refundable_deposit;
 	
+	public StbType() {
+		type = "";
+		length = BigDecimal.ZERO;
+		breadth = BigDecimal.ZERO;
+		width = BigDecimal.ZERO;
+		price = BigDecimal.ZERO;
+		install_charges = BigDecimal.ZERO;
+		upgrade_charge = BigDecimal.ZERO;
+		billing_type = "";
+		refundable_deposit = BigDecimal.ZERO;
+	}
+	
 	public int getStb_type_id() {
 		return stb_type_id;
 	}

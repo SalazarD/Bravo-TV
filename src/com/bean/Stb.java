@@ -11,6 +11,14 @@ public class Stb implements Bean{
 	private Integer assigned_retailer_id;
 	private Integer assigned_customer_id;
 	
+	public Stb() {
+		serial_num = "";
+		mac_id = "";
+		remote_asset_id = "";
+		dish_asset_id = "";
+		status = "";
+	}
+	
 	public int getStd_id() {
 		return std_id;
 	}

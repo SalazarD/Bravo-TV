@@ -11,6 +11,15 @@ public class Operator implements Bean {
 	private Timestamp shift_start;
 	private int max_customers;
 	private Timestamp operator_creation_date;
+	
+	public Operator() {
+		first_name = "";
+		last_name = "";
+		email = "";
+		phone = "";
+		shift_start = new Timestamp(System.currentTimeMillis());
+		operator_creation_date = new Timestamp(System.currentTimeMillis());
+	}
 
 	public int getOperator_id() {
 		return operator_id;

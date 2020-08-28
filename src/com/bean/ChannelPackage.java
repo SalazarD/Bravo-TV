@@ -14,6 +14,16 @@ public class ChannelPackage implements Bean{
 	private Timestamp package_available_to_date;
 	private boolean added_by_default;
 	
+	public ChannelPackage() {
+		package_name = "";
+		package_category = "";
+		package_charging_type= "";
+		package_transmission_type = "";
+		package_cost = BigDecimal.ZERO;
+		package_available_from_date = new Timestamp(System.currentTimeMillis());
+		package_available_to_date = new Timestamp(System.currentTimeMillis());
+	}
+	
 	public int getPackage_id() {
 		return package_id;
 	}

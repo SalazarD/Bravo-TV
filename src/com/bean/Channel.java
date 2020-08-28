@@ -12,6 +12,14 @@ public class Channel implements Bean{
 	private String channel_transmission;
 	private BigDecimal channel_charge;
 	
+	public Channel() {
+		channel_name = "";
+		channel_band = "";
+		channel_charge_type= "";
+		channel_transmission = "";
+		channel_charge = BigDecimal.ZERO;
+	}
+	
 	public int getChannel_id() {
 		return channel_id;
 	}

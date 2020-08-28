@@ -20,6 +20,20 @@ public class Customer implements Bean {
 	private BigDecimal balance;
 	private Integer assigned_operator_id;
 	private Integer assigned_retailer_id;
+	
+	public Customer() {
+		first_name = "";
+		last_name = "";
+		email = "";
+		phone = "";
+		address_1 = "";
+		address_2 = "";
+		land_mark = "";
+		city = "";
+		state_province = "";
+		customer_creation_date = new Timestamp(System.currentTimeMillis());
+		balance = BigDecimal.ZERO;
+	}
 
 	public int getCustomer_id() {
 		return customer_id;
