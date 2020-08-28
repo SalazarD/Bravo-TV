@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 
@@ -95,50 +96,54 @@
 						<label for="exampleInputEmail1">Dimensions in inches</label>
 						<div class="form-row">
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Height">
+								<input type="text" class="form-control" value="${stbType.breadth}">
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Width">
+								<input type="text" class="form-control" value="${stbType.width}">
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Length">
+								<input type="text" class="form-control" value="${stbType.length}">
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Price</label> <input type="text"
-							class="form-control" aria-describedby="emailHelp" placeholder="">
+						<label for="exampleInputEmail1">Price</label> 
+						<input type="text" class="form-control" aria-describedby="emailHelp" 
+						value="${stbType.price}"> 
+							
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Installation Charge</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" class="form-control" aria-describedby="emailHelp" 
+							value="${stbType.install_charges}">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Upgradation Charge</label> <input
 							type="text" name="upgradationCharge" id="upgradationCharge"
-							class="form-control" aria-describedby="emailHelp" placeholder="">
+							class="form-control" aria-describedby="emailHelp" 
+							value="${stbType.upgrade_charge}">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Discount %</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${stbType.discount}">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Billing Type</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${stbType.billing_type}">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Refundable Discount Amount</label>
 						<input type="text" id="refundableDepositAmount"
-							class="form-control" aria-describedby="emailHelp" placeholder="1">
+							class="form-control" aria-describedby="emailHelp" 
+							value="${stbType.refundable_deposit}">
 					</div>
 					<div>
 						<input class="btn btn-primary" type="button"
