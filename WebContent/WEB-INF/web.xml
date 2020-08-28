@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
-  <display-name>BravoTV</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <context-param>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+	<display-name>BravoTV</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<context-param>
 		<param-name>url</param-name>
 		<param-value></param-value>
 	</context-param>
-  <servlet>
-  	<servlet-name>ReadCustomerServlet</servlet-name>
-  	<servlet-class>com.controller.ReadCustomerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>ReadCustomerServlet</servlet-name>
-  	<url-pattern>/Customer/List</url-pattern>
-  </servlet-mapping>
-  <servlet>
-  	<servlet-name>WriteCustomerServlet</servlet-name>
-  	<servlet-class>com.controller.WriteCustomerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>WriteCustomerServlet</servlet-name>
-  	<url-pattern>/Customer/Add</url-pattern>
-  </servlet-mapping>
-   <servlet>
-  	<servlet-name>RetailerWriteServlet</servlet-name>
-  	<servlet-class>com.controller.RetailerWriteServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>RetailerWriteServlet</servlet-name>
-  	<url-pattern>/Retailer</url-pattern>
-  </servlet-mapping>
-  	<servlet>
+	<servlet>
+		<servlet-name>ReadCustomerServlet</servlet-name>
+		<servlet-class>com.controller.ReadCustomerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadCustomerServlet</servlet-name>
+		<url-pattern>/Customer/List</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>WriteCustomerServlet</servlet-name>
+		<servlet-class>com.controller.WriteCustomerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WriteCustomerServlet</servlet-name>
+		<url-pattern>/Customer/Add</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RetailerWriteServlet</servlet-name>
+		<servlet-class>com.controller.RetailerWriteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RetailerWriteServlet</servlet-name>
+		<url-pattern>/Retailer</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<description></description>
 		<display-name>writeOperatorServlet</display-name>
 		<servlet-name>writeOperatorServlet</servlet-name>
@@ -46,5 +49,15 @@
 	<servlet-mapping>
 		<servlet-name>writeOperatorServlet</servlet-name>
 		<url-pattern>/OperatorReg</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>WriteSTBTypeServlet</display-name>
+		<servlet-name>WriteSTBTypeServlet</servlet-name>
+		<servlet-class>com.controller.WriteSTBTypeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WriteSTBTypeServlet</servlet-name>
+		<url-pattern>/SetTopBox</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -1,15 +1,15 @@
 function addFeature(){
-	var feature = document.getElementById('customFeature').value;
+	var features = document.getElementById('Cfeatures').value;
 	var hold = document.getElementById("featuresList");
 	var checkbox = document.createElement('input');
  	checkbox.type = "checkbox";
- 	checkbox.name = feature;
- 	checkbox.id = "topBoxFeatures";
+ 	checkbox.name = features;
+ 	checkbox.id = "features";
 
  	var label = document.createElement('label');
- 	var tn = document.createTextNode(feature);
+ 	var tn = document.createTextNode(features);
 
- 	label.htmlFor="topBoxFeatures";
+ 	label.htmlFor="features";
  	label.appendChild(tn); 
  	hold.appendChild(checkbox);
  	hold.appendChild(label);
