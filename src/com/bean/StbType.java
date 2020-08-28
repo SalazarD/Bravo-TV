@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class StbType implements Bean{
 	private int stb_type_id;
 	private String type;
+	private String features;
 	private BigDecimal length;
 	private BigDecimal breadth;
 	private BigDecimal width;
@@ -26,6 +27,12 @@ public class StbType implements Bean{
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getFeatures() {
+		return features;
+	}
+	public void setFeatures(String features) {
+		this.features = features;
 	}
 	public BigDecimal getLength() {
 		return length;
@@ -84,7 +91,8 @@ public class StbType implements Bean{
 	@Override
 	public String toString() {
 		return "StbType [stb_type_id=" + stb_type_id 
-				+ ", type=" + type 
+				+ ", type=" + type
+				+ ", features=" + features
 				+ ", length=" + length 
 				+ ", breadth=" + breadth
 				+ ", width=" + width 
@@ -97,7 +105,7 @@ public class StbType implements Bean{
 	}
 	
 	private static final String[] COLUMN_NAMES = new String[] {
-			"stb_type_id", "type", "length", "breadth", "width",
+			"stb_type_id", "type", "features", "length", "breadth", "width",
 			"price", "install_charges", "upgrade_charge", "discount", "billing_type",
 			"refundable_deposit"
 	};
@@ -109,7 +117,7 @@ public class StbType implements Bean{
 	@Override
 	public Object[] getColumnValues() {
 		return new Object[] {
-			stb_type_id, type, length, breadth, width, price, install_charges, upgrade_charge, discount,
+			stb_type_id, type, features, length, breadth, width, price, install_charges, upgrade_charge, discount,
 			billing_type, refundable_deposit
 		};
 	}
@@ -117,15 +125,16 @@ public class StbType implements Bean{
 	public void setColumnValues(Object[] values) {
 		stb_type_id = (int) values[0];
 		type = (String) values[1];
-		length = (BigDecimal) values[2];
-		breadth = (BigDecimal) values[3];
-		width = (BigDecimal) values[4];
-		price = (BigDecimal) values[5];
-		install_charges = (BigDecimal) values[6];
-		upgrade_charge = (BigDecimal) values[7];
-		discount = (int) values[8];
-		billing_type = (String) values[9];
-		refundable_deposit = (BigDecimal) values[10];
+		features = (String) values[2];
+		length = (BigDecimal) values[3];
+		breadth = (BigDecimal) values[4];
+		width = (BigDecimal) values[5];
+		price = (BigDecimal) values[6];
+		install_charges = (BigDecimal) values[7];
+		upgrade_charge = (BigDecimal) values[8];
+		discount = (int) values[9];
+		billing_type = (String) values[10];
+		refundable_deposit = (BigDecimal) values[11];
 		
 	}
 		
