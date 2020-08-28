@@ -52,8 +52,7 @@
 
 <body>
 	<jsp:include page="./menu.jsp" />
-	<form name="P_SetupBox"
-		action="${pageContext.request.contextPath}/P_SetupBox" method="POST">
+	<form method="POST">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -84,12 +83,24 @@
 						</select>
 					</div>
 					<div>
+						<input id="saveForm" class="btn btn-primary" type="submit" name="submit" value="Submit"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<form name="P_SetupBox2"
+		action="${pageContext.request.contextPath}/P_SetupBox" method="POST">
+		<div class="container">
+			<div class="card">
+				<div class="card-body">
+					<div>
 						<h5 style="text-align: center">Set Top Box Details</h5>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Features</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							placeholder="" value="${stbType.features}">
 					</div>
 
 					<div class="form-group">
@@ -147,7 +158,7 @@
 					</div>
 					<div>
 						<input class="btn btn-primary" type="button"
-							onclick="location.href='/BravoTV/C_PurchaseBoxTotal.jsp';"
+							onclick="${pageContext.request.contextPath}/P_SetupBoxT?id=${stbType.stb_type_id}"
 							value="Next" />
 					</div>
 				</div>
