@@ -158,7 +158,7 @@
 					</div>
 					<div>
 						<input class="btn btn-primary" type="button"
-							onclick="${pageContext.request.contextPath}/P_SetupBoxT?id=${stbType.stb_type_id}"
+							onclick="location.href='/BravoTV/P_SetupBoxT';"
 							value="Next" />
 					</div>
 				</div>

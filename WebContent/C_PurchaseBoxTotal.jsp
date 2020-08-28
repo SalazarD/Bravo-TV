@@ -65,13 +65,13 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box MAC ID</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${stb.mac_id}">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Serial Number</label>
 						<input type="text" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+							aria-describedby="emailHelp" value="${stb.serial_num}">
 					</div>
 
 					<div class="form-group">

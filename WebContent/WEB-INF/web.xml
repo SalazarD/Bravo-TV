@@ -70,4 +70,14 @@
 		<servlet-name>ReadSTBServlet</servlet-name>
 		<url-pattern>/P_SetupBox</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ReadPurchaseServlet</display-name>
+		<servlet-name>ReadPurchaseServlet</servlet-name>
+		<servlet-class>com.controller.ReadPurchaseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadPurchaseServlet</servlet-name>
+		<url-pattern>/P_SetupBoxT</url-pattern>
+	</servlet-mapping>
 </web-app>

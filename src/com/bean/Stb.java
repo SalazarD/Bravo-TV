@@ -8,9 +8,9 @@ public class Stb implements Bean{
 	private String remote_asset_id;
 	private String dish_asset_id;
 	private String status;
-	private Integer assigned_retailer_id;
-	private Integer assigned_customer_id;
-	
+	private int assigned_retailer_id;
+	private int assigned_customer_id;
+
 	public int getStd_id() {
 		return std_id;
 	}
@@ -32,10 +32,10 @@ public class Stb implements Bean{
 	public String getStatus() {
 		return status;
 	}
-	public Integer getAssigned_retailer_id() {
+	public int getAssigned_retailer_id() {
 		return assigned_retailer_id;
 	}
-	public Integer getAssigned_customer_id() {
+	public int getAssigned_customer_id() {
 		return assigned_customer_id;
 	}
 	public void setStd_id(int std_id) {
@@ -59,13 +59,13 @@ public class Stb implements Bean{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public void setAssigned_retailer_id(Integer assigned_retailer_id) {
+	public void setAssigned_retailer_id(int assigned_retailer_id) {
 		this.assigned_retailer_id = assigned_retailer_id;
 	}
-	public void setAssigned_customer_id(Integer assigned_customer_id) {
+	public void setAssigned_customer_id(int assigned_customer_id) {
 		this.assigned_customer_id = assigned_customer_id;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Stb [std_id=" + std_id 
@@ -78,7 +78,7 @@ public class Stb implements Bean{
 				+ ", assigned_retailer_id=" + assigned_retailer_id 
 				+ ", assigned_customer_id=" + assigned_customer_id + "]";
 	}
-	
+
 	private static final String[] COLUMN_NAMES = new String[] {
 			"stb_id", "stb_type_id", "serial_num", "mac_id", "remote_asset_id", "dish_asset_id",
 			"status", "assigned_retailer_id", "assigned_customer_id"
@@ -92,7 +92,7 @@ public class Stb implements Bean{
 	public Object[] getColumnValues() {
 		return new Object[] { std_id, stb_type_id, serial_num, mac_id, remote_asset_id,
 				dish_asset_id, status, assigned_retailer_id, assigned_customer_id
-				
+
 		};
 	}
 	@Override
@@ -104,10 +104,10 @@ public class Stb implements Bean{
 		remote_asset_id = (String) values[4];
 		dish_asset_id = (String) values[5];
 		status = (String) values[6];
-		assigned_retailer_id = (Integer) values[7];
-		assigned_customer_id = (Integer) values[8];
-		
+		assigned_retailer_id = (int) values[7];
+		assigned_customer_id = (int) values[8];
+
 	}
-	
-	
+
+
 }
