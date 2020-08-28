@@ -26,17 +26,12 @@ public class ReadPurchaseServlet extends HttpServlet {
 		Stb stb = new Stb();
 		StbDao sd = new StbDao();
 
-		stb.setStd_id(1);
-		if(sd.read(stb))
-		{
-			System.out.println(stb);
+		//		stb.setStd_id(1);
+		stb = sd.findAllSTB();
+		System.out.println(stb);
 
-			HttpSession session = request.getSession();
-			session.setAttribute("stb", stb);
-		} else {
-			System.out.println("Unsuccessful read for stb");
-		}
-
+		HttpSession session = request.getSession();
+		session.setAttribute("stb", stb);
 		request.getRequestDispatcher("/C_PurchaseBoxTotal.jsp").forward(request, response);
 
 	}
