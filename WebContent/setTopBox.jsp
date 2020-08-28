@@ -25,7 +25,7 @@
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="SetTopBox"
-		action="${pageContext.request.contextPath}/SetTopBox" method="post">
+		action="${pageContext.request.contextPath}/SetTopBox" method="post" enctype="multipart/form-data">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -141,7 +141,7 @@
 					<div class="form-group">
 						<label for="inventoryDetails">Set Top Box Inventory
 							Details:</label> <br> <label class="btn btn-secondary">
-							Choose File <input type="file" hidden>
+							Choose File <input type="file" name="file" accept=".csv" required>
 						</label>
 					</div>
 					<div class="form-group">
