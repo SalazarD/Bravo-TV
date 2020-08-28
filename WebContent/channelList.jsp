@@ -34,21 +34,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>HBO</td>
-					<td>Band I</td>
-					<td>1</td>
-					<td>2</td>
-					<td>Paid</td>
-					<td>10</td>
-					<td class="noBorder"><a
-						href="${pageContext.request.contextPath}/editChannel.jsp"><button
-								type="button" class="btn btn-primary">Edit</button></a></td>
-					<td class="noBorder">
-						<button type="button" class="btn btn-primary">Delete</button>
-					</td>
-				</tr>
+				<c:forEach var="channel" items="${channels}">
+					<tr>
+						<td><c:out value="${channel.channel_name}" /></td>
+						<td><c:out value="${channel.channel_band}" /></td>
+						<td><c:out value="${channel.video_carrier_frequency}" /></td>
+						<td><c:out value="${channel.audio_carrier_frequency}" /></td>
+						<td><c:out value="${channel.channel_charge_type}" /></td>
+						<td><c:out value="${channel.channel_charge}" /></td>
+						<td class="noBorder"><a
+							href="${pageContext.request.contextPath}/editChannel.jsp"><button
+									type="button" class="btn btn-primary">Edit</button></a></td>
+						<td class="noBorder">
+							<button type="button" class="btn btn-primary">Delete</button>
+						</td>
+					</tr>
+
+				</c:forEach>
 			</tbody>
+
 		</table>
 	</div>
 </body>
