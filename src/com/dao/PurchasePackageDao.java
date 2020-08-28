@@ -15,7 +15,7 @@ public class PurchasePackageDao {
 		boolean success = false;
 		Connection connection = DbCon.getConnection();
 		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO CASE_PurchaseMap (customer_id, package_id) VALUES (?, ?)");
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO CASE_Purchase_Map (customer_id, package_id) VALUES (?, ?)");
 			ps.setInt(1, customer_id);
 			ps.setInt(2, package_id);
 			
@@ -32,7 +32,7 @@ public class PurchasePackageDao {
 		boolean success = false;
 		Connection connection = DbCon.getConnection();
 		try {
-			PreparedStatement ps = connection.prepareStatement("DELTE FROM CASE_PurchaseMap WHERE customer_id = ? AND package_id = ?");
+			PreparedStatement ps = connection.prepareStatement("DELETE FROM CASE_Purchase_Map WHERE customer_id = ? AND package_id = ?");
 			ps.setInt(1, customer_id);
 			ps.setInt(2, package_id);
 			
@@ -49,7 +49,7 @@ public class PurchasePackageDao {
 		boolean success = false;
 		Connection connection = DbCon.getConnection();
 		try {
-			PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) FROM CASE_PurchaseMap WHERE customer_id = ? AND package_id = ?");
+			PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) FROM CASE_Purchase_Map WHERE customer_id = ? AND package_id = ?");
 			ps.setInt(1, customer_id);
 			ps.setInt(2, package_id);
 			
@@ -71,7 +71,7 @@ public class PurchasePackageDao {
 		ArrayList<Integer> packageIds = new ArrayList<>();
 		Connection connection = DbCon.getConnection();
 		try {
-			PreparedStatement ps = connection.prepareStatement("SELECT package_id FROM CASE_PurchaseMap WHERE customer_id = ?");
+			PreparedStatement ps = connection.prepareStatement("SELECT package_id FROM CASE_Purchase_Map WHERE customer_id = ?");
 			ps.setInt(1, customer_id);
 			
 			ResultSet rs = ps.executeQuery();
