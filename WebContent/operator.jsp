@@ -146,7 +146,7 @@ String shift = startTime.format(new Date());
 					<div class="form-group">
 						<label for="exampleInputEmail1">Creation Date</label> <input
 							type="text" class="form-control" name="operator_creation_date"
-							aria-describedby="emailHelp" value="<%=date%>" required>
+							aria-describedby="emailHelp" value="<%=date%>" readonly>
 					</div>
 
 
