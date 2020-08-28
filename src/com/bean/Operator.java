@@ -76,6 +76,7 @@ public class Operator implements Bean {
 		this.operator_creation_date = operator_creation_date;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Operator [operator_id=" + operator_id
@@ -85,11 +86,12 @@ public class Operator implements Bean {
 				+ ", phone=" + phone
 				+ ", shift_start=" + shift_start
 				+ ", max_customers=" + max_customers
-				+ ", operator_creation_date=" + operator_creation_date + "]";
+				+ ", operator_creation_date=" + operator_creation_date
+				+ "]";
 	}
 
 	private static final String[] COLUMN_NAMES = new String[] { "operator_id", "first_name", "last_name", "email",
-			"phone", "shift_start", "max_customers", "operator_creation_date" };
+			"phone", "shift_start", "max_customers", "operator_creation_date"};
 
 	@Override
 	public String[] getColumnNames() {
@@ -99,7 +101,7 @@ public class Operator implements Bean {
 	@Override
 	public Object[] getColumnValues() {
 		return new Object[] { operator_id, first_name, last_name, email, phone, shift_start, max_customers,
-				operator_creation_date };
+				operator_creation_date};
 	}
 
 	@Override

@@ -47,11 +47,27 @@
 							<label for="oldPassword">Confirm New Password: </label><input
 								type="text" id="confirmPassword" name="confirmPassword"
 								class="form-control" placeholder="Re-enter your new password"
-								required>
+								required onkeyup="check()">
 						</div>
+						  <div>
+							<a id="message"></a>
+						</div>
+			
+						<script>
+	    				function check() {
+	       					 if (document.getElementById('changePassword').value!= document.getElementById('confirmPassword').value) {
+	       						document.getElementById('message').style.color = 'red';
+	       					    document.getElementById('message').innerHTML = 'not matching';
+	       					    } else {
+		       					document.getElementById('message').innerHTML = '';
+								document.getElementById("changePwButton").disabled=false;
+	       					    }
+	    					}
+						</script>
+						
 						<div class="form-group">
-							<input type="submit" class="btn btn-primary"
-								value="Change Password" />
+							<input type="submit" id="changePwButton" class="btn btn-primary"
+								value="Change Password" disabled />
 						</div>
 					</div>
 				</div>

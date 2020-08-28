@@ -4,9 +4,13 @@
 <%@ page import="java.text.SimpleDateFormat, java.util.*"%>
 <!DOCTYPE html>
 <%
-	String pattern = "MM/dd/yyyy";
-SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-String date = simpleDateFormat.format(new Date());
+	String pattern = "yyyy-MM-dd HH:mm:ss";
+SimpleDateFormat dateCreation = new SimpleDateFormat(pattern);
+String date = dateCreation.format(new Date());
+
+String pattern2 = "yyyy-MM-dd";
+SimpleDateFormat startTime = new SimpleDateFormat(pattern2);
+String shift = startTime.format(new Date());
 %>
 <html>
 <head>
@@ -20,12 +24,37 @@ String date = simpleDateFormat.format(new Date());
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 
+
+<script type="text/javascript">
+	function getOption() {
+
+		var total = new Date();
+		
+		selectElement = document.querySelector('#select1');
+
+		output = selectElement.value;
+		
+		
+		var d = new Date(output); 
+		f = new Date(d.getTime()); 
+		
+		a = d.setHours(d.getHours() + 8)
+		var date = new Date(a);
+		console.log(date);
+		
+		document.querySelector('.output').textContent = date;
+	}
+</script>
+
 <meta charset="ISO-8859-1">
 <title>Operator Registration</title>
 </head>
+<!-- 
 <script>
 	document.getElementById('date').value = (new Date()).format("m/dd/yy");
 </script>
+
+ -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -47,13 +76,13 @@ String date = simpleDateFormat.format(new Date());
 					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">First Name</label> <input
-							type="text" class="form-control" name="firstName"
+							type="text" class="form-control" name="first_name"
 							aria-describedby="emailHelp" placeholder="Enter First Name"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Last Name</label> <input
-							type="text" class="form-control" name="lastName"
+							type="text" class="form-control" name="last_name"
 							aria-describedby="emailHelp" placeholder="Enter Last Name"
 							required>
 					</div>
@@ -69,52 +98,69 @@ String date = simpleDateFormat.format(new Date());
 							aria-describedby="emailHelp" placeholder="Enter Phone Number"
 							required>
 					</div>
+
+
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Shift Start Time</label> <select
-							class="form-control" name="startTime" required>
-							<option value="12am">12:00 am</option>
-							<option value="1am">1:00 am</option>
-							<option value="2am">2:00 am</option>
-							<option value="3am">3:00 am</option>
-							<option value="4am">4:00 am</option>
-							<option value="5am">5:00 am</option>
-							<option value="6am">6:00 am</option>
-							<option value="7am">7:00 am</option>
-							<option value="8am">8:00 am</option>
-							<option value="9am">9:00 am</option>
-							<option value="10am">10:00 am</option>
-							<option value="11am">11:00 am</option>
-							<option value="12pm">12:00 pm</option>
-							<option value="1pm">1:00 pm</option>
-							<option value="2pm">2:00 pm</option>
-							<option value="3pm">3:00 pm</option>
-							<option value="4pm">4:00 pm</option>
-							<option value="5pm">5:00 pm</option>
-							<option value="6pm">6:00 pm</option>
-							<option value="7pm">7:00 pm</option>
-							<option value="8pm">8:00 pm</option>
-							<option value="9pm">9:00 pm</option>
-							<option value="10pm">10:00 pm</option>
-							<option value="11pm">11:00 pm</option>
+							class="form-control" id="select1" name="start_shift" onclick="getOption()" required>
+							<option value="<%=shift + " 00:00:00"%>">12:00 am</option>
+							<option value="<%=shift + " 01:00:00"%>">1:00 am</option>
+							<option value="<%=shift + " 02:00:00"%>">2:00 am</option>
+							<option value="<%=shift + " 03:00:00"%>">3:00 am</option>
+							<option value="<%=shift + " 04:00:00"%>">4:00 am</option>
+							<option value="<%=shift + " 05:00:00"%>">5:00 am</option>
+							<option value="<%=shift + " 06:00:00"%>">6:00 am</option>
+							<option value="<%=shift + " 07:00:00"%>">7:00 am</option>
+							<option value="<%=shift + " 08:00:00"%>">8:00 am</option>
+							<option value="<%=shift + " 09:00:00"%>">9:00 am</option>
+							<option value="<%=shift + " 10:00:00"%>">10:00 am</option>
+							<option value="<%=shift + " 11:00:00"%>">11:00 am</option>
+							<option value="<%=shift + " 12:00:00"%>">12:00 pm</option>
+							<option value="<%=shift + " 13:00:00"%>">1:00 pm</option>
+							<option value="<%=shift + " 14:00:00"%>">2:00 pm</option>
+							<option value="<%=shift + " 15:00:00"%>">3:00 pm</option>
+							<option value="<%=shift + " 16:00:00"%>">4:00 pm</option>
+							<option value="<%=shift + " 17:00:00"%>">5:00 pm</option>
+							<option value="<%=shift + " 18:00:00"%>">6:00 pm</option>
+							<option value="<%=shift + " 19:00:00"%>">7:00 pm</option>
+							<option value="<%=shift + " 20:00:00"%>">8:00 pm</option>
+							<option value="<%=shift + " 21:00:00"%>">9:00 pm</option>
+							<option value="<%=shift + " 22:00:00"%>">10:00 pm</option>
+							<option value="<%=shift + " 23:00:00"%>">11:00 pm</option>
 						</select>
 					</div>
+
+
+
 					<div class="form-group">
-						<label for="exampleInputEmail1">Shift End Time</label> <input
-							type="text" class="form-control" name="endTime"
-							aria-describedby="emailHelp" placeholder="Enter Shift End Time"
-							required>
+						<label for="exampleInputEmail1">Shift End Time:- </label> <span
+							class="output"></span>
+
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Max No. of Customers to be
-							managed</label> <input type="text" class="form-control" name="max"
-							aria-describedby="emailHelp" placeholder="Enter Max customers"
-							required>
+							managed</label> <input type="text" class="form-control"
+							name="max_customers" aria-describedby="emailHelp"
+							placeholder="Enter Max customers" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Creation Date</label> <input
-							type="text" class="form-control" name="date"
+							type="text" class="form-control" name="operator_creation_date"
 							aria-describedby="emailHelp" value="<%=date%>" required>
 					</div>
+
+
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="operator_id"
+							aria-describedby="emailHelp" placeholder="Enter ID" value="${operator.operator_id}">
+					</div>
+
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="action"
+							aria-describedby="emailHelp" placeholder="Enter ID"
+							value="register">
+					</div>
+
 
 					<button type="submit" class="btn btn-primary">Register</button>
 				</div>

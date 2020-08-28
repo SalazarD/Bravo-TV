@@ -120,7 +120,7 @@ public class Retailer implements Bean {
 				+ ", credit_limit=" + credit_limit
 				+ ", commission_rate=" + commission_rate
 				+ ", service_charges=" + service_charges
-				+ ", retailer_creation_date=" + retailer_creation_date + "]";
+				+ ", retailer_creation_date=" + retailer_creation_date;
 	}
 	
 	private static final String[] COLUMN_NAMES = new String[] { "retailer_id", "retailer_name", "contact_num1",
