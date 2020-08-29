@@ -51,9 +51,9 @@
 					Packages</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item"
-						href="${pageContext.request.contextPath}/channelPackage.jsp"${add_package_view}>Add
+						href="${pageContext.request.contextPath}/ChannelPack/Add"${add_package_view}>Add
 						Channel Package</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/additionalPackages.jsp"${package_purchase_view}>Purchase
+						href="${pageContext.request.contextPath}/ChannelPack/PurchasePackage"${package_purchase_view}>Purchase
 						Additional Package</a>
 				</div></li>
 
@@ -91,7 +91,6 @@
 			<li class="nav-item"><a class="nav-link"
 				href="${pageContext.request.contextPath}/retailerRegistration.jsp"${register_retailer_view}>Register
 					Retailer</a></li>
-
 		</ul>
 	</div>
 </nav>

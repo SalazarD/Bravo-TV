@@ -62,7 +62,7 @@
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="AdditionalPackages"
-		action="${pageContext.request.contextPath}/AdditionalPackages"
+		action="${pageContext.request.contextPath}/ChannelPack/PurchasePackage"
 		method="POST">
 		<div class="container">
 			<div class="card">
