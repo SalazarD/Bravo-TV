@@ -32,7 +32,7 @@
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="ChannelPackage"
-		action="${pageContext.request.contextPath}/ChannelPackage"
+		action="${pageContext.request.contextPath}/PurchasePackage"
 		method="POST">
 		<div class="container">
 			<div class="card">
@@ -90,7 +90,7 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Select Channels</label> <select
-							class="form-control" name="packageCategory" id="select1" required>
+							class="form-control" name="packageChannel" id="select1" required>
 							<option value="starMovies">Star Movies</option>
 							<option value="starSports">Star Sports</option>
 							<option value="hbo">HBO</option>
@@ -99,7 +99,7 @@
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Package Cost</label> <input
-							type="text" class="form-control" name="packageCostt"
+							type="number" class="form-control" name="packageCost"
 							aria-describedby="emailHelp" placeholder="Enter Package Cost"
 							required>
 					</div>
@@ -109,26 +109,26 @@
 							available from Date</label>
 						<div class="col-10">
 							<input class="form-control" type="date" value=""
-								id="example-date-input">
+								name="packageAvailableFrom" id="example-date-input">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-date-input" class="col-2 col-form-label">Package
-							available from Date</label>
+							available to Date</label>
 						<div class="col-10">
 							<input class="form-control" type="date" value=""
-								id="example-date-input">
+								name="packageAvailableTo" id="example-date-input">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Added by Default</label>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="packageTrans"
+							<input class="form-check-input" type="radio" name="addedByDefault"
 								value="Yes" required> <label class="form-check-label"
 								for="exampleRadios1">Yes</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="packageTrans"
+							<input class="form-check-input" type="radio" name="addedByDefault"
 								value="No"> <label class="form-check-label"
 								for="exampleRadios1">No</label>
 						</div>

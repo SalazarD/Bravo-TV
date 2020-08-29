@@ -47,4 +47,12 @@
 		<servlet-name>writeOperatorServlet</servlet-name>
 		<url-pattern>/OperatorReg</url-pattern>
 	</servlet-mapping>
+	<servlet>
+  	<servlet-name>PurchasePackageServlet</servlet-name>
+  	<servlet-class>com.controller.PurchasePackageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>PurchasePackageServlet</servlet-name>
+  	<url-pattern>/PurchasePackage</url-pattern>
+  </servlet-mapping>
 </web-app>
