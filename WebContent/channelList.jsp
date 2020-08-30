@@ -43,7 +43,7 @@
 						<td><c:out value="${channel.channel_charge_type}" /></td>
 						<td><c:out value="${channel.channel_charge}" /></td>
 						<td class="noBorder"><a
-							href="${pageContext.request.contextPath}/editChannel.jsp"><button
+							href="${pageContext.request.contextPath}/GetChannelServlet?id=${channel.channel_id}"><button
 									type="button" class="btn btn-primary">Edit</button></a></td>
 						<td class="noBorder">
 							<button type="button" class="btn btn-primary">Delete</button>

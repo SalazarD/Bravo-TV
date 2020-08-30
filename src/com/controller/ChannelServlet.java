@@ -58,7 +58,7 @@ public class ChannelServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		//doGet(request, response);
 		PrintWriter out = response.getWriter();
 		String channelname = request.getParameter("channelName");
 		String channelband = request.getParameter("channelBand");
@@ -80,11 +80,29 @@ public class ChannelServlet extends HttpServlet {
 		channel.setChannel_transmission("transmission");
 		channel.setChannel_charge(BigDecimal.valueOf(charge));
 		
+		String action = request.getParameter("action");
 		
 		
-		boolean created = cd.create(channel);
+		if(action.equals("add")) {
+			cd.create(channel);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("message", "Channel added!");
+			request.getRequestDispatcher("GetChannelServlet").forward(request, response);
+		}
 		
-		if(created == true) {
+		else if(action.equals("update")) {
+			channel.setChannel_id(Integer.parseInt(request.getParameter("channelId")));
+			cd.update(channel);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("message", "Channel updated.");
+			request.getRequestDispatcher("GetChannelServlet").forward(request, response);
+		}
+		
+		//boolean created = cd.create(channel);
+		
+		/*if(created == true) {
 			response.getWriter().println("Channel Added");
 			out.println("alert('Channel Created!');");
 			response.sendRedirect("GetChannelServlet");
@@ -92,7 +110,7 @@ public class ChannelServlet extends HttpServlet {
 		}
 		else {
 			response.getWriter().println("Channel not Added");
-		}
+		}*/
 		
 		
 	}

@@ -13,7 +13,7 @@
 		<param-name>url</param-name>
 		<param-value></param-value>
 	</context-param>
-<<<<<<< HEAD
+
   <servlet>
   	<servlet-name>ReadCustomerServlet</servlet-name>
   	<servlet-class>com.controller.ReadCustomerServlet</servlet-class>
@@ -48,7 +48,7 @@
 		<servlet-name>writeOperatorServlet</servlet-name>
 		<url-pattern>/OperatorReg</url-pattern>
 	</servlet-mapping>
-=======
+
 
 
 	<servlet>
@@ -75,6 +75,5 @@
 		<servlet-name>GetChannelServlet</servlet-name>
 		<url-pattern>/GetChannelServlet</url-pattern>
 	</servlet-mapping>
-	
->>>>>>> c88b3b5e036634f4140d943c62fbcb999e6d63fc
+
 </web-app>

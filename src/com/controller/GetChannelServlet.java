@@ -30,28 +30,43 @@ public class GetChannelServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.getWriter().append("Served at: get channel here").append(request.getContextPath());
+		/*response.getWriter().append("Served at: get channel here").append(request.getContextPath());
 		response.getWriter().println("hello from getStudent");
-		System.out.println("channel added!");
+		System.out.println("channel added!");*/
 		
 		
 		ChannelDao channelDao = new ChannelDao();
 
-        List<Channel> channels = channelDao.getAll();
         
         
-        System.out.println("hereee");
+        /*System.out.println("hereee");
 		PrintWriter out=response.getWriter();
 		
 		for (Channel e: channels) {
 			
 			out.print("["+e.getChannel_name()+"]");
 
-		}
+		}*/
+        
+        String idString = request.getParameter("id");
+        if (idString != null) {
+        	Integer id = Integer.parseInt(idString);
+        	Channel channel = channelDao.findById(id);
+        	
+        	HttpSession session = request.getSession();
+			session.setAttribute("channel", channel);
+			request.getRequestDispatcher("/editChannel.jsp").forward(request, response);
+        }
+        
+        else {
+        	List<Channel> channels = channelDao.getAll();
+        	  
+        	HttpSession session = request.getSession();
+            session.setAttribute("channels", channels);
+            request.getRequestDispatcher("./channelList.jsp").forward(request, response);
+        	
+        }
 
-        HttpSession session = request.getSession();
-        session.setAttribute("channels", channels);
-        request.getRequestDispatcher("./channelList.jsp").forward(request, response);
         
 	}
 
