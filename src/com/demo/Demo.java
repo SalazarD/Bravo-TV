@@ -1,9 +1,12 @@
 package com.demo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.Timestamp;
 
+import com.bean.PurchaseChannelPackage;
 import com.bean.Retailer;
+import com.dao.ChannelPackageDao;
 import com.dao.RetailerDao;
 
 public class Demo {

@@ -15,45 +15,62 @@
 	crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-	var total1 = 0;
-	var total2 = 0;
-	var total3 = 0;
+	function displayDetail(){
+		var totalCost=0;
+        var markup = "<td></td>";
 
-	function valueChangedKK() {
-		if ($('#kidsKart').is(":checked")) {
-			$("#helloShow").show();
-			total1 = 2.5;
-		} else {
-			$("#helloShow").hide();
-			total1 = 0;
-		}
+        var obj = {};
+		$('.pkName').each(function(){
+		    var text = $.trim($(this).text());
+		    if(obj[text]){
+		    	$(this).replaceWith(markup);
+		    } else {
+		        obj[text] = true;
+		    }
+		})
+		$('.pkCost').each(function(){
+		    var text = $.trim($(this).text());
+		    if(obj[text]){
+		    	$(this).replaceWith(markup);
+		    } else {
+		        obj[text] = true;
+		    }
+		})
+		$('.pkDate').each(function(){
+		    var text = $.trim($(this).text());
+		    if(obj[text]){
+		    	$(this).replaceWith(markup);
+		    } else {
+		        obj[text] = true;
+		    }
+		})
+		jQuery("input[name='category']:checked").each(function(i){
+			var elems = document.getElementsByClassName($(this).val());
+			for (var i=0;i<elems.length;i+=1){
+				var costElems=elems[i].getElementsByClassName("pkCost")
+				for(var x=0; x<costElems.length;x++){
+					totalCost=totalCost+parseInt(costElems[x].textContent);
+				}
+				elems[i].style.display = 'table-row';
+				}
+			    
+		});
+		document.getElementById('total').value=totalCost;
+		jQuery("input[name='category']:not(:checked)").each(function(i){
+			var elems = document.getElementsByClassName($(this).val());
+			for (var i=0;i<elems.length;i+=1){
+				  elems[i].style.display = 'none';
+				}	        
+			});
+		
+
 	}
-
-	function valueChangedFT() {
-		if ($('#food').is(":checked")) {
-			$("#helloFT").show();
-			total2 = 3;
-		} else {
-			$("#helloFT").hide();
-			total2 = 0;
+	function add_number() {		
+		var elems = document.getElementsByClassName("pkCost");
+		var total=0;
+		for (var i=0;i<elems.length;i+=1){
 		}
-	}
-
-	function valueChangedD() {
-		if ($('#drama').is(":checked")) {
-			$("#helloD").show();
-			total3 = 3;
-		} else {
-			$("#helloD").hide();
-			total3 = 0;
-		}
-	}
-
-	function add_number() {
-
-		var fTotal = total1 + total2 + total3;
-		document.getElementById("total").value = fTotal;
-
+		document.getElementById("total").value = total;
 	}
 </script>
 <meta charset="ISO-8859-1">
@@ -77,14 +94,16 @@
 								<table class="table table-bordered">
 									<th>Package Name</th>
 									<th>Charge</th>
-									<tr>
-										<td>Movie Magic</td>
-										<td>2</td>
-									</tr>
-									<tr>
-										<td>News Network</td>
-										<td>1</td>
-									</tr>
+									<c:forEach var="addBydefaultPackage" items="${addByDefaultList}">
+										<tr>
+											<td>
+											<c:out value="${addBydefaultPackage.getPackage_name()}"/>			
+											</td>
+											<td>
+											<c:out value="${addBydefaultPackage.getPackage_cost()}"/>			
+											</td>
+										</tr>
+									</c:forEach>
 								</table>
 							</td>
 						</tr>
@@ -95,27 +114,17 @@
 					<br> <br>
 
 					<div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="id1"
-								value="option1" value="1" onchange="valueChangedKK()"
-								id="kidsKart"> <label class="form-check-label"
-								for="inlineCheckbox1">Kids Kart</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="id2"
-								value="2" onchange="valueChangedFT()" id="food"> <label
-								class="form-check-label" for="inlineCheckbox3">Food and
-								Travel</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="id3"
-								value="3" onchange="valueChangedD()" id="drama"> <label
-								class="form-check-label" for="inlineCheckbox2">Drama</label>
-						</div>
+						<c:forEach var="notAddByDefault" items="${notAddByDefaultList}">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" onchange="displayDetail()" 
+										   name="category" value="${notAddByDefault.getPackage_name()}">
+									<label class="form-check-label" >
+										<c:out value="${notAddByDefault.getPackage_name()}"/>													
+									</label>
+								</div>
+						</c:forEach>
 					</div>
-
 					<br>
-
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
@@ -126,44 +135,26 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr id="helloShow" style="display: none">
-								<td>Kids Kart</td>
-								<td>
-									<table class="table table-bordered">
-										<th>Channel Name</th>
-										<th>Channel Cost</th>
-										<tr>
-											<td>Cartoon Network</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>POGO</td>
-											<td>1.5</td>
-										</tr>
-									</table>
-								</td>
-								<td>10/20/2016</td>
-								<td>2.5</td>
-							</tr>
-							<tr id="helloFT" style="display: none">
-								<td>Food and Travel</td>
-								<td>
-									<table class="table table-bordered">
-										<th>Channel Name</th>
-										<th>Channel Cost</th>
-										<tr>
-											<td>NDTV Good Times</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>Travel Nation</td>
-											<td>1</td>
-										</tr>
-									</table>
-								</td>
-								<td>10/20/2016</td>
-								<td>3</td>
-							</tr>
+							<c:forEach var="mappedPackage" items="${mappedPackage}">
+									<tr class="${mappedPackage.getPackage_name()}" style="display:none;">
+										<td class="pkName">
+											<c:out value="${mappedPackage.getPackage_name()}"/>			
+										</td>
+										
+										<td>
+											<c:out value="${mappedPackage.getChannel_name()}"/>			
+										</td>
+										<td class="pkDate">
+											<script>
+											var d= new Date()
+											document.write(d.toLocaleDateString("en-US"));
+											</script>
+										</td>
+										<td class="pkCost">
+											<c:out value="${mappedPackage.getPackage_cost()}"/>			
+										</td>
+									</tr>										
+							</c:forEach>
 
 							<tr id="helloD" style="display: none">
 								<td>Drama</td>

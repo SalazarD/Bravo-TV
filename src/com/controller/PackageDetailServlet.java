@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -59,22 +60,31 @@ public class PackageDetailServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ChannelPackage channelpack = new ChannelPackage();
 		ChannelPackageDao packDao=new ChannelPackageDao();
-		channelpack.setPackage_name(request.getParameter("packageName"));
-		channelpack.setPackage_category(request.getParameter("packageCategory"));
-		channelpack.setPackage_charging_type(request.getParameter("packageType")); 
-		channelpack.setPackage_transmission_type(request.getParameter("packageTrans"));
-		channelpack.setPackage_cost(BigDecimal.valueOf(Double.parseDouble( request.getParameter("packageCostt"))));
-		channelpack.setPackage_available_from_date(Timestamp.valueOf(request.getParameter("available_date")+" 00:00:00.00"));
-		channelpack.setPackage_available_to_date(Timestamp.valueOf(request.getParameter("to_date")+" 00:00:00.00"));
-		channelpack.setAdded_by_default(Boolean.parseBoolean(request.getParameter("addByDefault")));
-		packDao.create(channelpack);
-		String[] channelNameID=request.getParameterValues("allAvailableChannel");
-		ArrayList<Integer> channelID=new ArrayList<Integer>();
-		for(String channelInfo: channelNameID) {
-			channelID.add(Integer.parseInt(channelInfo.substring(0,1)));
+		if(packDao.packageNameExist(request.getParameter("packageName"))==false) {
+			channelpack.setPackage_name(request.getParameter("packageName"));
+			channelpack.setPackage_category(request.getParameter("packageCategory"));
+			channelpack.setPackage_charging_type(request.getParameter("packageType")); 
+			channelpack.setPackage_transmission_type(request.getParameter("packageTrans"));
+			channelpack.setPackage_cost(BigDecimal.valueOf(Double.parseDouble( request.getParameter("packageCostt"))));
+			channelpack.setPackage_available_from_date(Timestamp.valueOf(request.getParameter("available_date")+" 00:00:00.00"));
+			channelpack.setPackage_available_to_date(Timestamp.valueOf(request.getParameter("to_date")+" 00:00:00.00"));
+			channelpack.setAdded_by_default(Boolean.parseBoolean(request.getParameter("addByDefault")));
+			packDao.create(channelpack);
+			String[] channelNameID=request.getParameterValues("allAvailableChannel");
+			ArrayList<Integer> channelID=new ArrayList<Integer>();
+			for(String channelInfo: channelNameID) {
+				channelID.add(Integer.parseInt(channelInfo.substring(0,1)));
+			}
+			packDao.mappingChannelwithPack(channelpack.getPackage_id(), channelID);
+			request.getRequestDispatcher("PurchasePackage").forward(request, response);			
+		}else {
+			PrintWriter out = response.getWriter();
+	        out.println("<script type=\"text/javascript\">");
+	        out.println("alert('Package name already exist, try a new package name');");
+	        out.println("location='/BravoTV/ChannelPack/Add';");
+	        out.println("</script>");
 		}
-		packDao.mappingChannelwithPack(channelpack.getPackage_id(), channelID);
-		request.getRequestDispatcher("PurchasePackage").forward(request, response);
+
 
 	}
 
