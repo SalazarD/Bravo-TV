@@ -10,7 +10,7 @@ public class DbCon {
 
 	private static final String userName = "root";
 
-	private static final String password = "batman";
+	private static final String password = "softWare!2";
 
 	private static final String serverName = "localhost";
 
@@ -33,7 +33,7 @@ public class DbCon {
 				connectionProps.put("password", password);
 
 				con = DriverManager.getConnection("jdbc:mysql://"
-						+ serverName + ":" + portNumber + "/" + dbName,
+						+ serverName + ":" + portNumber + "/" + dbName+"?serverTimezone=UTC",
 						connectionProps);
 			}
 			catch(Exception e)
