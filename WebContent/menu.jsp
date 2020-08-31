@@ -84,10 +84,19 @@
 						href="${pageContext.request.contextPath}/Customer/List">Customer
 						List</a>
 				</div></li>
+				
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Operator </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item"
+						href="${pageContext.request.contextPath}/operator.jsp"${register_operator_view}>Register
+						Operator</a> <a class="dropdown-item"
+						href="${pageContext.request.contextPath}/OperatorReg/List">Operator
+						List</a>
+				</div></li>
 
-			<li class="nav-item"><a class="nav-link"
-				href="${pageContext.request.contextPath}/operator.jsp"${register_operator_view}>Register
-					Operator</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="${pageContext.request.contextPath}/retailerRegistration.jsp"${register_retailer_view}>Register
 					Retailer</a></li>
