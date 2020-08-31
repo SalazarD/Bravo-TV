@@ -58,8 +58,28 @@ public class ChannelServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ChannelDao cd = new ChannelDao();
+		Channel channel = new Channel();
+		
+		boolean num =request.getParameter("reqDelete") != null;
+
+		if(num == true) {
+
+			int del = Integer.parseInt(request.getParameter("id"));
+			channel.setChannel_id(del);
+			boolean deleted = cd.delete(channel);
+
+			if (deleted == true) {
+				System.out.println("delete success");
+			}
+			else {
+				System.out.println("error somewhere");
+			}
+
+		}
+		
 		//doGet(request, response);
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		String channelname = request.getParameter("channelName");
 		String channelband = request.getParameter("channelBand");
 		int video = Integer.parseInt(request.getParameter("video"));
@@ -68,8 +88,7 @@ public class ChannelServlet extends HttpServlet {
 		Double charge = Double.parseDouble(request.getParameter("charge"));
 		
 		
-		ChannelDao cd = new ChannelDao();
-		Channel channel = new Channel();
+		
 		
 		
 		channel.setChannel_name(channelname);
