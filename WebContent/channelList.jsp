@@ -46,7 +46,7 @@
                             href="${pageContext.request.contextPath}/GetChannelServlet?id=${channel.channel_id}"><button
                                     type="button" class="btn btn-primary">Edit</button></a></td>
                         <td class="noBorder">
-                           <button type="button" name="delBtn" onClick="deleteFunc(${channel.channel_id})"  class="btn btn-primary">Delete</button>
+                           <a type="button" name="delBtn" href="${pageContext.request.contextPath}/ChannelServlet?deleteId=${channel.channel_id}"  class="button btn btn-primary">Delete</a>
                         </td>
                     </tr>
 
@@ -57,7 +57,7 @@
 </body>
 
 <script type = text/javascript>
-function deleteFunc(i){
+/* function deleteFunc(i){
 	if (confirm('Would you like to delete this Channel?')) {
 		$.ajax({
 			type: "POST",
@@ -78,6 +78,6 @@ function deleteFunc(i){
 		//do nothing
 	}
 	
-}
+} */
 </script>
 </html>
