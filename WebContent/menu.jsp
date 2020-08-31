@@ -57,7 +57,7 @@
 					<a class="dropdown-item"
 						href="${pageContext.request.contextPath}/ChannelPack/Add"${add_package_view}>Add
 						Channel Package</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/ChannelPack/PurchasePackage"${package_purchase_view}>Purchase
+						href="${pageContext.request.contextPath}/PurchasePackage"${package_purchase_view}>Purchase
 						Additional Package</a>
 				</div></li>
 
@@ -69,7 +69,7 @@
 					<a class="dropdown-item"
 						href="${pageContext.request.contextPath}/setTopBox.jsp"${add_stb_view}>Add
 						SetTop Box</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/C_PurchaseBox.jsp"${stb_purchase_view}>Purchase
+						href="${pageContext.request.contextPath}/P_SetupBox"${stb_purchase_view}>Purchase
 						SetTop Box</a>
 				</div></li>
 
@@ -88,13 +88,23 @@
 						href="${pageContext.request.contextPath}/Customer/List">Customer
 						List</a>
 				</div></li>
+				
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Operator </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item"
+						href="${pageContext.request.contextPath}/operator.jsp"${register_operator_view}>Register
+						Operator</a> <a class="dropdown-item"
+						href="${pageContext.request.contextPath}/OperatorReg/List">Operator
+						List</a>
+				</div></li>
 
-			<li class="nav-item"><a class="nav-link"
-				href="${pageContext.request.contextPath}/operator.jsp"${register_operator_view}>Register
-					Operator</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="${pageContext.request.contextPath}/retailerRegistration.jsp"${register_retailer_view}>Register
 					Retailer</a></li>
+
 		</ul>
 	</div>
 	<div>

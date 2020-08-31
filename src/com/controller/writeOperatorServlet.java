@@ -47,17 +47,28 @@ public class writeOperatorServlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 		OperatorDao ssvc = new OperatorDao();
-
-		if (action.equals("register")) {
-			System.out.println("Register ");
+		LoginDao authTable = new LoginDao();
+		
+		if (action.equals("add")) {
+			System.out.println("Added ");
 			ssvc.create(s);
+			authTable.insertUser(s.getEmail(), "defaultpassword", "operator", true);
 
 			HttpSession session = request.getSession();
 			session.setAttribute("message", "Operator Registered.");
-			request.getRequestDispatcher("homepage.jsp").forward(request, response);
+			request.getRequestDispatcher("List").forward(request, response);
 		} 
-		else {
-			System.out.print("failed");
+		else if (action.equals("update")) {
+			s.setOperator_id(Integer.parseInt(request.getParameter("operator_id")));
+			//System.out.println("Date: " + customer.getCustomer_creation_date());
+			s.setOperator_creation_date(Timestamp.valueOf(request.getParameter("operator_creation_date")));
+			System.out.println("Update " + s);
+			ssvc.update(s);
+
+			HttpSession session = request.getSession();
+			session.setAttribute("message", "Customer updated.");
+			request.getRequestDispatcher("List").forward(request, response);
+
 		}
 	}
 

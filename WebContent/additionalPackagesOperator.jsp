@@ -17,10 +17,6 @@
 <script type="text/javascript">
 	function updateTotal() {
 		total = 0.00;
-		
-	    <c:forEach items="${defaultPackages}" var="cp">
-	    total += ${cp.package_cost};
-	    </c:forEach>
 	    
 	    <c:forEach items="${purchaseMap}" var="entry">
 		if ($("#checkbox_${entry.key.package_id}").is(":checked")) {
@@ -51,38 +47,35 @@
 <title>Additional Packages</title>
 </head>
 <body>
-	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
-	<c:choose>
-  	<c:when test="${user_type == 'admin' || user_type == 'operator'|| user_type == 'customer'}">
 	<jsp:include page="./menu.jsp" />
+	<br>
+	<form name="ResolveCustomerId"
+		action="${pageContext.request.contextPath}/PurchasePackage"
+		method="GET">
+		<div class="container">
+			<div class="card">
+				<div class="card-body">
+					<h5>Find Customer</h5>
+						<div class="form-group">
+							<input type="text" class="form-control" name="customer_id"
+							aria-describedby="emailHelp" placeholder="Enter Customer ID"
+							required value="${customer_id}">
+						</div>
+					<button type="submit" class="btn btn-primary">Continue</button>
+				</div>
+			</div>
+		</div>
+	</form>
+	<br>
+<c:if test="${customer_id != null}">
 	<form name="AdditionalPackages"
 		action="${pageContext.request.contextPath}/PurchasePackage"
 		method="POST">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
-					<h3 style="text-align: center">Purchase Additional Packages</h3>
+					<h3 style="text-align: center">Select Packages</h3>
 					<br>
-					<table class="table table-bordered">
-						<th colspan="3">Amount is in US Dollars</th>
-						<tr>
-							<td>Default Added Packages</td>
-							<td>
-								<table class="table table-bordered">
-									<th>Package Name</th>
-									<th>Charge</th>
-									<c:forEach items="${defaultPackages}" var="cp" >
-									<tr>
-										<td><c:out value="${cp.package_name}" /></td>
-										<td><c:out value="${cp.package_cost}" /></td>
-									</tr>
-									</c:forEach>
-								</table>
-							</td>
-					</table>
-					<br> <br>
-
-					<h3>Select More</h3>
 					<div>
 						<c:forEach items="${purchaseMap}" var="entry" >
 						<div class="form-check form-check-inline">
@@ -126,19 +119,17 @@
 					</table>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Total Amount</label> <input
-							type="text" class="form-control" id="totalAmount"
-							aria-describedby="emailHelp" disabled>
+						<label for="exampleInputEmail1">Total Amount</label>
+						<input type="text" class="form-control" id="totalAmount"
+						aria-describedby="emailHelp" disabled>
 					</div>
-					<button type="submit" class="btn btn-primary">Purchase Additional Packages</button>
+					
+					<input name="customer_id" value="${customer_id}" hidden>
+					<button type="submit" class="btn btn-primary">Changes Purchases</button>
 				</div>
 			</div>
 		</div>
 	</form>
-	</c:when>
-  		<c:otherwise>
-			<jsp:include page="./menu.jsp" />  		
-  		</c:otherwise>
-	</c:choose>
+</c:if>
 </body>
 </html>

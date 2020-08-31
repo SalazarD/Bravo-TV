@@ -20,7 +20,7 @@ public class Customer implements Bean {
 	private BigDecimal balance;
 	private Integer assigned_operator_id;
 	private Integer assigned_retailer_id;
-
+	
 	public int getCustomer_id() {
 		return customer_id;
 	}

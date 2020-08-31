@@ -15,12 +15,9 @@
 	crossorigin="anonymous"></script>
 
 <meta charset="ISO-8859-1">
-<title>Display Customer</title>
+<title>Display Operator</title>
 </head>
 <body>
-	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
-	<c:choose>
-  	<c:when test="${user_type == 'admin' || user_type == 'operator'|| user_type == 'customer'}">
 	<jsp:include page="./menu.jsp" />
 	<div class="card-body">
 		<table class="table">
@@ -30,39 +27,27 @@
 					<th scope="col">Last Name</th>
 					<th scope="col">Email ID</th>
 					<th scope="col">Phone Number</th>
-					<th scope="col">Address</th>
-					<th scope="col">Address 2</th>
-					<th scope="col">Landmark</th>
-					<th scope="col">City</th>
-					<th scope="col">State</th>
-					<th scope="col">Zip</th>
+					<th scope="col">Shift Start</th>
+					<th scope="col">Max Customer</th>
 					<th scope="col">Creation Date</th>
-					<th scope="col">Pre Paid</th>
-					<th scope="col">Balance</th>
 					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="customer" items="${customers}">
+				<c:forEach var="operator" items="${operators}">
 					<tr>
-						<td><c:out value="${customer.first_name}" /></td>
-						<td><c:out value="${customer.last_name}" /></td>
-						<td><c:out value="${customer.email}" /></td>
-						<td><c:out value="${customer.phone}" /></td>
-						<td><c:out value="${customer.address_1}" /></td>
-						<td><c:out value="${customer.address_2}" /></td>
-						<td><c:out value="${customer.land_mark}" /></td>
-						<td><c:out value="${customer.city}" /></td>
-						<td><c:out value="${customer.state_province}" /></td>
-						<td><c:out value="${customer.zip_code}" /></td>
-						<td><c:out value="${customer.customer_creation_date}" /></td>
-						<td><c:out value="${customer.pre_paid}" /></td>
-						<td><c:out value="${customer.balance}" /></td>
+						<td><c:out value="${operator.first_name}" /></td>
+						<td><c:out value="${operator.last_name}" /></td>
+						<td><c:out value="${operator.email}" /></td>
+						<td><c:out value="${operator.phone}" /></td>
+						<td><c:out value="${operator.shift_start}" /></td>
+						<td><c:out value="${operator.max_customers}" /></td>
+						<td><c:out value="${operator.operator_creation_date}" /></td>
 						<td class="noBorder">
 							<!--  /Book calls a servlet to fetch book by ID and populate EditBook.jsp -->
 							<a class="button"
-							href="${pageContext.request.contextPath}/Customer/List?id=${customer.customer_id}"><svg
+							href="${pageContext.request.contextPath}/OperatorReg/List?id=${operator.operator_id}"><svg
 									width="1em" height="1em" viewBox="0 0 16 16"
 									class="bi bi-pencil-square" fill="currentColor"
 									xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +58,7 @@
 </svg></a>
 						</td>
 						<td>
-							<a class="button" href="${pageContext.request.contextPath}/Customer/List?deleteId=${customer.customer_id}">
+							<a class="button" href="${pageContext.request.contextPath}/OperatorReg/List?deleteId=${operator.operator_id}">
 								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square" fill="red" xmlns="http://www.w3.org/2000/svg">
 								  <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
 								  <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -87,10 +72,5 @@
 			</tbody>
 		</table>
 	</div>
-		</c:when>
-  		<c:otherwise>
-			<jsp:include page="./menu.jsp" />
-  		</c:otherwise>
-	</c:choose>
 </body>
 </html>

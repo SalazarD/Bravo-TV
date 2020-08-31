@@ -46,7 +46,7 @@ String shift = startTime.format(new Date());
 </script>
 
 <meta charset="ISO-8859-1">
-<title>Operator Registration</title>
+<title>Edit Operator</title>
 </head>
 <!-- 
 <script>
@@ -63,12 +63,8 @@ String shift = startTime.format(new Date());
 	crossorigin="anonymous"></script>
 
 <body>
-	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
-	<c:choose>
-  	<c:when test="${user_type == 'admin'}">
-  	
 	<jsp:include page="./menu.jsp" />
-	<form name="OperatorReg"
+	<form name="editOperator"
 		action="${pageContext.request.contextPath}/OperatorReg/Add"
 		method="POST">
 		<div class="container">
@@ -81,25 +77,25 @@ String shift = startTime.format(new Date());
 					<div class="form-group">
 						<label for="exampleInputEmail1">First Name</label> <input
 							type="text" class="form-control" name="first_name"
-							aria-describedby="emailHelp" placeholder="Enter First Name"
+							aria-describedby="emailHelp" value="${operator.first_name}"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Last Name</label> <input
 							type="text" class="form-control" name="last_name"
-							aria-describedby="emailHelp" placeholder="Enter Last Name"
+							aria-describedby="emailHelp" value="${operator.last_name}"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email ID</label> <input
 							type="text" class="form-control" name="email"
-							aria-describedby="emailHelp" placeholder="Enter Email ID"
+							aria-describedby="emailHelp" value="${operator.email}"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Phone Number</label> <input
 							type="text" class="form-control" name="phone"
-							aria-describedby="emailHelp" placeholder="Enter Phone Number"
+							aria-describedby="emailHelp" value="${operator.phone}"
 							required>
 					</div>
 
@@ -108,6 +104,8 @@ String shift = startTime.format(new Date());
 						<label for="exampleFormControlSelect1">Shift Start Time</label> <select
 							class="form-control" id="select1" name="start_shift"
 							onclick="getOption()" required>
+							<option value="${operator.shift_start}">${operator.shift_start}</option>
+							<option disabled>-----------------------</option>
 							<option value="<%=shift + " 00:00:00"%>">12:00 am</option>
 							<option value="<%=shift + " 01:00:00"%>">1:00 am</option>
 							<option value="<%=shift + " 02:00:00"%>">2:00 am</option>
@@ -146,34 +144,22 @@ String shift = startTime.format(new Date());
 						<label for="exampleInputEmail1">Max No. of Customers to be
 							managed</label> <input type="text" class="form-control"
 							name="max_customers" aria-describedby="emailHelp"
-							placeholder="Enter Max customers" required>
+							value="${operator.max_customers}" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Creation Date</label> <input
 							type="text" class="form-control" name="operator_creation_date"
-							aria-describedby="emailHelp" value="<%=date%>" readonly>
+							aria-describedby="emailHelp" value="${operator.operator_creation_date}" readonly>
 					</div>
 
 					<input type="hidden" name="operator_id" value="${operator.operator_id}"><br /> 
-					<input type="hidden" name="action" value="add" />
+					<input type="hidden" name="action" value="update" />
 
 
-					<button type="submit" class="btn btn-primary">Register</button>
+					<button type="submit" class="btn btn-primary">Update</button>
 				</div>
 			</div>
 		</div>
 	</form>
-	</c:when>
-	
-		<c:when test="${user_type == 'customer'|| user_type == 'operator'}">
-			<jsp:include page="./menu.jsp" />
-			<h1 style="text-align: center">
-				<a href="/BravoTV/homepage.jsp">Customer/Operator does not have access to this page</a>
-			</h1>
-		</c:when>
-  		<c:otherwise>
-			<jsp:include page="./menu.jsp" />  		
-  		</c:otherwise>
-	</c:choose>
 </body>
 </html>
