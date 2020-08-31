@@ -114,11 +114,7 @@ public abstract class AbstractDao<T extends Bean> {
 			ResultSet rs = ps.executeQuery();
 			ResultSetMetaData metadata = rs.getMetaData();
 			if (successful = rs.next()) {
-				for (int i = 0; i < columnValues.length; i++) {
-					columnValues[i] = AbstractDao.getValueByName(rs, metadata, columnNames[i]);
-				}
-
-				bean.setColumnValues(columnValues);
+				AbstractDao.readBeanFromResultSet(rs, metadata, bean);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -246,14 +242,7 @@ public abstract class AbstractDao<T extends Bean> {
 			// Save results
 			while(rs.next()) {
 				T bean = this.getNewBean();
-				String columnNames[] = bean.getColumnNames();
-				Object[] columnValues = new Object[columnNames.length];
-				
-				for (int i = 0; i < columnValues.length; i++) {
-					columnValues[i] = AbstractDao.getValueByName(rs, metadata, columnNames[i]);
-				}
-
-				bean.setColumnValues(columnValues);
+				AbstractDao.readBeanFromResultSet(rs, metadata, bean);
 				list.add(bean);
 			}
 		} catch (SQLException e) {
@@ -277,6 +266,22 @@ public abstract class AbstractDao<T extends Bean> {
 	 * @return The new Bean instance.
 	 */
 	protected abstract T getNewBean();
+	
+	/**
+	 * Stores the current row of the ResultSet to the Bean's fields. Use ONLY when SELECT * clauses are used.
+	 * @param rs The ResultSet from which to read data
+	 * @param metadata The metadata of the ResultSet
+	 * @param bean The Bean to which data is saved
+	 * @throws SQLException If the Bean's data could not be read
+	 */
+	protected final static void readBeanFromResultSet(ResultSet rs, ResultSetMetaData metadata, Bean bean) throws SQLException {
+		String[] columnNames = bean.getColumnNames();
+		Object[] columnValues = new Object[columnNames.length];
+		for (int i = 0; i < columnValues.length; i++) {
+			columnValues[i] = AbstractDao.getValueByName(rs, metadata, columnNames[i]);
+		}
+		bean.setColumnValues(columnValues);
+	}
 
 	/**
 	 * Generates an argument list of the form (?,?,...,?)

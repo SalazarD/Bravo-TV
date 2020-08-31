@@ -57,6 +57,7 @@ public class ReadCustomerServlet extends HttpServlet {
 			ArrayList<Customer> customers = cd.findAllC();
 			HttpSession session = request.getSession();
 			session.setAttribute("customers", customers);
+			System.out.print(session.getAttribute("user_type"));
 			request.getRequestDispatcher("/customerList.jsp").forward(request, response);
 		}
 	}
