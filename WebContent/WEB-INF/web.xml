@@ -110,11 +110,11 @@
   	</servlet-mapping>
   	
   	<servlet>
-  		<servlet-name>channelServlet</servlet-name>
-  		<servlet-class>com.controller.channelServlet</servlet-class>
+  		<servlet-name>ChannelServlet</servlet-name>
+  		<servlet-class>com.controller.ChannelServlet</servlet-class>
   	</servlet>
   	<servlet-mapping>
-  		<servlet-name>channelServlet</servlet-name>
+  		<servlet-name>ChannelServlet</servlet-name>
   		<url-pattern>/ChannelServlet</url-pattern>
 		<url-pattern>/AddChannel</url-pattern>
   	</servlet-mapping>

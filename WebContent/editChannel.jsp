@@ -55,7 +55,7 @@
 						<label for="exampleInputEmail1">Channel Charge Type</label>
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="chargeType"
-								value="fta" ${channel.channel_charge_type == 'fta' ? 'checked' : ''}required> <label class="form-check-label"
+								value="fta" ${channel.channel_charge_type == 'fta' ? 'checked' : ''}> <label class="form-check-label"
 								for="exampleRadios1">FTA</label>
 						</div>
 						<div class="form-check">
