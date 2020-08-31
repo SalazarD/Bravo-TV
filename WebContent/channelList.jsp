@@ -57,8 +57,6 @@
 </body>
 
 <script type = text/javascript>
-
-
 function deleteFunc(i){
 	if (confirm('Would you like to delete this Channel?')) {
 		$.ajax({
@@ -81,9 +79,5 @@ function deleteFunc(i){
 	}
 	
 }
-
-
-
-
 </script>
 </html>
