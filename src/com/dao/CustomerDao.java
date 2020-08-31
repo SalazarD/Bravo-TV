@@ -92,7 +92,7 @@ public class CustomerDao extends AbstractDao<Customer> {
 		Connection con = DbCon.getConnection();
 
 		try {
-			String qry = "select * from "+TABLE_NAME+" where email_id=?";
+			String qry = "select * from "+TABLE_NAME+" where email=?";
 			PreparedStatement st = con.prepareStatement(qry);
 
 			st.setString(1, email);

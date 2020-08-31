@@ -53,7 +53,7 @@
 					<a class="dropdown-item"
 						href="${pageContext.request.contextPath}/channelPackage.jsp"${add_package_view}>Add
 						Channel Package</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/additionalPackages.jsp"${package_purchase_view}>Purchase
+						href="${pageContext.request.contextPath}/PurchasePackage"${package_purchase_view}>Purchase
 						Additional Package</a>
 				</div></li>
 

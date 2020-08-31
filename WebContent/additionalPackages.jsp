@@ -15,46 +15,37 @@
 	crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-	var total1 = 0;
-	var total2 = 0;
-	var total3 = 0;
-
-	function valueChangedKK() {
-		if ($('#kidsKart').is(":checked")) {
-			$("#helloShow").show();
-			total1 = 2.5;
-		} else {
-			$("#helloShow").hide();
-			total1 = 0;
+	function updateTotal() {
+		total = 0.00;
+		
+	    <c:forEach items="${defaultPackages}" var="cp">
+	    total += ${cp.package_cost};
+	    </c:forEach>
+	    
+	    <c:forEach items="${purchaseMap}" var="entry">
+		if ($("#checkbox_${entry.key.package_id}").is(":checked")) {
+			total += ${entry.key.package_cost};
 		}
+	    </c:forEach>
+		
+		document.getElementById("totalAmount").value = total;
 	}
-
-	function valueChangedFT() {
-		if ($('#food').is(":checked")) {
-			$("#helloFT").show();
-			total2 = 3;
+	
+	function checkboxChanged(package_id) {
+		if ($("#checkbox_"+package_id).is(":checked")) {
+			$("#table_row_"+package_id).show();
 		} else {
-			$("#helloFT").hide();
-			total2 = 0;
+			$("#table_row_"+package_id).hide();
 		}
+		updateTotal();
 	}
-
-	function valueChangedD() {
-		if ($('#drama').is(":checked")) {
-			$("#helloD").show();
-			total3 = 3;
-		} else {
-			$("#helloD").hide();
-			total3 = 0;
-		}
-	}
-
-	function add_number() {
-
-		var fTotal = total1 + total2 + total3;
-		document.getElementById("total").value = fTotal;
-
-	}
+	
+	window.onload = function() {
+	    <c:forEach items="${purchaseMap}" var="entry">
+	    checkboxChanged(${entry.key.package_id});
+	    </c:forEach>
+		updateTotal();
+	};
 </script>
 <meta charset="ISO-8859-1">
 <title>Additional Packages</title>
@@ -62,7 +53,7 @@
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="AdditionalPackages"
-		action="${pageContext.request.contextPath}/AdditionalPackages"
+		action="${pageContext.request.contextPath}/PurchasePackage"
 		method="POST">
 		<div class="container">
 			<div class="card">
@@ -77,41 +68,26 @@
 								<table class="table table-bordered">
 									<th>Package Name</th>
 									<th>Charge</th>
+									<c:forEach items="${defaultPackages}" var="cp" >
 									<tr>
-										<td>Movie Magic</td>
-										<td>2</td>
+										<td><c:out value="${cp.package_name}" /></td>
+										<td><c:out value="${cp.package_cost}" /></td>
 									</tr>
-									<tr>
-										<td>News Network</td>
-										<td>1</td>
-									</tr>
+									</c:forEach>
 								</table>
 							</td>
-						</tr>
 					</table>
-
-					<button type="submit" class="btn btn-primary">Search More
-						Packages</button>
 					<br> <br>
 
+					<h3>Select More</h3>
 					<div>
+						<c:forEach items="${purchaseMap}" var="entry" >
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="id1"
-								value="option1" value="1" onchange="valueChangedKK()"
-								id="kidsKart"> <label class="form-check-label"
-								for="inlineCheckbox1">Kids Kart</label>
+							<input class="form-check-input" type="checkbox" name="packageIds" id="checkbox_${entry.key.package_id}"
+								value="${entry.key.package_id}" onchange="checkboxChanged(${entry.key.package_id})" ${entry.value ? "checked" : ""} >
+							<label class="form-check-label"><c:out value="${entry.key.package_name}" /></label>
 						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="id2"
-								value="2" onchange="valueChangedFT()" id="food"> <label
-								class="form-check-label" for="inlineCheckbox3">Food and
-								Travel</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="id3"
-								value="3" onchange="valueChangedD()" id="drama"> <label
-								class="form-check-label" for="inlineCheckbox2">Drama</label>
-						</div>
+						</c:forEach>
 					</div>
 
 					<br>
@@ -121,80 +97,35 @@
 							<tr>
 								<th scope="col">Package Name</th>
 								<th scope="col">Channel Details</th>
-								<th scope="col">Package Purchase Date</th>
 								<th scope="col">Total Package Cost</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr id="helloShow" style="display: none">
-								<td>Kids Kart</td>
+							<c:forEach items="${purchaseMap}" var="entry" >
+							<tr id="table_row_${entry.key.package_id}" style="display: none">
+								<td><c:out value="${entry.key.package_name}" /></td>
 								<td>
 									<table class="table table-bordered">
 										<th>Channel Name</th>
 										<th>Channel Cost</th>
 										<tr>
-											<td>Cartoon Network</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>POGO</td>
-											<td>1.5</td>
+											<td>TODO</td>
+											<td>TODO</td>
 										</tr>
 									</table>
 								</td>
-								<td>10/20/2016</td>
-								<td>2.5</td>
+								<td><c:out value="${entry.key.package_cost}" /></td>
 							</tr>
-							<tr id="helloFT" style="display: none">
-								<td>Food and Travel</td>
-								<td>
-									<table class="table table-bordered">
-										<th>Channel Name</th>
-										<th>Channel Cost</th>
-										<tr>
-											<td>NDTV Good Times</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>Travel Nation</td>
-											<td>1</td>
-										</tr>
-									</table>
-								</td>
-								<td>10/20/2016</td>
-								<td>3</td>
-							</tr>
-
-							<tr id="helloD" style="display: none">
-								<td>Drama</td>
-								<td>
-									<table class="table table-bordered">
-										<th>Channel Name</th>
-										<th>Channel Cost</th>
-										<tr>
-											<td>Suits</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>Friends</td>
-											<td>1</td>
-										</tr>
-									</table>
-								</td>
-								<td>10/20/2016</td>
-								<td>3</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Total Amount</label> <input
-							type="text" class="form-control" name="totalAmount" id="total"
-							onClick="add_number();" aria-describedby="emailHelp"
-							placeholder="Click to see the total">
+							type="text" class="form-control" id="totalAmount"
+							aria-describedby="emailHelp" disabled>
 					</div>
-					<button type="submit" class="btn btn-primary">Purchase
-						Additional Packages</button>
+					<button type="submit" class="btn btn-primary">Purchase Additional Packages</button>
 				</div>
 			</div>
 		</div>
