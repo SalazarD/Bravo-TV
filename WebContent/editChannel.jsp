@@ -34,9 +34,9 @@
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Channel Band</label> <select
 							class="form-control" name="channelBand" required>
-							<option value="band1">Band I</option>
-							<option value="band2">Band II</option>
-							<option value="band3">Band III</option>
+							<option value="band1" ${channel.channel_band == 'band1' ? 'selected' : ''}>Band I</option>
+							<option value="band2" ${channel.channel_band == 'band2' ? 'selected' : ''}>Band II</option>
+							<option value="band3" ${channel.channel_band == 'band3' ? 'selected' : ''}>Band III</option>
 						</select>
 					</div>
 					<div class="form-group">
