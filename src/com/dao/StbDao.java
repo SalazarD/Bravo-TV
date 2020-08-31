@@ -54,5 +54,15 @@ public class StbDao extends AbstractDao<Stb> {
 		return box;
 	}
 	
+	public void purchaseStb(Stb box, String email) {		
+		CustomerDao custdao = new CustomerDao();
+		int custId = custdao.getCustomer(email).getCustomer_id();
+		box.setAssigned_customer_id(custId);
+		
+		StbDao thisDao = new StbDao();
+		
+		thisDao.update(box);
+	}
+	
 
 }

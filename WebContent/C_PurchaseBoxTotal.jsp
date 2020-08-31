@@ -53,50 +53,50 @@
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Customer Name</label> <input
+						<label for="exampleInputEmail1">Customer Email</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							placeholder="" name="email">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Type</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							value="${stbType.type}">
+							value="${stbType.type}" name="type">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box MAC ID</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							value="${stb.mac_id}">
+							value="${stb.mac_id}" name="mac_id">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Serial Number</label>
 						<input type="text" class="form-control"
-							aria-describedby="emailHelp" value="${stb.serial_num}">
+							aria-describedby="emailHelp" value="${stb.serial_num}" name="serial_num">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Price</label> <input
 							type="text" id="price" class="form-control"
-							aria-describedby="emailHelp" value="${stbType.price}">
+							aria-describedby="emailHelp" value="${stbType.price}" name="price">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Installation Charge</label> <input
 							type="text" id="installCharge" class="form-control"
-							aria-describedby="emailHelp" value="${stbType.install_charges}">
+							aria-describedby="emailHelp" value="${stbType.install_charges}" name="install_charges">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Refundable Deposit Amount</label>
 						<input type="text" id="depoistAmount"
-							class="form-control" aria-describedby="emailHelp" value="${stbType.refundable_deposit}">
+							class="form-control" aria-describedby="emailHelp" value="${stbType.refundable_deposit}" name="refundable_deposit">
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Discount %</label> <input
 							type="text" id="discount" class="form-control"
-							aria-describedby="emailHelp" value="${stbType.discount}">
+							aria-describedby="emailHelp" value="${stbType.discount}" name="discount">
 					</div>
 
 					<div class="form-group">
@@ -109,9 +109,13 @@
 						<label for="exampleInputEmail1">Amount Payable</label> <input
 							type="text" id="total" onClick="add_number();"
 							class="form-control" aria-describedby="emailHelp"
-							placeholder="Click to see the total">
+							placeholder="Click to see the total" name="payable">
 					</div>
-
+					<input type="hidden" value="${stb.std_id}" name="std_id"/>
+					<input type="hidden" value="${stb.stb_type_id}" name="stb_type_id"/>
+					<input type="hidden" value="${stb.remote_asset_id}" name="remote_asset_id"/>
+					<input type="hidden" value="${stb.dish_asset_id}" name="dish_asset_id"/>
+					<input type="hidden" value="${stb.assigned_retailer_id}" name="assigned_retailer_id"/>
 					<button type="submit" class="btn btn-primary">Purchase</button>
 				</div>
 			</div>

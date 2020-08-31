@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,8 +41,25 @@ public class ReadPurchaseServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Stb stb = new Stb();
+		String email = request.getParameter("email");
+		stb.setStd_id(Integer.parseInt(request.getParameter("std_id")));
+		stb.setStb_type_id(Integer.parseInt(request.getParameter("stb_type_id")));
+		stb.setSerial_num(request.getParameter("serial_num"));
+		stb.setMac_id(request.getParameter("mac_id"));
+		stb.setRemote_asset_id(request.getParameter("remote_asset_id"));
+		stb.setDish_asset_id(request.getParameter("dish_asset_id"));
+		stb.setStatus("Assigned");
+		stb.setAssigned_retailer_id(Integer.parseInt(request.getParameter("assigned_retailer_id")));
+		stb.setPayable(new BigDecimal(request.getParameter("payable")));
+		
+		StbDao sd = new StbDao();
+		
+		sd.purchaseStb(stb, email);
+		System.out.println("Customer purchased set top box.");
+		HttpSession session = request.getSession();
+		session.setAttribute("message", "Box purchased!");
+		request.getRequestDispatcher("homepage.jsp").forward(request, response);
 	}
 
 }
