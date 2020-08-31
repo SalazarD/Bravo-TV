@@ -55,4 +55,13 @@
   	<servlet-name>PurchasePackageServlet</servlet-name>
   	<url-pattern>/PurchasePackage</url-pattern>
   </servlet-mapping>
+	
+	<servlet>
+  		<servlet-name>PackageDetail</servlet-name>
+  		<servlet-class>com.controller.PackageDetailServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>PackageDetail</servlet-name>
+  		<url-pattern>/ChannelPack/Add</url-pattern>
+  	</servlet-mapping>
 </web-app>

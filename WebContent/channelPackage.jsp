@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,18 +22,36 @@
 	
 </script>
 <script type="text/javascript">
+	var totalSelectValue=0;
 	function addOption() {
-		optionText = 'Premium';
-		optionValue = 'premium';
+		var newCategory=prompt("Please Enter a Name for the new Category");
+		optionText = newCategory;
+		optionValue = newCategory;
 
 		$('#select1').append(new Option(optionText, optionValue));
+	}
+	function showPrice(){
+		totalSelectValue=0;
+		var sel = document.getElementById('select2');
+	    var channelPrice=[];
+	    for ( var i = 0, len = sel.options.length; i < len; i++ ) {
+	       if(sel.options[i].selected===true){
+	    	   var splitere=sel.options[i].value.lastIndexOf('$')	
+	    	   var channelprice=sel.options[i].value.substring(splitere+1)
+	    	   channelPrice.push(parseInt(channelprice))
+	       }
+	    }
+	    for(var i=0; i<channelPrice.length;i++){
+	    	totalSelectValue=totalSelectValue+channelPrice[i]
+	    }
+		document.getElementById('total').value=totalSelectValue;
 	}
 </script>
 
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="ChannelPackage"
-		action="${pageContext.request.contextPath}/PurchasePackage"
+		action="${pageContext.request.contextPath}/ChannelPack/Add"
 		method="POST">
 		<div class="container">
 			<div class="card">
@@ -47,16 +66,21 @@
 							aria-describedby="emailHelp" placeholder="Enter Package Name"
 							required>
 					</div>
+					
 					<div class="row">
 						<div class="form-group name1 col-md-4">
 							<label for="exampleFormControlSelect1">Package Category</label> <select
 								class="form-control" name="packageCategory" id="select1"
 								required>
-								<option value="sports">Sports</option>
-								<option value="news">News</option>
-								<option value="movies">Movies</option>
+								<c:forEach var="category" items="${allCategory}">
+									<option>
+										<c:out value="${category}" />
+									</option>
+								</c:forEach>
+								
 							</select>
 						</div>
+					
 						<div class="form-group name2 col-md-4" style="padding-top: 3%">
 							<button class="btn btn-primary" onclick="addOption()">Add
 								New Category</button>
@@ -89,19 +113,23 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleFormControlSelect1">Select Channels</label> <select
-							class="form-control" name="packageChannel" id="select1" required>
-							<option value="starMovies">Star Movies</option>
-							<option value="starSports">Star Sports</option>
-							<option value="hbo">HBO</option>
+						<label for="exampleFormControlSelect1">Select Channels</label> 
+						<select class="form-control" name="allAvailableChannel" id="select2" required multiple onchange="showPrice()">
+							<c:forEach var="channel" items="${allChannel}">
+								<option id="channelOption">
+									<c:out value="${channel.getChannel_id()}."/>		
+									<c:out value="${channel.getChannel_name()} - "/>
+									$<c:out value="${channel.getChannel_charge()}"/>		
+								</option>								
+							</c:forEach>
 						</select>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Package Cost</label> <input
-							type="number" class="form-control" name="packageCost"
+							type="number" class="form-control" name="packageCostt"
 							aria-describedby="emailHelp" placeholder="Enter Package Cost"
-							required>
+							id="total" required>
 					</div>
 
 					<div class="form-group row">
@@ -109,7 +137,7 @@
 							available from Date</label>
 						<div class="col-10">
 							<input class="form-control" type="date" value=""
-								name="packageAvailableFrom" id="example-date-input">
+								id="example-date-input" name="available_date">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -117,19 +145,19 @@
 							available to Date</label>
 						<div class="col-10">
 							<input class="form-control" type="date" value=""
-								name="packageAvailableTo" id="example-date-input">
+								id="example-date-input" name="to_date">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Added by Default</label>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="addedByDefault"
-								value="Yes" required> <label class="form-check-label"
+							<input class="form-check-input" type="radio" name="addByDefault"
+								value="True" required> <label class="form-check-label"
 								for="exampleRadios1">Yes</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="addedByDefault"
-								value="No"> <label class="form-check-label"
+							<input class="form-check-input" type="radio" name="addByDefault"
+								value="False"> <label class="form-check-label"
 								for="exampleRadios1">No</label>
 						</div>
 					</div>
