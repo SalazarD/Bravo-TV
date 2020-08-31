@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,9 @@
 <title>Add Channel</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
 	<jsp:include page="./menu.jsp" />
 	<form name="AddChannel"
 		action="${pageContext.request.contextPath}/AddChannel" method="POST">
@@ -75,5 +79,16 @@
 			</div>
 		</div>
 	</form>
+	</c:when>
+		<c:when test="${user_type == 'customer'}">
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Customer does not have access to this page</a>
+			</h1>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />  		
+  		</c:otherwise>
+	</c:choose>
 </body>
 </html>

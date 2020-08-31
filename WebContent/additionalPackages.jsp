@@ -88,6 +88,9 @@
 <title>Additional Packages</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'|| user_type == 'customer'}">
 	<jsp:include page="./menu.jsp" />
 	<form name="AdditionalPackages"
 		action="${pageContext.request.contextPath}/ChannelPack/PurchasePackage"
@@ -189,5 +192,10 @@
 			</div>
 		</div>
 	</form>
+	</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />  		
+  		</c:otherwise>
+	</c:choose>
 </body>
 </html>
