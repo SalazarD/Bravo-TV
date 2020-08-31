@@ -108,4 +108,23 @@
   		<servlet-name>PackageDetail</servlet-name>
   		<url-pattern>/ChannelPack/Add</url-pattern>
   	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>channelServlet</servlet-name>
+  		<servlet-class>com.controller.channelServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>channelServlet</servlet-name>
+  		<url-pattern>/ChannelServlet</url-pattern>
+		<url-pattern>/AddChannel</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>GetChannelServlet</servlet-name>
+  		<servlet-class>com.controller.GetChannelServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>GetChannelServlet</servlet-name>
+  		<url-pattern>/GetChannelServlet</url-pattern>
+  	</servlet-mapping>
 </web-app>

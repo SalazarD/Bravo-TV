@@ -1,13 +1,15 @@
 package com.dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import com.bean.Retailer;
 import com.utilities.DbCon;
-
-//import org.json.*;
+//import org.json.JSONArray;
+//import org.json.JSONObject;
 
 public class RetailerDao extends AbstractDao<Retailer> {
 
@@ -38,7 +40,6 @@ public class RetailerDao extends AbstractDao<Retailer> {
 //            	JSONObject record = new JSONObject();
 //                record.put("state_province", rs.getString("state_province"));
 //                record.put("count", rs.getString("count(*)"));
-//
 //                array.put(record);
 //            }
 //        } catch (Exception e) {
@@ -49,5 +50,33 @@ public class RetailerDao extends AbstractDao<Retailer> {
 //
 //        return array;
 //    }
+//	
+//	
+//	public JSONArray totalRetailer_WithinYear() {
+//		
+//		JSONArray array = new JSONArray();
+//		try {
+//			Connection conn = DbCon.getConnection();
+//			Statement st = conn.createStatement();
+//			ResultSet rSet = st.executeQuery("select monthname(retailer_creation_date) as month, count(*) FROM CASE_Retailer group by month");
+//			while (rSet.next()) {
+//				JSONObject record = new JSONObject();
+//				record.put("month", rSet.getString("month"));
+//				record.put("count", rSet.getString("count(*)"));
+//				array.put(record);
+//				
+//			}
+//		}
+//		catch(Exception e){
+//			e.printStackTrace();
+//			
+//		}
+//		finally {
+//
+//			DbCon.closeConnection();
+//		}
+//
+//		return array;
+//	}
 
 }
