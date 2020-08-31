@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></script>
 
 <meta charset="ISO-8859-1">
-<title>Login Page</title>
+<title>Login</title>
 </head>
 <body>
 
