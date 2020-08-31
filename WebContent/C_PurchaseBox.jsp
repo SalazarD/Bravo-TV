@@ -83,7 +83,7 @@
 						</select>
 					</div>
 					<div>
-						<input id="saveForm" class="btn btn-primary" type="submit" name="submit" value="Submit"/>
+						<input id="saveForm" class="btn btn-primary" type="submit" name="submit" value="Search"/>
 					</div>
 				</div>
 			</div>
@@ -99,71 +99,77 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Features</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="" value="${stbType.features}">
+							type="text" class="form-control readonly" aria-describedby="emailHelp"
+							placeholder="" value="${stbType.features}" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Dimensions in inches</label>
 						<div class="form-row">
 							<div class="col">
-								<input type="text" class="form-control" value="${stbType.breadth}">
+								<input type="text" class="form-control readonly" value="${stbType.breadth}" required>
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" value="${stbType.width}">
+								<input type="text" class="form-control readonly" value="${stbType.width}" required>
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" value="${stbType.length}">
+								<input type="text" class="form-control readonly" value="${stbType.length}" required>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Price</label> 
-						<input type="text" class="form-control" aria-describedby="emailHelp" 
-						value="${stbType.price}"> 
+						<input type="text" class="form-control readonly" aria-describedby="emailHelp" 
+						value="${stbType.price}" required> 
 							
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Installation Charge</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp" 
-							value="${stbType.install_charges}">
+							type="text" class="form-control readonly" aria-describedby="emailHelp" 
+							value="${stbType.install_charges}" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Upgradation Charge</label> <input
 							type="text" name="upgradationCharge" id="upgradationCharge"
-							class="form-control" aria-describedby="emailHelp" 
-							value="${stbType.upgrade_charge}">
+							class="form-control readonly" aria-describedby="emailHelp" 
+							value="${stbType.upgrade_charge}" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Discount %</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							value="${stbType.discount}">
+							type="text" class="form-control readonly" aria-describedby="emailHelp"
+							value="${stbType.discount}" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Billing Type</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							value="${stbType.billing_type}">
+							type="text" class="form-control readonly" aria-describedby="emailHelp"
+							value="${stbType.billing_type}" required>
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Refundable Discount Amount</label>
+						<label for="exampleInputEmail1">Refundable Deposit Amount</label>
 						<input type="text" id="refundableDepositAmount"
-							class="form-control" aria-describedby="emailHelp" 
-							value="${stbType.refundable_deposit}">
+							class="form-control readonly" aria-describedby="emailHelp" 
+							value="${stbType.refundable_deposit}" required>
 					</div>
 					<div>
 						<input class="btn btn-primary" type="button"
 							onclick="location.href='/BravoTV/P_SetupBoxT?id=${stbType.stb_type_id}';"
 							value="Next" />
+						<!-- <button type="submit" class="btn btn-primary" onsubmit="location.href='/BravoTV/P_SetupBoxT?id=${stbType.stb_type_id}';">Next</button> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
 </body>
+<script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 </html>
