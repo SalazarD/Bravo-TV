@@ -33,7 +33,7 @@ function showHideRefundable(){
 			document.getElementById("refundableDepositAmount").value = 0;
 			document.getElementById("refundableDepositAmount").readOnly = true;
 		}else {
-			document.getElementById("refundableDepositAmount").disabled = false;
+			document.getElementById("refundableDepositAmount").readOnly = false;
 		}
 	  }
 	}
