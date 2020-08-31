@@ -15,11 +15,16 @@
 	crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+	var defaultTotalCost=0;
+	var notdefaultTotalCost=0;
+	
+	//display all Details in each package, and tracking total cost  
 	function displayDetail(){
-		var totalCost=0;
+		defaultTotalCost=0;
+		notdefaultTotalCost=0;
         var markup = "<td></td>";
-
         var obj = {};
+        //remove repeat data 
 		$('.pkName').each(function(){
 		    var text = $.trim($(this).text());
 		    if(obj[text]){
@@ -44,33 +49,39 @@
 		        obj[text] = true;
 		    }
 		})
+	
 		jQuery("input[name='category']:checked").each(function(i){
 			var elems = document.getElementsByClassName($(this).val());
 			for (var i=0;i<elems.length;i+=1){
-				var costElems=elems[i].getElementsByClassName("pkCost")
+				var costElems=elems[i].getElementsByClassName("cost")
 				for(var x=0; x<costElems.length;x++){
-					totalCost=totalCost+parseInt(costElems[x].textContent);
+					notdefaultTotalCost=notdefaultTotalCost+parseInt(costElems[x].textContent);
 				}
 				elems[i].style.display = 'table-row';
 				}
 			    
 		});
-		document.getElementById('total').value=totalCost;
+		var costElemsDefault=document.getElementsByClassName("addByDefaultCost")
+		for(var x=0; x<costElemsDefault.length;x++){
+			defaultTotalCost=defaultTotalCost+parseInt(costElemsDefault[x].textContent)
+		}
+		document.getElementById('total').value=notdefaultTotalCost+defaultTotalCost;
 		jQuery("input[name='category']:not(:checked)").each(function(i){
 			var elems = document.getElementsByClassName($(this).val());
 			for (var i=0;i<elems.length;i+=1){
 				  elems[i].style.display = 'none';
 				}	        
 			});
-		
-
 	}
+	
+	//display total cost
 	function add_number() {		
-		var elems = document.getElementsByClassName("pkCost");
-		var total=0;
-		for (var i=0;i<elems.length;i+=1){
+		defaultTotalCost=0;
+		var costElemsDefault=document.getElementsByClassName("addByDefaultCost")
+		for(var x=0; x<costElemsDefault.length;x++){
+			defaultTotalCost=defaultTotalCost+parseInt(costElemsDefault[x].textContent)
 		}
-		document.getElementById("total").value = total;
+		document.getElementById('total').value=notdefaultTotalCost+defaultTotalCost;
 	}
 </script>
 <meta charset="ISO-8859-1">
@@ -99,7 +110,7 @@
 											<td>
 											<c:out value="${addBydefaultPackage.getPackage_name()}"/>			
 											</td>
-											<td>
+											<td class="addByDefaultCost">
 											<c:out value="${addBydefaultPackage.getPackage_cost()}"/>			
 											</td>
 										</tr>
@@ -145,36 +156,24 @@
 											<c:out value="${mappedPackage.getChannel_name()}"/>			
 										</td>
 										<td class="pkDate">
+											<p style="display:none;">
+											<c:out value="${mappedPackage.getPackage_name()}"/>:<br>
+											</p>
 											<script>
 											var d= new Date()
 											document.write(d.toLocaleDateString("en-US"));
 											</script>
 										</td>
 										<td class="pkCost">
-											<c:out value="${mappedPackage.getPackage_cost()}"/>			
+											<p style="display:none;">
+											<c:out value="${mappedPackage.getPackage_name()}"/>:<br>
+											</p>					
+											<p class="cost">
+											<c:out value="${mappedPackage.getPackage_cost()}"/>		
+											</p>	
 										</td>
 									</tr>										
 							</c:forEach>
-
-							<tr id="helloD" style="display: none">
-								<td>Drama</td>
-								<td>
-									<table class="table table-bordered">
-										<th>Channel Name</th>
-										<th>Channel Cost</th>
-										<tr>
-											<td>Suits</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>Friends</td>
-											<td>1</td>
-										</tr>
-									</table>
-								</td>
-								<td>10/20/2016</td>
-								<td>3</td>
-							</tr>
 						</tbody>
 					</table>
 

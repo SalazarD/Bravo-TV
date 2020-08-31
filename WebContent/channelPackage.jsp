@@ -22,12 +22,29 @@
 	
 </script>
 <script type="text/javascript">
+	var totalSelectValue=0;
 	function addOption() {
 		var newCategory=prompt("Please Enter a Name for the new Category");
 		optionText = newCategory;
 		optionValue = newCategory;
 
 		$('#select1').append(new Option(optionText, optionValue));
+	}
+	function showPrice(){
+		totalSelectValue=0;
+		var sel = document.getElementById('select2');
+	    var channelPrice=[];
+	    for ( var i = 0, len = sel.options.length; i < len; i++ ) {
+	       if(sel.options[i].selected===true){
+	    	   var splitere=sel.options[i].value.lastIndexOf('$')	
+	    	   var channelprice=sel.options[i].value.substring(splitere+1)
+	    	   channelPrice.push(parseInt(channelprice))
+	       }
+	    }
+	    for(var i=0; i<channelPrice.length;i++){
+	    	totalSelectValue=totalSelectValue+channelPrice[i]
+	    }
+		document.getElementById('total').value=totalSelectValue;
 	}
 </script>
 
@@ -97,12 +114,13 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Select Channels</label> 
-						<select class="form-control" name="allAvailableChannel" id="select2" required multiple>
+						<select class="form-control" name="allAvailableChannel" id="select2" required multiple onchange="showPrice()">
 							<c:forEach var="channel" items="${allChannel}">
-								<option>
-									<c:out value="${channel.getChannel_id()}."/>			
-									<c:out value="${channel.getChannel_name()}" />
-								</option>
+								<option id="channelOption">
+									<c:out value="${channel.getChannel_id()}."/>		
+									<c:out value="${channel.getChannel_name()} - "/>
+									$<c:out value="${channel.getChannel_charge()}"/>		
+								</option>								
 							</c:forEach>
 						</select>
 					</div>
@@ -111,7 +129,7 @@
 						<label for="exampleInputEmail1">Package Cost</label> <input
 							type="number" class="form-control" name="packageCostt"
 							aria-describedby="emailHelp" placeholder="Enter Package Cost"
-							required>
+							id="total" required>
 					</div>
 
 					<div class="form-group row">

@@ -24,6 +24,7 @@ public class ChannelPackageDao extends AbstractDao<ChannelPackage> {
 	protected ChannelPackage getNewBean() {
 		return new ChannelPackage();
 	}
+	//Receive all Category in a Set List
 	public Set<String> allCategory(){
 		Set<String> allCategory = new HashSet<String>();
 		String sql=" select package_category from CASE_Channel_Package";
@@ -45,12 +46,15 @@ public class ChannelPackageDao extends AbstractDao<ChannelPackage> {
 		}
 		return allCategory;
 	}
+	
+	//receive all channel in a list 
 	public List<Channel> getAllChannel(){
 		ChannelDao channeldao = new ChannelDao();
 		List<Channel> allChannel= channeldao.getAll();
 		return allChannel;
 	}
 	
+	//mapping channel with package to database
 	public void mappingChannelwithPack(int package_id,  ArrayList<Integer> channel_id) {
 		String sql="insert into CASE_Package_Map (package_id,channel_id) values "
 				+ "(?,?)";
@@ -73,6 +77,8 @@ public class ChannelPackageDao extends AbstractDao<ChannelPackage> {
 			}
 		}
 	}
+	
+	//all package added by default or not 
 	public ArrayList<ChannelPackage> defaultPackage(boolean addedbydefault){
 		ArrayList<ChannelPackage> packagesList=new ArrayList<ChannelPackage>();
 		String sql="select * from CASE_Channel_Package where added_by_default=?";
@@ -105,28 +111,8 @@ public class ChannelPackageDao extends AbstractDao<ChannelPackage> {
 		}
 		return packagesList;
 	}
-
-	public Set<String> allNotAddedByDefaultCategory(){
-		Set<String> allCategory = new HashSet<String>();
-		String sql=" select package_category from CASE_Channel_Package where added_by_default=false";
-		Connection connect=DbCon.getConnection();
-		ResultSet resultset=null;
-		try
-		{
-			PreparedStatement stmt=connect.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY); 				
-			resultset=stmt.executeQuery();
-			while(resultset.next()) {
-				allCategory.add(resultset.getNString("package_category"));
-			}
-		}catch(Exception e){
-			System.out.println(e);
-		}
-		finally
-		{
-			DbCon.closeConnection();
-		}
-		return allCategory;
-	}
+	
+	//package name check 
 	public boolean packageNameExist(String packageName) {
 
 		String sql=" select * from case_channel_package where package_name=?";
@@ -149,8 +135,10 @@ public class ChannelPackageDao extends AbstractDao<ChannelPackage> {
 		}
 		return false;
 	}
+	
+	//query for all channel mapped with package 
 	public ArrayList<PurchaseChannelPackage> getMappedPackage() {
-		
+		//not added by default package mapping 
 		ArrayList<PurchaseChannelPackage> packagemapping=new ArrayList<PurchaseChannelPackage>();
 		String sql="select case_channel_package.package_name,case_channel_package.package_cost,case_channel.channel_name,case_channel.channel_charge\r\n" + 
 				"from case_channel_package, CASE_Package_Map, case_channel\r\n" + 
