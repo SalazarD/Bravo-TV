@@ -48,8 +48,19 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>writeOperatorServlet</servlet-name>
-		<url-pattern>/OperatorReg</url-pattern>
+		<url-pattern>/OperatorReg/Add</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ReadOperatorServlet</servlet-name>
+		<servlet-class>com.controller.ReadOperatorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadOperatorServlet</servlet-name>
+		<url-pattern>/OperatorReg/List</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 	<servlet>
 		<description></description>
 		<display-name>WriteSTBTypeServlet</display-name>
