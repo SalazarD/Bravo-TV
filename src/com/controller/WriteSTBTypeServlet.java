@@ -63,6 +63,7 @@ public class WriteSTBTypeServlet extends HttpServlet {
 		  item.setStatus(p[4]);
 		  item.setAssigned_retailer_id(Integer.parseInt(p[5]));
 		  item.setAssigned_customer_id(Integer.parseInt(p[6]));
+		  item.setPayable(BigDecimal.valueOf(0));
 
 		  return item;
 
