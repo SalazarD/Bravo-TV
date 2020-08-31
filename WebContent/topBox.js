@@ -16,16 +16,16 @@ function addFeature(){
 };
 
 function showHideUpgradationCharge(){
-	if(document.getElementById('topBoxType').value == "Standard"){
-		document.getElementById("upgradationCharge").disabled = true;
-		document.getElementById("upgradationCharge").value = 0;
+	if(document.getElementById('type').value == "SD"){
+		document.getElementById("upgrade_charge").disabled = true;
+		document.getElementById("upgrade_charge").value = 0;
 	}else {
-		document.getElementById("upgradationCharge").disabled = false;
+		document.getElementById("upgrade_charge").disabled = false;
 	}
 	
 }
 function showHideRefundable(){
-	var radios = document.getElementsByName('billingType');
+	var radios = document.getElementsByName('billing_type');
 
 	for (var i = 0, length = radios.length; i < length; i++) {
 	  if (radios[i].checked) {
