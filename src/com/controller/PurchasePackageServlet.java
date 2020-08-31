@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bean.Channel;
 import com.bean.ChannelPackage;
 import com.dao.ChannelPackageDao;
 import com.dao.CustomerDao;
-import com.dao.PurchasePackageDao;
+import com.dao.PackageMapDao;
+import com.dao.PurchaseMapDao;
 
 /**
  * Servlet implementation class RetailerWriteServlet
@@ -36,50 +38,94 @@ public class PurchasePackageServlet extends HttpServlet {
 		int customer_id = 0;
 		String userType = (String) request.getSession().getAttribute("user_type");
 		
-		// Get the customer ID
+		// Init the Daos
+		ChannelPackageDao packageDao = new ChannelPackageDao();
+		PurchaseMapDao purchaseDao = new PurchaseMapDao();
+		PackageMapDao packageMapDao = new PackageMapDao();
+		
+		// Map packages to their channels, and to whether they are already purchased
+		HashMap<Integer, ArrayList<Channel>> packageMap = new HashMap<>();
+		HashMap<ChannelPackage, Boolean> purchaseMap = new HashMap<>();
+		
+		// user must be logged in
 		if (userType == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 			return;
 		}
+		
+		// user is customer
 		else if (userType.equals("customer")) {
 			customer_id = new CustomerDao().getCustomer((String)request.getSession().getAttribute("user_name")).getCustomer_id();
-		}
-		else { // we are operator or admin
-			customer_id = (Integer) request.getAttribute("customer_id");
+
+			ArrayList<ChannelPackage> defaultPackages = packageDao.getAllDefaultPackages();
+
+			// Make the map (removing default packages)
+			for (ChannelPackage cp : purchaseDao.getPurchasedPackages(customer_id)) {
+				if (!cp.isAdded_by_default()) {
+					packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
+					purchaseMap.put(cp, true);
+				}
+			}
+			for (ChannelPackage cp : purchaseDao.getNonPurchasedPackages(customer_id)) {
+				if (!cp.isAdded_by_default()) {
+					packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
+					purchaseMap.put(cp, false);
+				}
+			}
+			for (ChannelPackage cp : defaultPackages) {
+				packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
+			}
+
+			request.setAttribute("defaultPackages", defaultPackages);
+			request.setAttribute("purchaseMap", purchaseMap);
+			request.setAttribute("packageMap", packageMap);
+			
+			request.getRequestDispatcher("/additionalPackages.jsp").forward(request, response);
 		}
 		
-		// Get all default packages
-		ChannelPackageDao packageDao = new ChannelPackageDao();
-		ArrayList<ChannelPackage> defaultPackages = packageDao.getAllDefaultPackages();
-		
-		// Make a map of all packages to whether the customer has purchased them (removing default packages)
-		PurchasePackageDao purchaseDao = new PurchasePackageDao();
-		HashMap<ChannelPackage, Boolean> purchaseMap = new HashMap<>();
-		for (ChannelPackage cp : purchaseDao.getPurchasedPackages(customer_id)) {
-			if (!cp.isAdded_by_default()) {
+		// user is operator/admin
+		else if (request.getParameter("customer_id") == null) {
+			request.getRequestDispatcher("/additionalPackagesOperator.jsp").forward(request, response);
+		}
+		else {
+
+			customer_id = Integer.valueOf(request.getParameter("customer_id"));
+
+			// Make the map (keeping default packages)
+			for (ChannelPackage cp : purchaseDao.getPurchasedPackages(customer_id)) {
+				packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
 				purchaseMap.put(cp, true);
 			}
-		}
-		for (ChannelPackage cp : purchaseDao.getNonPurchasedPackages(customer_id)) {
-			if (!cp.isAdded_by_default()) {
+			for (ChannelPackage cp : purchaseDao.getNonPurchasedPackages(customer_id)) {
+				packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
 				purchaseMap.put(cp, false);
 			}
+			
+			request.setAttribute("customer_id", customer_id);
+			request.setAttribute("purchaseMap", purchaseMap);
+			request.setAttribute("packageMap", packageMap);
+			
+			request.getRequestDispatcher("/additionalPackagesOperator.jsp").forward(request, response);
 		}
-
-		HttpSession session = request.getSession();
-		session.setAttribute("defaultPackages", defaultPackages);
-		session.setAttribute("purchaseMap", purchaseMap);
-		
-		request.getRequestDispatcher("/additionalPackages.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// We need to access our Daos and generate a list of packages to purchase
+		ChannelPackageDao packageDao = new ChannelPackageDao();
+		PurchaseMapDao purchaseDao = new PurchaseMapDao();
+		HashSet<Integer> packageIdsToPurchase = new HashSet<>();
+		
+		// Parse all package ids first
+		int[] packageIds = parseIntArray(request.getParameterValues("packageIds"));
+		
 		int customer_id = 0;
 		String userType = (String) request.getSession().getAttribute("user_type");
-		
+		HashSet<Integer> availablePackageIds = new HashSet<>();
+
 		// Get the customer ID
 		if (userType == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -87,31 +133,27 @@ public class PurchasePackageServlet extends HttpServlet {
 		}
 		else if (userType.equals("customer")) {
 			customer_id = new CustomerDao().getCustomer((String)request.getSession().getAttribute("user_name")).getCustomer_id();
-		}
-		else { // we are operator or admin
-			customer_id = (Integer) request.getAttribute("customer_id");
-		}
-		
-		// We need to access our Daos and generate a list of packages to purchase
-		ChannelPackageDao packageDao = new ChannelPackageDao();
-		PurchasePackageDao purchaseDao = new PurchasePackageDao();
-		HashSet<Integer> packageIdsToPurchase = new HashSet<>();
-		
-		// Parse all package ids first
-		int[] packageIds = parseIntArray(request.getParameterValues("packageIds"));
-		
-		// Filter requested packages by what the user can purchase
-		HashSet<Integer> availablePackageIds = new HashSet<>();
-		availablePackageIds.addAll(purchaseDao.getAvailablePackageIds(customer_id));
-		for (int package_id : packageIds) {
-			if (availablePackageIds.contains(package_id)) {
-				packageIdsToPurchase.add(package_id);
+			
+			// Filter requested packages by what the user can purchase
+			availablePackageIds.addAll(purchaseDao.getAvailablePackageIds(customer_id));
+			for (int package_id : packageIds) {
+				if (availablePackageIds.contains(package_id)) {
+					packageIdsToPurchase.add(package_id);
+				}
+			}
+			
+			// Add remaining packages
+			for (ChannelPackage cp : packageDao.getAllDefaultPackages()) {
+				packageIdsToPurchase.add(cp.getPackage_id());
 			}
 		}
-		
-		// Add remaining packages (operators can choose which defaults to ignore)
-		for (ChannelPackage cp : packageDao.getAllDefaultPackages()) {
-			packageIdsToPurchase.add(cp.getPackage_id());
+		else { // we are operator or admin
+			customer_id = Integer.valueOf(request.getParameter("customer_id"));
+			
+			// add all requested packages... we trust operator 
+			for (int package_id : packageIds) {
+				packageIdsToPurchase.add(package_id);
+			}
 		}
 		
 		// Clear purchases and regenerate them

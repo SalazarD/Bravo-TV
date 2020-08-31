@@ -11,7 +11,7 @@ import com.bean.Retailer;
 import com.dao.ChannelPackageDao;
 import com.dao.CustomerDao;
 import com.dao.OperatorDao;
-import com.dao.PurchasePackageDao;
+import com.dao.PurchaseMapDao;
 import com.dao.RetailerDao;
 
 public class Demo {
@@ -35,7 +35,7 @@ public class Demo {
 		
 		ArrayList<ChannelPackage> defaultPackages = new ChannelPackageDao().getAllDefaultPackages();
 		
-		PurchasePackageDao purchaseDao = new PurchasePackageDao();
+		PurchaseMapDao purchaseDao = new PurchaseMapDao();
 		ArrayList<ChannelPackage> purchasedPackages = purchaseDao.getPurchasedPackages(customer_id);
 		ArrayList<ChannelPackage> availablePackages = purchaseDao.getNonPurchasedPackages(customer_id);
 		

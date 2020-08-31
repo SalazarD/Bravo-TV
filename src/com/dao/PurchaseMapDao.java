@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import com.bean.ChannelPackage;
 import com.utilities.DbCon;
 
-public class PurchasePackageDao {
+public class PurchaseMapDao {
 	
 	/**
 	 * Adds a package to the list of packages purchased by the customer.
