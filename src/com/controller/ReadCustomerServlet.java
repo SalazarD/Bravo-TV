@@ -35,6 +35,7 @@ public class ReadCustomerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String idString = request.getParameter("id");
+		String deleteId = request.getParameter("deleteId");
 		if (idString != null) {
 			Integer id = Integer.parseInt(idString);
 			CustomerDao cd = new CustomerDao();
@@ -43,6 +44,13 @@ public class ReadCustomerServlet extends HttpServlet {
 			session.setAttribute("customer", s);
 			request.getRequestDispatcher("/editCustomer.jsp").forward(request, response);
 
+		} else if (deleteId != null) {
+			Integer id = Integer.parseInt(deleteId);
+			CustomerDao cd = new CustomerDao();
+			Customer customer = new Customer();
+			customer.setCustomer_id(id);
+			cd.delete(customer);
+			response.sendRedirect("./List");
 		}
 		else {
 			CustomerDao cd = new CustomerDao();
