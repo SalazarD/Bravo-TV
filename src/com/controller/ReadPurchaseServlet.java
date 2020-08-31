@@ -27,9 +27,11 @@ public class ReadPurchaseServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		Stb stb = new Stb();
 		StbDao sd = new StbDao();
+		String idStbType = request.getParameter("id");
+		int id = Integer.parseInt(idStbType);
 
 		//		stb.setStd_id(1);
-		stb = sd.findAllSTB();
+		stb = sd.findAllSTB(id);
 		System.out.println(stb);
 
 		HttpSession session = request.getSession();

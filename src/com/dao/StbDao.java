@@ -20,14 +20,15 @@ public class StbDao extends AbstractDao<Stb> {
 		return new Stb();
 	}
 	
-	public Stb findAllSTB() {
+	public Stb findAllSTB(int stb_type_id) {
 		Stb box = new Stb();
 		
 		Connection con = DbCon.getConnection();
 		try {
-			String qry = "SELECT * from case_stb_inventory WHERE assigned_customer_id=-1 LIMIT 1";
+			String qry = "SELECT * from case_stb_inventory WHERE assigned_customer_id=-1 AND stb_type_id=? LIMIT 1";
 			
 			PreparedStatement st = con.prepareStatement(qry);
+			st.setInt(1, stb_type_id);
 			
 			ResultSet rs = st.executeQuery();
 			

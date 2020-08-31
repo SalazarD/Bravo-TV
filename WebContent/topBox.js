@@ -16,22 +16,22 @@ function addFeature(){
 };
 
 function showHideUpgradationCharge(){
-	if(document.getElementById('topBoxType').value == "Standard"){
-		document.getElementById("upgradationCharge").disabled = true;
-		document.getElementById("upgradationCharge").value = 0;
+	if(document.getElementById('type').value == "SD"){
+		document.getElementById("upgrade_charge").value = 0;
+		document.getElementById("upgrade_charge").readOnly = true;
 	}else {
-		document.getElementById("upgradationCharge").disabled = false;
+		document.getElementById("upgrade_charge").disabled = false;
 	}
 	
 }
 function showHideRefundable(){
-	var radios = document.getElementsByName('billingType');
+	var radios = document.getElementsByName('billing_type');
 
 	for (var i = 0, length = radios.length; i < length; i++) {
 	  if (radios[i].checked) {
 	    if(radios[i].value == "postpaid"){
-			document.getElementById("refundableDepositAmount").disabled = true;
 			document.getElementById("refundableDepositAmount").value = 0;
+			document.getElementById("refundableDepositAmount").readOnly = true;
 		}else {
 			document.getElementById("refundableDepositAmount").disabled = false;
 		}
