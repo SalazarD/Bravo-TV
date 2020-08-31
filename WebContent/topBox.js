@@ -17,8 +17,8 @@ function addFeature(){
 
 function showHideUpgradationCharge(){
 	if(document.getElementById('type').value == "SD"){
-		document.getElementById("upgrade_charge").disabled = true;
 		document.getElementById("upgrade_charge").value = 0;
+		document.getElementById("upgrade_charge").readOnly = true;
 	}else {
 		document.getElementById("upgrade_charge").disabled = false;
 	}
@@ -30,8 +30,8 @@ function showHideRefundable(){
 	for (var i = 0, length = radios.length; i < length; i++) {
 	  if (radios[i].checked) {
 	    if(radios[i].value == "postpaid"){
-			document.getElementById("refundableDepositAmount").disabled = true;
 			document.getElementById("refundableDepositAmount").value = 0;
+			document.getElementById("refundableDepositAmount").readOnly = true;
 		}else {
 			document.getElementById("refundableDepositAmount").disabled = false;
 		}
