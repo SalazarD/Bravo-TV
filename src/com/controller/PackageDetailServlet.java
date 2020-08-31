@@ -24,7 +24,7 @@ import com.dao.ChannelPackageDao;
 /**
  * Servlet implementation class PackageDetailServlet
  */
-@WebServlet("/PackageDetailServlet")
+//@WebServlet("/PackageDetailServlet")
 public class PackageDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -76,7 +76,7 @@ public class PackageDetailServlet extends HttpServlet {
 				channelID.add(Integer.parseInt(channelInfo.substring(0,1)));
 			}
 			packDao.mappingChannelwithPack(channelpack.getPackage_id(), channelID);
-			request.getRequestDispatcher("PurchasePackage").forward(request, response);			
+			request.getRequestDispatcher("/PurchasePackage").forward(request, response);			
 		}else {
 			PrintWriter out = response.getWriter();
 	        out.println("<script type=\"text/javascript\">");

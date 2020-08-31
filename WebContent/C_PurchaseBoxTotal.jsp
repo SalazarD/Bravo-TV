@@ -33,7 +33,7 @@
 		var deposit = parseFloat(document.getElementById("depoistAmount").value);
 		var discount = parseFloat(document.getElementById("discount").value);
 		var tax = parseFloat(document.getElementById("tax").value);
-		var result = price + charge + deposit;
+		var result = price + charge - deposit;
 		var fTotal = (result - (result * ((discount) / 100)));
 		var finalTotal = (fTotal + (fTotal * ((tax) / 100)));
 
@@ -55,7 +55,7 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Customer Email</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="" name="email" required>
+							placeholder="" name="email" onClick="add_number();" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Type</label> <input
@@ -107,9 +107,9 @@
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Amount Payable</label> <input
-							type="text" id="total" onClick="add_number();"
+							type="text" id="total"
 							class="form-control readonly" aria-describedby="emailHelp"
-							placeholder="Click to see the total" name="payable" required>
+							placeholder="Enter Email to see total" name="payable" required>
 					</div>
 					<input type="hidden" value="${stb.std_id}" name="std_id"/>
 					<input type="hidden" value="${stb.stb_type_id}" name="stb_type_id"/>
