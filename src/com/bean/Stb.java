@@ -1,5 +1,7 @@
 package com.bean;
 
+import java.math.BigDecimal;
+
 public class Stb implements Bean{
 	private int std_id;
 	private int stb_type_id;
@@ -10,6 +12,7 @@ public class Stb implements Bean{
 	private String status;
 	private int assigned_retailer_id;
 	private int assigned_customer_id;
+	private BigDecimal payable;
 
 	public int getStd_id() {
 		return std_id;
@@ -38,6 +41,9 @@ public class Stb implements Bean{
 	public int getAssigned_customer_id() {
 		return assigned_customer_id;
 	}
+	public BigDecimal getPayable() {
+		return payable;
+	}
 	public void setStd_id(int std_id) {
 		this.std_id = std_id;
 	}
@@ -65,6 +71,9 @@ public class Stb implements Bean{
 	public void setAssigned_customer_id(int assigned_customer_id) {
 		this.assigned_customer_id = assigned_customer_id;
 	}
+	public void setPayable(BigDecimal payable) {
+		this.payable = payable;
+	}
 
 	@Override
 	public String toString() {
@@ -76,12 +85,13 @@ public class Stb implements Bean{
 				+ ", dish_asset_id=" + dish_asset_id 
 				+ ", status=" + status 
 				+ ", assigned_retailer_id=" + assigned_retailer_id 
-				+ ", assigned_customer_id=" + assigned_customer_id + "]";
+				+ ", assigned_customer_id=" + assigned_customer_id 
+				+ ", payable="+ payable +"]";
 	}
 
 	private static final String[] COLUMN_NAMES = new String[] {
 			"stb_id", "stb_type_id", "serial_num", "mac_id", "remote_asset_id", "dish_asset_id",
-			"status", "assigned_retailer_id", "assigned_customer_id"
+			"status", "assigned_retailer_id", "assigned_customer_id", "payable"
 	};
 
 	@Override
@@ -91,7 +101,7 @@ public class Stb implements Bean{
 	@Override
 	public Object[] getColumnValues() {
 		return new Object[] { std_id, stb_type_id, serial_num, mac_id, remote_asset_id,
-				dish_asset_id, status, assigned_retailer_id, assigned_customer_id
+				dish_asset_id, status, assigned_retailer_id, assigned_customer_id, payable
 
 		};
 	}
@@ -106,6 +116,7 @@ public class Stb implements Bean{
 		status = (String) values[6];
 		assigned_retailer_id = (int) values[7];
 		assigned_customer_id = (int) values[8];
+		payable = (BigDecimal) values[9];
 
 	}
 
