@@ -10,7 +10,7 @@ public class DbCon {
 
 	private static final String userName = "root";
 
-	private static final String password = "joker";
+	private static final String password = "batman";
 
 	private static final String serverName = "localhost";
 
