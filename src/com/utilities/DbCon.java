@@ -10,7 +10,7 @@ public class DbCon {
 
 	private static final String userName = "root";
 
-	private static final String password = "Xiaogang19960322";
+	private static final String password = "capstonekid";
 
 	private static final String serverName = "localhost";
 
@@ -18,23 +18,19 @@ public class DbCon {
 
 	private static final String dbName = "ILP_CASE_STUDY";
 
-	private static final String tableName = "";
-
 	public static Connection getConnection()
 	{
 		if(con == null)
 		{
 			try
 			{
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 
 				Properties connectionProps = new Properties();
 				connectionProps.put("user", userName);
 				connectionProps.put("password", password);
 
-				con = DriverManager.getConnection("jdbc:mysql://"
-						+ serverName + ":" + portNumber + "/" + dbName,
-						connectionProps);
+				con = DriverManager.getConnection("jdbc:mysql://"+ serverName + ":" + portNumber + "/" + dbName + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", connectionProps);
 			}
 			catch(Exception e)
 			{
