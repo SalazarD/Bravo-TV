@@ -27,7 +27,7 @@ public class BillDao extends AbstractDao<Bill> {
 	 * The Bill should be passed to update() in order to store the generated bill.
 	 * @param customer_id The customer ID
 	 * @param bill The bill to generate
-	 * @param otherCharges Any other charges that will be added to the total pre-tax
+	 * @param other_charges Any other charges that will be added to the total pre-tax
 	 * @return True if completed successfully; false otherwise
 	 */
 	public boolean generateForCustomer(int customer_id, Bill bill, BigDecimal other_charges) {

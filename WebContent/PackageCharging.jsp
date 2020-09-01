@@ -33,7 +33,7 @@
 										href="/BravoTV/AO_PackageCharging.jsp">Generate Bills</a>
 								</div>
 								<div class="col" style="text-align: center">
-									<a class="btn btn-primary" href="/BravoTV/deductBalance.jsp">Deduct
+									<a class="btn btn-primary" href="/BravoTV/DeductBalance">Deduct
 										Balance</a>
 								</div>
 							</div>

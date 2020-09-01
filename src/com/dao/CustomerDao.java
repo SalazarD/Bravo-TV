@@ -173,5 +173,30 @@ public class CustomerDao extends AbstractDao<Customer> {
 
 		return customers;
 	}
+	
+	public ArrayList<Customer> getAllPrepaidCustomers() {
+		ArrayList<Customer> customers = new ArrayList<>();
+		try {
+			Connection con = DbCon.getConnection();
+			String qry = "SELECT * FROM CASE_Customer WHERE pre_paid = ?";
+			PreparedStatement st = con.prepareStatement(qry);
+			st.setBoolean(1, true);
+
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next()) {
+				Customer customer = new Customer();
+				AbstractDao.readBeanFromResultSet(rs, rs.getMetaData(), customer);
+				customers.add(customer);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			DbCon.closeConnection();
+		}
+		return customers;
+	}
 
 }
