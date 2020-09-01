@@ -5,7 +5,11 @@ import com.utilities.DbCon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class CustomerDao extends AbstractDao<Customer> {
 
@@ -174,4 +178,64 @@ public class CustomerDao extends AbstractDao<Customer> {
 		return customers;
 	}
 
+	
+
+
+	public JSONArray totalCustomerCreated_WithinYear() {
+		
+		JSONArray array = new JSONArray();
+		try {
+			Connection conn = DbCon.getConnection();
+			Statement st = conn.createStatement();
+			ResultSet rSet = st.executeQuery("select monthname(customer_id) as total from CASE_Customer;");
+			while (rSet.next()) {
+				JSONObject record = new JSONObject();
+				record.put("month", rSet.getString("total"));
+				record.put("count", rSet.getString("count(*)"));
+				array.put(record);
+				
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		finally {
+
+			DbCon.closeConnection();
+		}
+
+		return array;
+	}
+	
+	
+	
+	public JSONArray RetailerWiseCount_customer() {
+		
+		JSONArray array = new JSONArray();
+		try {
+			Connection conn = DbCon.getConnection();
+			Statement st = conn.createStatement();
+			ResultSet rSet = st.executeQuery("select CASE_Retailer.retailer_name as name, count(*) as total from CASE_Customer \r\n" + 
+					" join CASE_Retailer on CASE_Retailer.retailer_id = CASE_Customer.assigned_retailer_id\r\n" + 
+					" group by CASE_Retailer.retailer_id;");
+			while (rSet.next()) {
+				JSONObject record = new JSONObject();
+				record.put("month", rSet.getString("name"));
+				record.put("count", rSet.getString("total"));
+				array.put(record);
+				
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		finally {
+
+			DbCon.closeConnection();
+		}
+
+		return array;
+	}
 }

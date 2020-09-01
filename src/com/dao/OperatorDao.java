@@ -3,7 +3,11 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.bean.Operator;
 import com.utilities.DbCon;
@@ -92,4 +96,62 @@ public class OperatorDao extends AbstractDao<Operator> {
 	}
 
 
+	
+	
+	public JSONArray totalOperatorCreated_WithinYear() {
+		
+		JSONArray array = new JSONArray();
+		try {
+			Connection conn = DbCon.getConnection();
+			Statement st = conn.createStatement();
+			ResultSet rSet = st.executeQuery("SELECT monthname(operator_creation_date) as month, count(*) FROM CASE_Operator group by month;");
+			while (rSet.next()) {
+				JSONObject record = new JSONObject();
+				record.put("month", rSet.getString("month"));
+				record.put("count", rSet.getString("count(*)"));
+				array.put(record);
+				
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		finally {
+
+			DbCon.closeConnection();
+		}
+
+		return array;
+	}
+	
+	
+	
+	
+	public JSONArray totalOperator_InShift() {
+		
+		JSONArray array = new JSONArray();
+		try {
+			Connection conn = DbCon.getConnection();
+			Statement st = conn.createStatement();
+			ResultSet rSet = st.executeQuery("select date_format(shift_start, '%H:%i:%s') as shift, count(*) as count from CASE_Operator group by shift_start;");
+			while (rSet.next()) {
+				JSONObject record = new JSONObject();
+				record.put("month", rSet.getString("shift"));
+				record.put("count", rSet.getString("count"));
+				array.put(record);
+				
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		finally {
+
+			DbCon.closeConnection();
+		}
+
+		return array;
+	}
 }
