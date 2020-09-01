@@ -136,7 +136,10 @@
 </c:if>
 		</c:when>
   		<c:otherwise>
-			<jsp:include page="./menu.jsp" />  		
+			<jsp:include page="./menu.jsp" /> 
+			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>	 		
   		</c:otherwise>
 	</c:choose>
 </body>

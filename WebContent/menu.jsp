@@ -123,8 +123,5 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 			</nav>  		
-  			<h1 style="text-align: center">
-				<a href="/BravoTV/login.jsp">Please Login With Your Username/Password</a>
-			</h1>
   		</c:otherwise>
 	</c:choose>

@@ -27,7 +27,8 @@ String shift = startTime.format(new Date());
 <title>Customer Registration</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<jsp:include page="./menu.jsp" />
+	<!--  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand"
 			href="${pageContext.request.contextPath}/homepage.jsp">BravoTV</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -36,7 +37,7 @@ String shift = startTime.format(new Date());
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 		</button>
-	</nav>  		
+	</nav>  	-->	
 	<form name="customerReg"
 		action="${pageContext.request.contextPath}/Customer/Add" method="POST">
 		<div class="container">
