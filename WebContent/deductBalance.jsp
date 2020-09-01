@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix = "fmt"%>
 <%
 %>
 <html>
@@ -17,6 +19,29 @@
 	crossorigin="anonymous">
 
 <title>Deduct Balance</title>
+<script>
+function deductionUpdate(event, id) {
+	if (event.keyCode == 13) {
+		event.preventDefault();
+		updateNewBalance(id);
+		return false
+	}
+	return true;
+}
+
+function updateNewBalance(id) {
+	var balance = document.getElementById("balance"+id).innerHTML;
+	var deduction = document.getElementById("deduction"+id).value;
+	var newBalance = Number(balance) - Number(deduction);
+	document.getElementById("newBalance"+id).innerHTML = newBalance.toFixed(2);
+}
+
+window.onload = function() {
+	<c:forEach items="${prepaidCustomers}" var="customer">
+    updateNewBalance(${customer.getCustomer_id()})
+    </c:forEach>
+};
+</script>
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />
@@ -42,72 +67,31 @@
 							<tr>
 								<th>Customer Id</th>
 								<th>Current Balance</th>
-								<th>Deducted Balance</th>
+								<th>Deductions</th>
+								<th>New Balance</th>
 							</tr>
 						</thead>
-						<tr id="row1">
-							<td>CST004</td>
-							<td><div id="nonEditableCB1" style="display: inline;">
-									<p id="cbValue1">85</p>
-									<input type="button" value="Edit" class="btn btn-secondary"
-										onclick="editCB('1')">
+						<c:forEach items="${prepaidCustomers}" var="customer">
+						<tr id="row_${customer.getCustomer_id()}">
+							<td>CST<fmt:formatNumber pattern="000" type="number" value="${customer.getCustomer_id()}" /></td>
+							<td>
+								<div style="display: inline-block;">
+									<p id="balance${customer.getCustomer_id()}">${customer.getBalance()}</p>
 								</div>
-								<div id="editableCB1" style="display: none;">
-									<input type="text" id="cbEdit1"><input type="button"
-										value="Done" class="btn btn-secondary" onclick="confirmCB('1')">
-								</div></td>
-							<td><div id="nonEditableDB1" style="display: inline;">
-									<p id="dbValue1">15</p>
-									<input type="button" value="Edit" class="btn btn-secondary"
-										onclick="editDB('1')">
+							</td>
+							<td>
+								<div style="display: inline-block;">
+									<input required type="number" name="deduction${customer.getCustomer_id()}" id="deduction${customer.getCustomer_id()}" value="${deductionMap.get(customer)}"
+									onkeypress="deductionUpdate(event,${customer.getCustomer_id()})" autocomplete="off">
 								</div>
-								<div id="editableDB1" style="display: none;">
-									<input type="text" id="dbEdit1"><input type="button"
-										value="Done" class="btn btn-secondary" onclick="confirmDB('1')">
-								</div></td>
+							</td>
+							<td>
+								<div style="display: inline-block;">
+									<p id="newBalance${customer.getCustomer_id()}">...</p>
+								</div>
+							</td>
 						</tr>
-						<tr id="row2">
-							<td>CST007</td>
-							<td><div id="nonEditableCB2" style="display: inline;">
-									<p id="cbValue2">15</p>
-									<input type="button" value="Edit" class="btn btn-secondary"
-										onclick="editCB('2')">
-								</div>
-								<div id="editableCB2" style="display: none;">
-									<input type="text" id="cbEdit2"><input type="button"
-										value="Done" class="btn btn-secondary" onclick="confirmCB('2')">
-								</div></td>
-							<td><div id="nonEditableDB2" style="display: inline;">
-									<p id="dbValue2">85</p>
-									<input type="button" value="Edit" class="btn btn-secondary"
-										onclick="editDB('2')">
-								</div>
-								<div id="editableDB2" style="display: none;">
-									<input type="text" id="dbEdit2"><input type="button"
-										value="Done" class="btn btn-secondary" onclick="confirmDB('2')">
-								</div></td>
-						</tr>
-						<tr id="row3">
-							<td>CST003</td>
-							<td><div id="nonEditableCB3" style="display: inline;">
-									<p id="cbValue3">70</p>
-									<input type="button" value="Edit" class="btn btn-secondary"
-										onclick="editCB('3')">
-								</div>
-								<div id="editableCB3" style="display: none;">
-									<input type="text" id="cbEdit3"><input type="button"
-										value="Done" class="btn btn-secondary" onclick="confirmCB('3')">
-								</div></td>
-							<td><div id="nonEditableDB3" style="display: inline;">
-									<p id="dbValue3">30</p>
-									<input type="button" value="Edit" class="btn btn-secondary"
-										onclick="editDB('3')">
-								</div>
-								<div id="editableDB3" style="display: none;">
-									<input type="text" id="dbEdit3"><input type="button"
-										value="Done" class="btn btn-secondary" onclick="confirmDB('3')">
-								</div></td>
-						</tr>
+						</c:forEach>
 					</table>
 				</div>
 			</div>

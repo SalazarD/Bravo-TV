@@ -136,4 +136,13 @@
   		<servlet-name>GenerateBillServlet</servlet-name>
   		<url-pattern>/GenerateBillServlet</url-pattern>
   	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>DeductBalanceServlet</servlet-name>
+  		<servlet-class>com.controller.DeductBalanceServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>DeductBalanceServlet</servlet-name>
+  		<url-pattern>/DeductBalance</url-pattern>
+  	</servlet-mapping>
 </web-app>
