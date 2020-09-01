@@ -70,6 +70,8 @@
 							aria-describedby="emailHelp" placeholder="Enter Channel Charge"
 							required>
 					</div>
+					<input type="hidden" name="channelId" value="${channel.channel_id}">
+					<input type="hidden" name="action" value="add" />
 					<button type="submit" class="btn btn-primary">Add</button>
 				</div>
 			</div>

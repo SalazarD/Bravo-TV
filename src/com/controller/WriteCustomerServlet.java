@@ -69,7 +69,7 @@ public class WriteCustomerServlet extends HttpServlet {
 		LoginDao authTable = new LoginDao();
 		
 		if (action.equals("add")) {
-			customer.setCustomer_creation_date(Timestamp.valueOf(request.getParameter("date")+" 00:00:00")); //need to set default to the day's date
+			customer.setCustomer_creation_date(new Timestamp(System.currentTimeMillis()));
 			customerService.create(customer);
 			authTable.insertUser(customer.getEmail(), "defaultpassword", "customer", true);
 			System.out.println("Added!");

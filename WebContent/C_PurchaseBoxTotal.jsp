@@ -33,10 +33,11 @@
 		var deposit = parseFloat(document.getElementById("depoistAmount").value);
 		var discount = parseFloat(document.getElementById("discount").value);
 		var tax = parseFloat(document.getElementById("tax").value);
-		var result = price + charge + deposit;
-		var fTotal = (result - (result * ((discount) / 100))) + tax;
+		var result = price + charge - deposit;
+		var fTotal = (result - (result * ((discount) / 100)));
+		var finalTotal = (fTotal + (fTotal * ((tax) / 100)));
 
-		document.getElementById("total").value = fTotal;
+		document.getElementById("total").value = finalTotal;
 	}
 </script>
 
@@ -52,69 +53,78 @@
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Customer Name</label> <input
+						<label for="exampleInputEmail1">Customer Email</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							placeholder="" name="email" onClick="add_number();" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Type</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${stbType.type}" name="type" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box MAC ID</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${stb.mac_id}" name="mac_id" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Serial Number</label>
 						<input type="text" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+							aria-describedby="emailHelp" value="${stb.serial_num}" name="serial_num" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Price</label> <input
-							type="text" value="150" id="price" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+							type="text" id="price" class="form-control"
+							aria-describedby="emailHelp" value="${stbType.price}" name="price" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Installation Charge</label> <input
-							type="text" value="20" id="installCharge" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+							type="text" id="installCharge" class="form-control"
+							aria-describedby="emailHelp" value="${stbType.install_charges}" name="install_charges" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Refundable Deposit Amount</label>
-						<input type="text" value="50" id="depoistAmount"
-							class="form-control" aria-describedby="emailHelp" placeholder="">
+						<input type="text" id="depoistAmount"
+							class="form-control" aria-describedby="emailHelp" value="${stbType.refundable_deposit}" name="refundable_deposit" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Discount %</label> <input
-							type="text" value="10" id="discount" class="form-control"
-							aria-describedby="emailHelp" placeholder="">
+							type="text" id="discount" class="form-control"
+							aria-describedby="emailHelp" value="${stbType.discount}" name="discount" readonly>
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Tax</label> <input type="text"
-							class="form-control" value="23.76" id="tax"
-							aria-describedby="emailHelp" placeholder="">
+						<label for="exampleInputEmail1">Tax %</label> <input type="text"
+							class="form-control" value="6" id="tax"
+							aria-describedby="emailHelp" placeholder="" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Amount Payable</label> <input
-							type="text" id="total" onClick="add_number();"
-							class="form-control" aria-describedby="emailHelp"
-							placeholder="Click to see the total">
+							type="text" id="total"
+							class="form-control readonly" aria-describedby="emailHelp"
+							placeholder="Enter Email to see total" name="payable" required>
 					</div>
-
+					<input type="hidden" value="${stb.std_id}" name="std_id"/>
+					<input type="hidden" value="${stb.stb_type_id}" name="stb_type_id"/>
+					<input type="hidden" value="${stb.remote_asset_id}" name="remote_asset_id"/>
+					<input type="hidden" value="${stb.dish_asset_id}" name="dish_asset_id"/>
+					<input type="hidden" value="${stb.assigned_retailer_id}" name="assigned_retailer_id"/>
 					<button type="submit" class="btn btn-primary">Purchase</button>
 				</div>
 			</div>
 		</div>
 	</form>
 </body>
+<script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 </html>

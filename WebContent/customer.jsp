@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.text.SimpleDateFormat, java.util.*"%>
 <!DOCTYPE html>
+<%
+	String pattern = "yyyy-MM-dd HH:mm:ss";
+SimpleDateFormat dateCreation = new SimpleDateFormat(pattern);
+String date = dateCreation.format(new Date());
+
+String pattern2 = "yyyy-MM-dd";
+SimpleDateFormat startTime = new SimpleDateFormat(pattern2);
+String shift = startTime.format(new Date());
+%>
 <html>
 <head>
 
@@ -88,8 +98,8 @@
 						<label for="example-date-input" class="col-2 col-form-label">Creation
 							Date</label>
 						<div class="col-10">
-							<input class="form-control" type="date" name="date"
-								value="2020-08-24" id="example-date-input">
+							<input class="form-control" type="text" name="date"
+								value="<%=shift%>" id="example-date-input" readonly>
 						</div>
 					</div>
 					<div class="form-group">
