@@ -87,7 +87,9 @@ public class WriteCustomerServlet extends HttpServlet {
 					customerService.update(customer);
 					authTable.updateUser(oldEmail, newEmail);
 					HttpSession session = request.getSession();
-					session.setAttribute("message", "Customer updated.");
+					if(session.getAttribute("user_type").equals("customer")) {
+						session.setAttribute("user_name", newEmail);						
+					}
 					request.getRequestDispatcher("List").forward(request, response);
 				}
 		}else {
