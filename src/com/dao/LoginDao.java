@@ -114,6 +114,26 @@ public class LoginDao {
 			DbCon.closeConnection();
 		}
 	}
+	public void updateUser(String old_user_name, String new_user_name) {
+		System.out.println("called addperson");
+		String sql="UPDATE case_auth set user_name = ? WHERE user_name = ?";
+		
+		int resultset;
+		Connection connect=DbCon.getConnection();	
+		try
+		{
+			PreparedStatement stmt=connect.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY); 				
+			stmt.setString(1,new_user_name);
+			stmt.setString(2,old_user_name);
+			resultset=stmt.executeUpdate();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		finally
+		{
+			DbCon.closeConnection();
+		}
+	}
 	public void deleteUser(String user_name) {
 		System.out.println("called addperson");
 		String sql="DELETE FROM Case_auth WHERE user_name=?";

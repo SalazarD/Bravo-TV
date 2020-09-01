@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.bean.Customer;
 import com.bean.Operator;
 import com.utilities.DbCon;
 
@@ -129,7 +130,36 @@ public class OperatorDao extends AbstractDao<Operator> {
 			DbCon.closeConnection();
 		}
 		return false;
-		
+	}
+	public Operator getOperator(String email) {
+		Operator obj = new Operator();
+
+		Connection con = DbCon.getConnection();
+
+		try {
+			String qry = "select * from CASE_Operator where email=?";
+			PreparedStatement st = con.prepareStatement(qry);
+			st.setString(1, email);
+
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				obj.setOperator_id(rs.getInt(1));
+				obj.setFirst_name(rs.getString(2));
+				obj.setLast_name(rs.getString(3));
+				obj.setEmail(rs.getString(4));
+				obj.setPhone(rs.getString(5));
+				obj.setShift_start(rs.getTimestamp(6));
+				obj.setMax_customers(rs.getInt(7));
+				obj.setOperator_creation_date(rs.getTimestamp(8));
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DbCon.closeConnection();
+		}
+
+		return obj;
 	}
 
 }

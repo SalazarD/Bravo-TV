@@ -67,7 +67,7 @@ public class WriteCustomerServlet extends HttpServlet {
 
 		CustomerDao customerService = new CustomerDao();
 		LoginDao authTable = new LoginDao();
-		if(customerService.checkExistCustomerEmail(request.getParameter("email"))==false) {
+		if(customerService.checkExistCustomerEmail(request.getParameter("email"))==false || action.equals("update")) {
 				if (action.equals("add")) {
 					customer.setCustomer_creation_date(new Timestamp(System.currentTimeMillis()));
 					customerService.create(customer);
@@ -79,12 +79,13 @@ public class WriteCustomerServlet extends HttpServlet {
 					request.getRequestDispatcher("List").forward(request, response);
 				}
 				else if (action.equals("update")) {
+					String newEmail=request.getParameter("email");
+					String oldEmail=request.getParameter("oldEmail");
+					
 					customer.setCustomer_id(Integer.parseInt(request.getParameter("customerId")));
-					//System.out.println("Date: " + customer.getCustomer_creation_date());
 					customer.setCustomer_creation_date(Timestamp.valueOf(request.getParameter("date")));
-					System.out.println("Update " + customer);
 					customerService.update(customer);
-	
+					authTable.updateUser(oldEmail, newEmail);
 					HttpSession session = request.getSession();
 					session.setAttribute("message", "Customer updated.");
 					request.getRequestDispatcher("List").forward(request, response);

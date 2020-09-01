@@ -140,6 +140,9 @@
 					<input type="hidden" name="customerId"
 						value="${customer.customer_id}"><br /> <input
 						type="hidden" name="action" value="update" />
+					<input type="hidden" name="oldEmail"
+						value="${customer.email}"><br /> <input
+						type="hidden" name="action" value="update" />
 					<button type="submit" class="btn btn-primary">Update</button>
 				</div>
 			</div>
@@ -148,6 +151,9 @@
 		</c:when>
   		<c:otherwise>
 			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>	
   		</c:otherwise>
 	</c:choose>
 </body>

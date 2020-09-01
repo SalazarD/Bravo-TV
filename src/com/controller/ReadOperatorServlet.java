@@ -36,11 +36,11 @@ public class ReadOperatorServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String idString = request.getParameter("id");
 		String deleteId = request.getParameter("deleteId");
+		HttpSession session = request.getSession();
 		if (idString != null) {
 			Integer id = Integer.parseInt(idString);
 			OperatorDao od = new OperatorDao();
 			Operator s = od.findById(id);
-			HttpSession session = request.getSession();
 			session.setAttribute("operator", s);
 			request.getRequestDispatcher("/editOperator.jsp").forward(request, response);
 
@@ -52,11 +52,23 @@ public class ReadOperatorServlet extends HttpServlet {
 			response.sendRedirect("./List");
 		}
 		else {
-			OperatorDao od = new OperatorDao();
-			ArrayList<Operator> operators = od.findAllO();
-			HttpSession session = request.getSession();
-			session.setAttribute("operators", operators);
-			request.getRequestDispatcher("/operatorList.jsp").forward(request, response);
+			if(session.getAttribute("user_type").equals("operator")) {
+				
+				OperatorDao od = new OperatorDao();
+				ArrayList<Operator> operators = new ArrayList<Operator>();
+				operators.add(od.getOperator(session.getAttribute("user_name").toString()));
+				session.setAttribute("operators", operators);
+				session.setAttribute("deleteOperator_view", "hidden");
+				request.getRequestDispatcher("/operatorList.jsp").forward(request, response);
+			
+			}else {
+				OperatorDao od = new OperatorDao();
+				ArrayList<Operator> operators = od.findAllO();
+				session.setAttribute("operators", operators);
+				request.getRequestDispatcher("/operatorList.jsp").forward(request, response);	
+			}
+			
+			
 		}
 	}
 
