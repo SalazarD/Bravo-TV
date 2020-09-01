@@ -86,6 +86,51 @@ public class Demo {
 		
 	}
 	
+	//1
+	public String operatorsInShift() throws JSONException {
+		String returning = null;
+		OperatorDao rd = new OperatorDao();
+		JSONObject jb1 = new JSONObject();
+		
+		jb1.put("Data", rd.totalOperator_InShift());
+		returning = jb1.toString();
+		return returning;
+	}
+	
+	//2
+	public String operatorsInYear() throws JSONException {
+		String returning = null;
+		OperatorDao rd = new OperatorDao();
+		JSONObject jb1 = new JSONObject();
+		
+		jb1.put("Data", rd.totalOperatorCreated_WithinYear());
+		returning = jb1.toString();
+		return returning;
+	}
+	
+	//3
+	public String customersByRetailer() throws JSONException {
+		String returning = null;
+		CustomerDao rd = new CustomerDao();
+		JSONObject jb1 = new JSONObject();
+		
+		jb1.put("Data", rd.RetailerWiseCount_customer());
+		returning = jb1.toString();
+		return returning;
+	}
+	
+	//4
+	public String customersByMonth() throws JSONException {
+		String returning = null;
+		CustomerDao rd = new CustomerDao();
+		JSONObject jb1 = new JSONObject();
+		
+		jb1.put("Data", rd.totalCustomerCreated_WithinYear());
+		returning = jb1.toString();
+		return returning;
+	}
+	
+	//5
 	public String retailerByState() throws JSONException, Exception{
 		String returning = null;
 		RetailerDao rd = new RetailerDao();
@@ -96,6 +141,7 @@ public class Demo {
 	    return returning;
 	}
 	
+	//6
 	public String retailerByMonth() throws JSONException {
 		String returning = null;
 		RetailerDao rd = new RetailerDao();

@@ -180,17 +180,17 @@ public class CustomerDao extends AbstractDao<Customer> {
 
 	
 
-
+	//4
 	public JSONArray totalCustomerCreated_WithinYear() {
 		
 		JSONArray array = new JSONArray();
 		try {
 			Connection conn = DbCon.getConnection();
 			Statement st = conn.createStatement();
-			ResultSet rSet = st.executeQuery("select monthname(customer_id) as total from CASE_Customer;");
+			ResultSet rSet = st.executeQuery("select monthname(customer_creation_date) as month, count(*) from CASE_Customer group by month;");
 			while (rSet.next()) {
 				JSONObject record = new JSONObject();
-				record.put("month", rSet.getString("total"));
+				record.put("month", rSet.getString("month"));
 				record.put("count", rSet.getString("count(*)"));
 				array.put(record);
 				
@@ -209,7 +209,7 @@ public class CustomerDao extends AbstractDao<Customer> {
 	}
 	
 	
-	
+	//3
 	public JSONArray RetailerWiseCount_customer() {
 		
 		JSONArray array = new JSONArray();
@@ -221,7 +221,7 @@ public class CustomerDao extends AbstractDao<Customer> {
 					" group by CASE_Retailer.retailer_id;");
 			while (rSet.next()) {
 				JSONObject record = new JSONObject();
-				record.put("month", rSet.getString("name"));
+				record.put("name", rSet.getString("name"));
 				record.put("count", rSet.getString("total"));
 				array.put(record);
 				

@@ -43,13 +43,33 @@ public class DisplayReportsServlet extends HttpServlet {
 		String path = null;
 		int chart = Integer.parseInt(request.getParameter("chart"));
 		if(chart == 1) {
-			
+			try {
+				jsonString = demo.operatorsInShift();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if(chart == 2) {
-			
+			try {
+				jsonString = demo.operatorsInYear();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}						
 		} else if(chart == 3) {
-			
+			try {
+				jsonString = demo.customersByRetailer();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if(chart == 4) {
-			
+			try {
+				jsonString = demo.customersByMonth();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if(chart == 5) {
 			try {
 				jsonString = demo.retailerByState();

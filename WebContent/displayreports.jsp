@@ -50,7 +50,7 @@
 			<div class="container">
 				<div class="card">
 					<div class="card-body">
-						<jsp:include page="" />
+						<jsp:include page="./1piechart.jsp" />
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 			<div class="container">
 				<div class="card">
 					<div class="card-body">
-						<jsp:include page="" />
+						<jsp:include page="./2barchart.jsp" />
 					</div>
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 			<div class="container">
 				<div class="card">
 					<div class="card-body">
-						<jsp:include page="" />
+						<jsp:include page="./3piechart.jsp" />
 					</div>
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 			<div class="container">
 				<div class="card">
 					<div class="card-body">
-						<jsp:include page="" />
+						<jsp:include page="./4barchart.jsp" />
 					</div>
 				</div>
 			</div>

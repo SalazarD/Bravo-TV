@@ -97,7 +97,7 @@ public class OperatorDao extends AbstractDao<Operator> {
 
 
 	
-	
+	//2
 	public JSONArray totalOperatorCreated_WithinYear() {
 		
 		JSONArray array = new JSONArray();
@@ -127,7 +127,7 @@ public class OperatorDao extends AbstractDao<Operator> {
 	
 	
 	
-	
+	//1
 	public JSONArray totalOperator_InShift() {
 		
 		JSONArray array = new JSONArray();
@@ -137,7 +137,7 @@ public class OperatorDao extends AbstractDao<Operator> {
 			ResultSet rSet = st.executeQuery("select date_format(shift_start, '%H:%i:%s') as shift, count(*) as count from CASE_Operator group by shift_start;");
 			while (rSet.next()) {
 				JSONObject record = new JSONObject();
-				record.put("month", rSet.getString("shift"));
+				record.put("shift", rSet.getString("shift"));
 				record.put("count", rSet.getString("count"));
 				array.put(record);
 				
