@@ -38,7 +38,7 @@
 	
 	window.onload = function() {
 	    <c:forEach items="${purchaseMap}" var="entry">
-	    checkboxChanged(${entry.key.package_id});
+	    checkboxChanged("${entry.key.package_id}");
 	    </c:forEach>
 		updateTotal();
 	};

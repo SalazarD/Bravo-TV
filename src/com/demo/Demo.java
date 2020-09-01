@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
-//import org.json.JSONObject;
+import org.json.JSONObject;
 
 import java.sql.Timestamp;
 
@@ -39,41 +39,41 @@ public class Demo {
 			System.out.println("No bean could be made.");
 		}
 		System.out.println("---");*/
-//		Timestamp time = new Timestamp(System.currentTimeMillis());
-//		List<Retailer> retailers = dao.getAll();
-//		
-//		for(Retailer r : retailers) {
-//			r.setRetailer_creation_date(time);
-//			dao.update(r);
-//			System.out.println(r);
-//		}
-//		
-//		
-//		RetailerDao rd = new RetailerDao();
-//		JSONObject jb1 = new JSONObject();
-//		
-//		jb1.put("Data", rd.totalRetail_byState());
-//		System.out.println(jb1);
-//	    try {
-//	    	FileWriter file = new FileWriter("WebContent/retailer_ByState.json");
-//	        file.write(jb1.toString());
-//	        file.close();
-//	        System.out.println("JSON obj file created......");
-//	      } catch (IOException e) {
-//	        
-//      }
-//	    
-//		JSONObject jb2 = new JSONObject();
-//		jb2.put("Data", rd.totalRetailer_WithinYear());
-//		System.out.println(jb1);
-//	    try {
-//	    	FileWriter file = new FileWriter("WebContent/retailer_ByMonth.json");
-//	        file.write(jb2.toString());
-//	        file.close();
-//	        System.out.println("JSON file obj2 created......");
-//	      } catch (IOException e) {
-//	        
-//      }
+		Timestamp time = new Timestamp(System.currentTimeMillis());
+		List<Retailer> retailers = dao.getAll();
+		
+		for(Retailer r : retailers) {
+			r.setRetailer_creation_date(time);
+			dao.update(r);
+			System.out.println(r);
+		}
+		
+		
+		RetailerDao rd = new RetailerDao();
+		JSONObject jb1 = new JSONObject();
+		
+		jb1.put("Data", rd.totalRetail_byState());
+		System.out.println(jb1);
+	    try {
+	    	FileWriter file = new FileWriter("WebContent/retailer_ByState.json");
+	        file.write(jb1.toString());
+	        file.close();
+	        System.out.println("JSON obj file created......");
+	      } catch (IOException e) {
+	        
+      }
+	    
+		JSONObject jb2 = new JSONObject();
+		jb2.put("Data", rd.totalRetailer_WithinYear());
+		System.out.println(jb1);
+	    try {
+	    	FileWriter file = new FileWriter("WebContent/retailer_ByMonth.json");
+	        file.write(jb2.toString());
+	        file.close();
+	        System.out.println("JSON file obj2 created......");
+	      } catch (IOException e) {
+	        
+      }
 		
 		
 		
