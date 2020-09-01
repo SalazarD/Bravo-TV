@@ -102,23 +102,23 @@
 
 					<div class="form-group">
 						<label for="price">Price:</label> <input type="number"
-							name="price" id="price" class="form-control" placeholder="5"
+							name="price" id="price" class="form-control" placeholder="Enter Price"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="installationCharge">Installation Charge:</label> <input
 							type="number" name="install_charge" id="install_charge"
-							class="form-control" placeholder="5" required>
+							class="form-control" placeholder="Enter Install Charge" required>
 					</div>
 					<div class="form-group">
 						<label for="upgradationCharge">Upgradation Charge:</label> <input
 							type="number" name="upgrade_charge" id="upgrade_charge"
-							class="form-control" placeholder="2" required>
+							class="form-control" placeholder="Enter Upgrade Charge" required>
 					</div>
 					<div class="form-group">
 						<label for="discountPercent">Discount %:</label> <input
 							type="number" min="1" max="100" name="discount" id="discount"
-							class="form-control" placeholder="2" required>
+							class="form-control" placeholder="Enter Discount" required>
 					</div>
 					<div class="form-group">
 						<label for="billingType">Billing Type:</label>
@@ -139,7 +139,7 @@
 					<div class="form-group">
 						<label for="refundableAmount">Refundable Deposit Amount:</label> <input
 							type="number" name="refundable_deposit"
-							id="refundableDepositAmount" class="form-control" placeholder="5"
+							id="refundableDepositAmount" class="form-control" placeholder="Enter Refundable Deposit"
 							required>
 					</div>
 					<div class="form-group">

@@ -74,7 +74,7 @@ String date = simpleDateFormat.format(new Date());
 					<div class="form-group">
 						<label for="address2">Address 2:</label> <input type="text"
 							name="address2" id="address2" class="form-control"
-							placeholder="Enter Address 2" required>
+							placeholder="Enter Address 2">
 					</div>
 					<div class="form-group">
 						<label for="zipCode">Pincode/Zipcode:</label> <input type="text"

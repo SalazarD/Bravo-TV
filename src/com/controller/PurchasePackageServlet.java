@@ -148,12 +148,13 @@ public class PurchasePackageServlet extends HttpServlet {
 			}
 		}
 		else { // we are operator or admin
-			if(request.getParameter("customer_id")!=null) {
-				customer_id = Integer.valueOf(request.getParameter("customer_id"));				
-			}else {
-				customer_id=-1;
-			}
 			
+			 if(request.getParameter("customer_id")!=null) {
+	                customer_id = Integer.valueOf(request.getParameter("customer_id"));                
+	            }else {
+	                customer_id=-1;
+	            }
+			 
 			// add all requested packages... we trust operator 
 			for (int package_id : packageIds) {
 				packageIdsToPurchase.add(package_id);

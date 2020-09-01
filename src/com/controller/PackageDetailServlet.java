@@ -24,7 +24,7 @@ import com.dao.ChannelPackageDao;
 /**
  * Servlet implementation class PackageDetailServlet
  */
-@WebServlet("/PackageDetailServlet")
+//@WebServlet("/PackageDetailServlet")
 public class PackageDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

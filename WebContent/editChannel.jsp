@@ -24,7 +24,7 @@
   	
 	<jsp:include page="./menu.jsp" />
 	<form name="EditChannel"
-		action="${pageContext.request.contextPath}/EditChannel" method="POST">
+		action="${pageContext.request.contextPath}/ChannelServlet" method="POST">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -33,48 +33,51 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Channel Name</label> <input
 							type="text" class="form-control" name="channelName"
-							aria-describedby="emailHelp" placeholder="Enter Channel Name"
+							aria-describedby="emailHelp" value="${channel.channel_name}"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Channel Band</label> <select
 							class="form-control" name="channelBand" required>
-							<option value="band1">Band I</option>
-							<option value="band2">Band II</option>
-							<option value="band3">Band III</option>
+							<option value="band1" ${channel.channel_band == 'band1' ? 'selected' : ''}>Band I</option>
+							<option value="band2" ${channel.channel_band == 'band2' ? 'selected' : ''}>Band II</option>
+							<option value="band3" ${channel.channel_band == 'band3' ? 'selected' : ''}>Band III</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Video Carrier Frequency
 							MHz</label> <input type="text" class="form-control" name="video"
 							aria-describedby="emailHelp"
-							placeholder="Enter Video Carrier Frequency" required>
+							value="${channel.video_carrier_frequency}" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Audio Carrier Frequency
 							MHz</label> <input type="text" class="form-control" name="audio"
 							aria-describedby="emailHelp"
-							placeholder="Enter Audio Carrier Frequency" required>
+							value="${channel.audio_carrier_frequency}" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Channel Charge Type</label>
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="chargeType"
-								value="fta" required> <label class="form-check-label"
+								value="fta" ${channel.channel_charge_type == 'fta' ? 'checked' : ''}> <label class="form-check-label"
 								for="exampleRadios1">FTA</label>
 						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="chargeType"
-								value="paid"> <label class="form-check-label"
+								value="paid" ${channel.channel_charge_type == 'paid' ? 'checked' : ''}> <label class="form-check-label"
 								for="exampleRadios1">Paid</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Channel Charge</label> <input
 							type="text" class="form-control" name="charge"
-							aria-describedby="emailHelp" placeholder="Enter Channel Charge"
+							aria-describedby="emailHelp" value="${channel.channel_charge}"
 							required>
 					</div>
+					
+					<input type="hidden" name="channelId" value="${channel.channel_id}">
+					<input type="hidden" name="action" value="update" />
 					<button type="submit" class="btn btn-primary">Update</button>
 				</div>
 			</div>

@@ -45,7 +45,7 @@
 					<a class="dropdown-item"
 						href="${pageContext.request.contextPath}/addChannel.jsp" ${add_channel_view}>Add
 						Channel</a> <a class="dropdown-item"
-						href="${pageContext.request.contextPath}/channelList.jsp"${channel_list_view}>Channel
+						href="${pageContext.request.contextPath}/GetChannelServlet"${channel_list_view}>Channel
 						List</a>
 				</div></li>
 
