@@ -99,7 +99,12 @@
 
 			<li class="nav-item"><a class="nav-link"
 				href="${pageContext.request.contextPath}/retailerRegistration.jsp"${register_retailer_view}>Register
-					Retailer</a></li>
+					Retailer</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link"
+				href="${pageContext.request.contextPath}/displayreports.jsp"${display_reports_view}>Display reports</a>
+			</li>
 
 		</ul>
 	</div>

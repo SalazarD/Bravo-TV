@@ -57,8 +57,14 @@ public class RetailerDao extends AbstractDao<Retailer> {
 		JSONArray array = new JSONArray();
 		try {
 			Connection conn = DbCon.getConnection();
-			Statement st = conn.createStatement();
-			ResultSet rSet = st.executeQuery("select monthname(retailer_creation_date) as month, count(*) FROM CASE_Retailer group by month");
+			
+			String sql = "select monthname(retailer_creation_date) as month, count(*) FROM CASE_Retailer group by month";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ResultSet rSet = ps.executeQuery();
+			//Statement st = conn.createStatement();
+			//ResultSet rSet = st.executeQuery("select monthname(retailer_creation_date) as month, count(*) FROM CASE_Retailer group by month");
 			while (rSet.next()) {
 				JSONObject record = new JSONObject();
 				record.put("month", rSet.getString("month"));
