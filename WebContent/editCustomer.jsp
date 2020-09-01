@@ -140,6 +140,9 @@
 					<input type="hidden" name="customerId"
 						value="${customer.customer_id}"><br /> <input
 						type="hidden" name="action" value="update" />
+					<input type="hidden" name="oldEmail"
+						value="${customer.email}"><br /> <input
+						type="hidden" name="action" value="update" />
 					<button type="submit" class="btn btn-primary">Update</button>
 				</div>
 			</div>

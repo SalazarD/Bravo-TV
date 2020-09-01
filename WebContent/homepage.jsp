@@ -21,7 +21,7 @@
 	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
 	
 	<c:choose>
-  		<c:when test="${user_type == 'admin' || user_type == 'customer' || user_type == 'customer'}">
+  		<c:when test="${user_type == 'admin' || user_type == 'customer' || user_type == 'operator'}">
 		<jsp:include page="./menu.jsp" />
 			<h1 style="text-align: center">
 			Welcome <c:out value = "${user_type}"/>

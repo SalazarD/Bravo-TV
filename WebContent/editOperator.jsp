@@ -156,6 +156,7 @@ String shift = startTime.format(new Date());
 					</div>
 
 					<input type="hidden" name="operator_id" value="${operator.operator_id}"><br /> 
+					<input type="hidden" name="oldEmail" value="${operator.email}"><br /> 
 					<input type="hidden" name="action" value="update" />
 
 

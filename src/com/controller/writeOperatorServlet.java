@@ -48,7 +48,7 @@ public class writeOperatorServlet extends HttpServlet {
 
 		OperatorDao ssvc = new OperatorDao();
 		LoginDao authTable = new LoginDao();
-		if(ssvc.checkExistOperatorEmail(request.getParameter("email"))==false) {
+		if(ssvc.checkExistOperatorEmail(request.getParameter("email"))==false ||action.equals("update")) {
 			if (action.equals("add")) {
 				System.out.println("Added ");
 				ssvc.create(s);
@@ -59,12 +59,13 @@ public class writeOperatorServlet extends HttpServlet {
 				request.getRequestDispatcher("List").forward(request, response);
 			} 
 			else if (action.equals("update")) {
+				String newEmail=request.getParameter("email");
+				String oldEmail=request.getParameter("oldEmail");
 				s.setOperator_id(Integer.parseInt(request.getParameter("operator_id")));
-				//System.out.println("Date: " + customer.getCustomer_creation_date());
 				s.setOperator_creation_date(Timestamp.valueOf(request.getParameter("operator_creation_date")));
 				System.out.println("Update " + s);
 				ssvc.update(s);
-
+				authTable.updateUser(oldEmail, newEmail);
 				HttpSession session = request.getSession();
 				session.setAttribute("message", "Customer updated.");
 				request.getRequestDispatcher("List").forward(request, response);
