@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></script>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Package and Charging</title>
 </head>
 <body>
 <body>
