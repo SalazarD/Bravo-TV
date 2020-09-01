@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bean.Operator;
+import com.dao.LoginDao;
 import com.dao.OperatorDao;
 
 /**
@@ -44,11 +45,10 @@ public class ReadOperatorServlet extends HttpServlet {
 			request.getRequestDispatcher("/editOperator.jsp").forward(request, response);
 
 		} else if (deleteId != null) {
-			Integer id = Integer.parseInt(deleteId);
 			OperatorDao od = new OperatorDao();
-			Operator operator = new Operator();
-			operator.setOperator_id(id);
-			od.delete(operator);
+			LoginDao logindao= new LoginDao();
+			logindao.deleteUser(deleteId);
+			od.deleteUserWithEmail(deleteId);
 			response.sendRedirect("./List");
 		}
 		else {
