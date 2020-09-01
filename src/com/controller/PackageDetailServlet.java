@@ -58,6 +58,7 @@ public class PackageDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.print("inserting ");
 		ChannelPackage channelpack = new ChannelPackage();
 		ChannelPackageDao packDao=new ChannelPackageDao();
 		if(packDao.packageNameExist(request.getParameter("packageName"))==false) {
@@ -76,7 +77,7 @@ public class PackageDetailServlet extends HttpServlet {
 				channelID.add(Integer.parseInt(channelInfo.substring(0,1)));
 			}
 			packDao.mappingChannelwithPack(channelpack.getPackage_id(), channelID);
-			request.getRequestDispatcher("PurchasePackage").forward(request, response);			
+			request.getRequestDispatcher("/PurchasePackage").forward(request, response);			
 		}else {
 			PrintWriter out = response.getWriter();
 	        out.println("<script type=\"text/javascript\">");

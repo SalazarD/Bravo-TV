@@ -54,7 +54,7 @@ public class LoginDao {
 	}
 	public void viewPremission(HttpSession session,HttpServletRequest request,String menu_view,String add_channel_view,String channel_list_view,
 								String add_package_view,String package_purchase_view,String add_stb_view,String stb_purchase_view,
-								String register_customer_view, String register_operator_view,String register_retailer_view) {
+								String register_customer_view, String register_operator_view,String register_operator_list_view,String register_retailer_view) {
 		 	session = request.getSession();
 			session.setAttribute("menu_view",menu_view );		
 			session.setAttribute("add_channel_view",add_channel_view );		
@@ -64,7 +64,8 @@ public class LoginDao {
 			session.setAttribute("add_stb_view",add_stb_view );		
 			session.setAttribute("stb_purchase_view", stb_purchase_view);	
 			session.setAttribute("register_customer_view", register_customer_view);		
-			session.setAttribute("register_operator_view", register_operator_view);		
+			session.setAttribute("register_operator_view", register_operator_view);
+			session.setAttribute("register_operator_list_view", register_operator_list_view);		
 			session.setAttribute("register_retailer_view", register_retailer_view);	
 	}
 	public boolean checkFirstTimeUser(String user_name, String user_password) {

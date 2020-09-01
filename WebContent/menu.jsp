@@ -89,7 +89,7 @@
 						List</a>
 				</div></li>
 				
-			<li class="nav-item dropdown"><a
+			<li class="nav-item dropdown" ${register_operator_list_view}><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Operator </a>
