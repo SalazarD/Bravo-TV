@@ -47,9 +47,10 @@
                         <td><c:out value="${channel.channel_charge}" /></td>
                         <td class="noBorder"><a
                             href="${pageContext.request.contextPath}/GetChannelServlet?id=${channel.channel_id}"><button
-                                    type="button" class="btn btn-primary">Edit</button></a></td>
+                                    type="button" class="btn btn-primary" ${editChannel_view}>Edit</button></a></td>
                         <td class="noBorder">
-                           <a type="button" name="delBtn" href="${pageContext.request.contextPath}/ChannelServlet?deleteId=${channel.channel_id}"  class="button btn btn-primary">Delete</a>
+                           <a type="button" name="delBtn" href="${pageContext.request.contextPath}/ChannelServlet?deleteId=${channel.channel_id}"  
+                           ${deleteChannel_view} class="button btn btn-primary">Delete</a>
                         </td>
                     </tr>
 

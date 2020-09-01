@@ -59,6 +59,7 @@ public class ReadCustomerServlet extends HttpServlet {
 			response.sendRedirect("./List");
 		}
 		else {
+			//when create customer, check user_type. 
 			if(session.getAttribute("user_type")!=null) {
 					if(session.getAttribute("user_type").equals("customer")) {
 						System.out.print(session.getAttribute("user_type").equals("customer"));
@@ -66,6 +67,9 @@ public class ReadCustomerServlet extends HttpServlet {
 						ArrayList<Customer> customers = new ArrayList<Customer>();
 						customers.add(cd.getCustomer(session.getAttribute("user_name").toString()));
 						session.setAttribute("customers", customers);
+						session.setAttribute("deleteCustomer_view", "hidden");
+						session.setAttribute("deleteChannel_view", "hidden");
+						session.setAttribute("editChannel_view", "hidden");
 						System.out.print(session.getAttribute("user_type"));
 						request.getRequestDispatcher("/customerList.jsp").forward(request, response);		
 					}
@@ -78,11 +82,10 @@ public class ReadCustomerServlet extends HttpServlet {
 					}
 			}
 			else {
-				 request.getRequestDispatcher("/customerList.jsp").forward(request, response);	
 				 PrintWriter out = response.getWriter();
 		         out.println("<script type=\"text/javascript\">");
 		         out.println("alert('Registration success');");
-		         out.println("location='./index.jsp';");
+		         out.println("location='/BravoTV/index.jsp';");
 		         out.println("</script>");			
 		         }
 			}

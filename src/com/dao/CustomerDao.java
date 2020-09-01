@@ -146,6 +146,25 @@ public class CustomerDao extends AbstractDao<Customer> {
 
 		return obj;
 	}
+	public Boolean checkExistCustomerEmail(String email) {
+		Connection con = DbCon.getConnection();
+		try {
+			String qry = "select * from "+TABLE_NAME+" where email=?";
+			PreparedStatement st = con.prepareStatement(qry);
+			st.setString(1, email);
+			ResultSet rs = st.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DbCon.closeConnection();
+		}
+
+		return false;
+	}
 
 
 	public ArrayList<Customer> findAllC() {
