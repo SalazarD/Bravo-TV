@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 
@@ -51,8 +52,7 @@
 
 <body>
 	<jsp:include page="./menu.jsp" />
-	<form name="P_SetupBox"
-		action="${pageContext.request.contextPath}/P_SetupBox" method="POST">
+	<form method="POST">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -83,71 +83,93 @@
 						</select>
 					</div>
 					<div>
+						<input id="saveForm" class="btn btn-primary" type="submit" name="submit" value="Search"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<form name="P_SetupBox2"
+		action="${pageContext.request.contextPath}/P_SetupBox" method="POST">
+		<div class="container">
+			<div class="card">
+				<div class="card-body">
+					<div>
 						<h5 style="text-align: center">Set Top Box Details</h5>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Features</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" class="form-control readonly" aria-describedby="emailHelp"
+							placeholder="" value="${stbType.features}" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Dimensions in inches</label>
 						<div class="form-row">
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Height">
+								<input type="text" class="form-control readonly" value="${stbType.breadth}" required>
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Width">
+								<input type="text" class="form-control readonly" value="${stbType.width}" required>
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Length">
+								<input type="text" class="form-control readonly" value="${stbType.length}" required>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Price</label> <input type="text"
-							class="form-control" aria-describedby="emailHelp" placeholder="">
+						<label for="exampleInputEmail1">Price</label> 
+						<input type="text" class="form-control readonly" aria-describedby="emailHelp" 
+						value="${stbType.price}" required> 
+							
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Installation Charge</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" class="form-control readonly" aria-describedby="emailHelp" 
+							value="${stbType.install_charges}" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Upgradation Charge</label> <input
 							type="text" name="upgradationCharge" id="upgradationCharge"
-							class="form-control" aria-describedby="emailHelp" placeholder="">
+							class="form-control readonly" aria-describedby="emailHelp" 
+							value="${stbType.upgrade_charge}" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Discount %</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" class="form-control readonly" aria-describedby="emailHelp"
+							value="${stbType.discount}" required>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Billing Type</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" class="form-control readonly" aria-describedby="emailHelp"
+							value="${stbType.billing_type}" required>
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Refundable Discount Amount</label>
+						<label for="exampleInputEmail1">Refundable Deposit Amount</label>
 						<input type="text" id="refundableDepositAmount"
-							class="form-control" aria-describedby="emailHelp" placeholder="1">
+							class="form-control readonly" aria-describedby="emailHelp" 
+							value="${stbType.refundable_deposit}" required>
 					</div>
 					<div>
 						<input class="btn btn-primary" type="button"
-							onclick="location.href='/BravoTV/C_PurchaseBoxTotal.jsp';"
+							onclick="location.href='/BravoTV/P_SetupBoxT?id=${stbType.stb_type_id}';"
 							value="Next" />
+						<!-- <button type="submit" class="btn btn-primary" onsubmit="location.href='/BravoTV/P_SetupBoxT?id=${stbType.stb_type_id}';">Next</button> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
 </body>
+<script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 </html>

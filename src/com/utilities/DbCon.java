@@ -1,4 +1,4 @@
- package com.utilities;
+package com.utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,13 +10,13 @@ public class DbCon {
 
 	private static final String userName = "root";
 
-	private static final String password = "password";
+	private static final String password = "batman";
 
 	private static final String serverName = "localhost";
 
 	private static final int portNumber = 3306;
 
-	private static final String dbName = "case";
+	private static final String dbName = "ILP_CASE_STUDY";
 
 	private static final String tableName = "";
 

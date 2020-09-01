@@ -25,7 +25,7 @@
 <body>
 	<jsp:include page="./menu.jsp" />
 	<form name="SetTopBox"
-		action="${pageContext.request.contextPath}/SetTopBox" method="post">
+		action="${pageContext.request.contextPath}/SetTopBox" method="post" enctype="multipart/form-data">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -36,13 +36,12 @@
 					<br>
 					<div class="form-group">
 						<label for="topBoxType">Set Top Box Type:</label> <select
-							name="topBoxType" id="topBoxType" class="form-control"
+							name="type" id="type" class="form-control"
 							onClick="showHideUpgradationCharge()" required>
-							<option id="standard" value="Standard">Standard-SD</option>
-							<option id="HD" value="HD">High Definition-HD</option>
-							<option id="HD+" value="HD+">High Definition
-								Recorder-HD+</option>
-							<option id="IPTV" value="IPTV">IPTV</option>
+							<option value="HD">High Definition - HD</option>
+							<option value="SD">Standard Definition - SD</option>
+							<option value="HDR">High Definition Recorder - HD+</option>
+							<option value="IPTV">IPTV</option>
 						</select>
 					</div>
 
@@ -51,27 +50,27 @@
 
 						<div id="featuresList">
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox"
-									id="liveRecording" value="Live Recording"> <label
+								<input class="form-check-input" type="checkbox" name="features"
+									id="features" value="Live Recording"> <label
 									class="form-check-label" for="liveRecording">Live
 									Recording</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox"
-									id="scheduleRecording" value="Schedule Recording"> <label
+								<input class="form-check-input" type="checkbox" name="features"
+									id="features" value="Schedule Recording"> <label
 									class="form-check-label" for="scheduleRecording">Schedule
 									Recording</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="pausePlay"
-									value="Play/Pause"> <label class="form-check-label"
-									for="pausePlay">Play/Pause</label>
+								<input class="form-check-input" type="checkbox" id="features"
+									name="features" value="Play/Pause"> <label
+									class="form-check-label" for="pausePlay">Play/Pause</label>
 							</div>
 						</div>
 						<br>
 						<div class="form-group">
-							<label for="customFeature">Add a Custom Feature:</label> <input
-								type="text" name="customFeature" id="customFeature"
+							<label for="features">Add a Custom Feature:</label> <input
+								type="text" name="features" id="Cfeatures"
 								class="form-control"
 								placeholder="Enter custom features to be added">
 						</div>
@@ -83,64 +82,66 @@
 						<label for="dimensions">Dimensions in inches</label>
 						<div class="form-row">
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Height">
+								<input type="text" class="form-control" name="length"
+									placeholder="Length">
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Width">
+								<input type="text" class="form-control" name="breadth"
+									placeholder="Breadth">
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" placeholder="Length">
+								<input type="text" class="form-control" name="width"
+									placeholder="Width">
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="price">Price:</label> <input type="number"
-							name="price" id="price" class="form-control" placeholder="5"
+							name="price" id="price" class="form-control" placeholder="Enter Price"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="installationCharge">Installation Charge:</label> <input
-							type="number" name="installationCharge" id="installationCharge"
-							class="form-control" placeholder="5" required>
+							type="number" name="install_charge" id="install_charge"
+							class="form-control" placeholder="Enter Install Charge" required>
 					</div>
 					<div class="form-group">
 						<label for="upgradationCharge">Upgradation Charge:</label> <input
-							type="number" name="upgradationCharge" id="upgradationCharge"
-							class="form-control" placeholder="2" required>
+							type="number" name="upgrade_charge" id="upgrade_charge"
+							class="form-control" placeholder="Enter Upgrade Charge" required>
 					</div>
 					<div class="form-group">
 						<label for="discountPercent">Discount %:</label> <input
-							type="number" min="1" max="100" name="discountPercent"
-							id="discountPercent" class="form-control" placeholder="2"
-							required>
+							type="number" min="1" max="100" name="discount" id="discount"
+							class="form-control" placeholder="Enter Discount" required>
 					</div>
 					<div class="form-group">
 						<label for="billingType">Billing Type:</label>
 						<div class="form-check">
 							<label class="form-check-label" for="exampleRadio"> <input
-								class="form-check-input" type="radio" name="billingType"
+								class="form-check-input" type="radio" name="billing_type"
 								id="prepaid" value="prepaid" onClick="showHideRefundable()"
 								required>Prepaid
 							</label>
 						</div>
 						<div class="form-check">
 							<label class="form-check-label" for="exampleRadio"><input
-								class="form-check-input" type="radio" name="billingType"
+								class="form-check-input" type="radio" name="billing_type"
 								id="postpaid" value="postpaid" onClick="showHideRefundable()"required">Postpaid</label>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="refundableAmount">Refundable Deposit Amount:</label> <input
-							type="number" name="refundableDepositAmount"
-							id="refundableDepositAmount" class="form-control" placeholder="5"
+							type="number" name="refundable_deposit"
+							id="refundableDepositAmount" class="form-control" placeholder="Enter Refundable Deposit"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="inventoryDetails">Set Top Box Inventory
-							Details:</label> <br> <label class="btn btn-secondary"> Choose
-							File <input type="file" hidden>
+							Details:</label> <br> <label class="btn btn-secondary">
+							Choose File <input type="file" name="file" accept=".csv" required>
 						</label>
 					</div>
 					<div class="form-group">

@@ -33,23 +33,51 @@
 					<th scope="col">Delete</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>HBO</td>
-					<td>Band I</td>
-					<td>1</td>
-					<td>2</td>
-					<td>Paid</td>
-					<td>10</td>
-					<td class="noBorder"><a
-						href="${pageContext.request.contextPath}/editChannel.jsp"><button
-								type="button" class="btn btn-primary">Edit</button></a></td>
-					<td class="noBorder">
-						<button type="button" class="btn btn-primary">Delete</button>
-					</td>
-				</tr>
-			</tbody>
+            <tbody>
+                <c:forEach var="channel" items="${channels}">
+                    <tr>
+                        <td><c:out value="${channel.channel_name}" /></td>
+                        <td><c:out value="${channel.channel_band}" /></td>
+                        <td><c:out value="${channel.video_carrier_frequency}" /></td>
+                        <td><c:out value="${channel.audio_carrier_frequency}" /></td>
+                        <td><c:out value="${channel.channel_charge_type}" /></td>
+                        <td><c:out value="${channel.channel_charge}" /></td>
+                        <td class="noBorder"><a
+                            href="${pageContext.request.contextPath}/GetChannelServlet?id=${channel.channel_id}"><button
+                                    type="button" class="btn btn-primary">Edit</button></a></td>
+                        <td class="noBorder">
+                           <a type="button" name="delBtn" href="${pageContext.request.contextPath}/ChannelServlet?deleteId=${channel.channel_id}"  class="button btn btn-primary">Delete</a>
+                        </td>
+                    </tr>
+
+                </c:forEach>
+            </tbody>
 		</table>
 	</div>
 </body>
+
+<script type = text/javascript>
+/* function deleteFunc(i){
+	if (confirm('Would you like to delete this Channel?')) {
+		$.ajax({
+			type: "POST",
+	        data: {
+	        	reqDelete: true,
+	        	id: i
+	        },
+	        url: "ChannelServlet",
+	        success: function(data){
+	        	location.reload();
+	        }
+	       
+		}); 
+		
+	}
+	else
+	{
+		//do nothing
+	}
+	
+} */
+</script>
 </html>
