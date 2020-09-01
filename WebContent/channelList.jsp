@@ -22,7 +22,6 @@
 	<c:choose>
   	<c:when test="${user_type == 'admin' || user_type == 'operator'|| user_type == 'customer'}">
 	<jsp:include page="./menu.jsp" />
-	<jsp:include page="./menu.jsp" />
 	<div class="card-body">
 		<table class="table">
 			<thead class="thead-dark">

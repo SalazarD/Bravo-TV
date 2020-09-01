@@ -47,6 +47,9 @@
 <title>Additional Packages</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
 	<jsp:include page="./menu.jsp" />
 	<br>
 	<form name="ResolveCustomerId"
@@ -131,5 +134,10 @@
 		</div>
 	</form>
 </c:if>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />  		
+  		</c:otherwise>
+	</c:choose>
 </body>
 </html>

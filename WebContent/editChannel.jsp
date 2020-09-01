@@ -87,7 +87,7 @@
 		<c:when test="${user_type == 'customer'}">
 			<jsp:include page="./menu.jsp" />
 			<h1 style="text-align: center">
-				<a href="/BravoTV/login.jsp">Customer does not have access to this page</a>
+				<a href="/BravoTV/homepage.jsp">Customer does not have access to this page</a>
 			</h1>
 		</c:when>
   		<c:otherwise>

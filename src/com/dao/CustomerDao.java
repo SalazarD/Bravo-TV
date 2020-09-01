@@ -20,7 +20,28 @@ public class CustomerDao extends AbstractDao<Customer> {
 	protected Customer getNewBean() {
 		return new Customer();
 	}
-
+	public boolean deleteUserWithEmail(String email) {
+		String sql="DELETE FROM case_customer\r\n" + 
+				"WHERE email = ?";
+		int resultset;
+		Connection connect=DbCon.getConnection();	
+		try
+		{
+			PreparedStatement stmt=connect.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY); 				
+			stmt.setString(1,email);
+			resultset=stmt.executeUpdate();
+			System.out.println("deleted");
+			return true;
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		finally
+		{
+			DbCon.closeConnection();
+		}
+		return false;
+		
+	}
 	public boolean validateCustomer(String email, String password) {
 		boolean exists = false;
 
