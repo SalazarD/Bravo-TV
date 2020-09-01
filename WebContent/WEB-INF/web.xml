@@ -127,4 +127,13 @@
   		<servlet-name>GetChannelServlet</servlet-name>
   		<url-pattern>/GetChannelServlet</url-pattern>
   	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>DisplayReportsServlet</servlet-name>
+  		<servlet-class>com.controller.DisplayReportsServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>DisplayReportsServlet</servlet-name>
+  		<url-pattern>/DisplayReportsServlet</url-pattern>
+  	</servlet-mapping>
 </web-app>

@@ -1,10 +1,14 @@
 package com.demo;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
@@ -72,7 +76,7 @@ public class Demo {
 	        file.close();
 	        System.out.println("JSON file obj2 created......");
 	      } catch (IOException e) {
-	        
+	        e.printStackTrace();
       }
 		
 		
@@ -80,6 +84,26 @@ public class Demo {
 		
 		
 		
+	}
+	
+	public String retailerByState() throws JSONException, Exception{
+		String returning = null;
+		RetailerDao rd = new RetailerDao();
+		JSONObject jb1 = new JSONObject();
+		
+		jb1.put("Data", rd.totalRetail_byState());
+		returning = jb1.toString();
+	    return returning;
+	}
+	
+	public String retailerByMonth() throws JSONException {
+		String returning = null;
+		RetailerDao rd = new RetailerDao();
+		JSONObject jb2 = new JSONObject();
+		
+		jb2.put("Data", rd.totalRetailer_WithinYear());
+		returning = jb2.toString();
+	    return returning;
 	}
 
 }
