@@ -68,9 +68,6 @@ public class ReadCustomerServlet extends HttpServlet {
 						customers.add(cd.getCustomer(session.getAttribute("user_name").toString()));
 						session.setAttribute("customers", customers);
 						session.setAttribute("deleteCustomer_view", "hidden");
-						session.setAttribute("deleteChannel_view", "hidden");
-						session.setAttribute("editChannel_view", "hidden");
-						System.out.print(session.getAttribute("user_type"));
 						request.getRequestDispatcher("/customerList.jsp").forward(request, response);		
 					}
 					else{
