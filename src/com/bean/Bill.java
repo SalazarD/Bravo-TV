@@ -89,4 +89,13 @@ public class Bill implements Bean {
 		generation_date = (Timestamp) values[6];
 		due_date = (Timestamp) values[7];
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "ID: " + bill_id + " || Customer Name: " + customer_name + " || STB Type: " + stb_type
+				+ " || Other Charges: " + other_charges+ " || Tax: " + tax 
+				+ " || Total Amount: " + total_amount+ " || Generate Date: " + generation_date
+				+ " || Due Date: " + due_date;
+	}
 }

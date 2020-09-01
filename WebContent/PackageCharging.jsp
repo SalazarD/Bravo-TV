@@ -30,7 +30,7 @@
 							<div class="form-row">
 								<div class="col" style="text-align: center">
 									<a class="btn btn-primary"
-										href="/BravoTV/AO_PackageCharging.jsp">Generate Bills</a>
+										href="/BravoTV/GenerateBillServlet">Generate Bills</a>
 								</div>
 								<div class="col" style="text-align: center">
 									<a class="btn btn-primary" href="/BravoTV/deductBalance.jsp">Deduct

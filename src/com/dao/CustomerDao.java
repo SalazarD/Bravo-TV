@@ -174,4 +174,33 @@ public class CustomerDao extends AbstractDao<Customer> {
 		return customers;
 	}
 
+	public int findNoC()
+	{
+		int count = 0;
+
+		try
+		{
+			Connection con = DbCon.getConnection();
+			String qry = "SELECT COUNT(*) FROM CASE_Customer";
+			PreparedStatement st = con.prepareStatement(qry);
+
+			ResultSet rs = st.executeQuery(qry);
+			
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DbCon.closeConnection();
+		}
+
+		return count;
+	}
+
 }
