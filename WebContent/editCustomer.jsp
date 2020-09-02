@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +19,10 @@
 <title>Update Customer</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'|| user_type == 'customer'}">
+  	
 	<jsp:include page="./menu.jsp" />
 	<form name="customerReg"
 		action="${pageContext.request.contextPath}/Customer/Add" method="POST">
@@ -134,10 +140,21 @@
 					<input type="hidden" name="customerId"
 						value="${customer.customer_id}"><br /> <input
 						type="hidden" name="action" value="update" />
+					<input type="hidden" name="oldEmail"
+						value="${customer.email}"><br /> <input
+						type="hidden" name="action" value="update" />
 					<button type="submit" class="btn btn-primary">Update</button>
 				</div>
 			</div>
 		</div>
 	</form>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>	
+  		</c:otherwise>
+	</c:choose>
 </body>
 </html>

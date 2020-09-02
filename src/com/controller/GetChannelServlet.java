@@ -47,13 +47,17 @@ public class GetChannelServlet extends HttpServlet {
 			out.print("["+e.getChannel_name()+"]");
 
 		}*/
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user_type").equals("customer")) {
+			session.setAttribute("deleteChannel_view", "hidden");
+			session.setAttribute("editChannel_view", "hidden");
+		}
         
         String idString = request.getParameter("id");
         if (idString != null) {
         	Integer id = Integer.parseInt(idString);
         	Channel channel = channelDao.findById(id);
         	
-        	HttpSession session = request.getSession();
 			session.setAttribute("channel", channel);
 			request.getRequestDispatcher("/editChannel.jsp").forward(request, response);
         }
@@ -61,7 +65,6 @@ public class GetChannelServlet extends HttpServlet {
         else {
         	List<Channel> channels = channelDao.getAll();
         	  
-        	HttpSession session = request.getSession();
             session.setAttribute("channels", channels);
             request.getRequestDispatcher("./channelList.jsp").forward(request, response);
         	

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
@@ -21,6 +22,9 @@
 
 </style>
 
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'|| user_type == 'customer'}">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand"
 		href="${pageContext.request.contextPath}/homepage.jsp">BravoTV</a>
@@ -85,7 +89,7 @@
 						List</a>
 				</div></li>
 				
-			<li class="nav-item dropdown"><a
+			<li class="nav-item dropdown" ${register_operator_list_view}><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Operator </a>
@@ -99,8 +103,30 @@
 
 			<li class="nav-item"><a class="nav-link"
 				href="${pageContext.request.contextPath}/retailerRegistration.jsp"${register_retailer_view}>Register
-					Retailer</a></li>
+					Retailer</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link"
+				href="${pageContext.request.contextPath}/displayreports.jsp"${display_reports_view}>Display reports</a>
+			</li>
 
 		</ul>
 	</div>
+	<div>
+		<a class="btn btn-danger"	href="/BravoTV/login.jsp">Logout</a>
+	</div>
 </nav>
+		</c:when>
+  		<c:otherwise>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand"
+					href="${pageContext.request.contextPath}/homepage.jsp">BravoTV</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</nav>  		
+  		</c:otherwise>
+	</c:choose>

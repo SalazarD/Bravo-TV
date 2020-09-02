@@ -3,7 +3,9 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
+import com.bean.Customer;
 import com.bean.Stb;
 import com.bean.StbType;
 import com.utilities.DbCon;
@@ -62,6 +64,49 @@ public class StbDao extends AbstractDao<Stb> {
 		StbDao thisDao = new StbDao();
 		
 		thisDao.update(box);
+	}
+	
+	
+	public ArrayList<Stb> findAllP(int customer) {
+		// TODO Auto-generated method stub
+		ArrayList<Stb> stbData = new ArrayList<>();
+
+		try
+		{
+			Connection con = DbCon.getConnection();
+			String qry = "SELECT * FROM CASE_STB_Inventory WHERE assigned_customer_id=?";
+			PreparedStatement st = con.prepareStatement(qry);
+
+			st.setInt(1, customer);
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next())
+			{
+				Stb obj = new Stb();
+				obj.setStd_id(rs.getInt(1));
+				obj.setStb_type_id(rs.getInt(2));
+				obj.setSerial_num(rs.getString(3));
+				obj.setMac_id(rs.getString(4));
+				obj.setRemote_asset_id(rs.getString(5));
+				obj.setDish_asset_id(rs.getString(6));
+				obj.setStatus(rs.getString(7));
+				obj.setAssigned_retailer_id(rs.getInt(8));
+				obj.setAssigned_customer_id(rs.getInt(9));
+				obj.setPayable(rs.getBigDecimal(10));
+
+				stbData.add(obj);			
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DbCon.closeConnection();
+		}
+
+		return stbData;
 	}
 	
 

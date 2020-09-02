@@ -1,7 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,28 +48,38 @@ public class writeOperatorServlet extends HttpServlet {
 
 		OperatorDao ssvc = new OperatorDao();
 		LoginDao authTable = new LoginDao();
-		
-		if (action.equals("add")) {
-			System.out.println("Added ");
-			ssvc.create(s);
-			authTable.insertUser(s.getEmail(), "defaultpassword", "operator", true);
+		if(ssvc.checkExistOperatorEmail(request.getParameter("email"))==false ||action.equals("update")) {
+			if (action.equals("add")) {
+				System.out.println("Added ");
+				ssvc.create(s);
+				authTable.insertUser(s.getEmail(), "defaultpassword", "operator", true);
 
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Operator Registered.");
-			request.getRequestDispatcher("List").forward(request, response);
-		} 
-		else if (action.equals("update")) {
-			s.setOperator_id(Integer.parseInt(request.getParameter("operator_id")));
-			//System.out.println("Date: " + customer.getCustomer_creation_date());
-			s.setOperator_creation_date(Timestamp.valueOf(request.getParameter("operator_creation_date")));
-			System.out.println("Update " + s);
-			ssvc.update(s);
-
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Customer updated.");
-			request.getRequestDispatcher("List").forward(request, response);
-
+				HttpSession session = request.getSession();
+				session.setAttribute("message", "Operator Registered.");
+				request.getRequestDispatcher("List").forward(request, response);
+			} 
+			else if (action.equals("update")) {
+				String newEmail=request.getParameter("email");
+				String oldEmail=request.getParameter("oldEmail");
+				s.setOperator_id(Integer.parseInt(request.getParameter("operator_id")));
+				s.setOperator_creation_date(Timestamp.valueOf(request.getParameter("operator_creation_date")));
+				System.out.println("Update " + s);
+				ssvc.update(s);
+				authTable.updateUser(oldEmail, newEmail);
+				HttpSession session = request.getSession();
+				if(session.getAttribute("user_type").equals("operator")) {
+					session.setAttribute("user_name", newEmail);						
+				}
+				request.getRequestDispatcher("List").forward(request, response);
+			}			
+		}else {
+			 PrintWriter out = response.getWriter();
+	         out.println("<script type=\"text/javascript\">");
+	         out.println("alert('Email Already Exist, try a different email');");
+	         out.println("location='/BravoTV/operator.jsp';");
+	         out.println("</script>");
 		}
+
 	}
 
 }

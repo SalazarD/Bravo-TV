@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bean.Operator;
+import com.dao.LoginDao;
 import com.dao.OperatorDao;
 
 /**
@@ -35,28 +36,39 @@ public class ReadOperatorServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String idString = request.getParameter("id");
 		String deleteId = request.getParameter("deleteId");
+		HttpSession session = request.getSession();
 		if (idString != null) {
 			Integer id = Integer.parseInt(idString);
 			OperatorDao od = new OperatorDao();
 			Operator s = od.findById(id);
-			HttpSession session = request.getSession();
 			session.setAttribute("operator", s);
 			request.getRequestDispatcher("/editOperator.jsp").forward(request, response);
 
 		} else if (deleteId != null) {
-			Integer id = Integer.parseInt(deleteId);
 			OperatorDao od = new OperatorDao();
-			Operator operator = new Operator();
-			operator.setOperator_id(id);
-			od.delete(operator);
+			LoginDao logindao= new LoginDao();
+			logindao.deleteUser(deleteId);
+			od.deleteUserWithEmail(deleteId);
 			response.sendRedirect("./List");
 		}
 		else {
-			OperatorDao od = new OperatorDao();
-			ArrayList<Operator> operators = od.findAllO();
-			HttpSession session = request.getSession();
-			session.setAttribute("operators", operators);
-			request.getRequestDispatcher("/operatorList.jsp").forward(request, response);
+			if(session.getAttribute("user_type").equals("operator")) {
+				
+				OperatorDao od = new OperatorDao();
+				ArrayList<Operator> operators = new ArrayList<Operator>();
+				operators.add(od.getOperator(session.getAttribute("user_name").toString()));
+				session.setAttribute("operators", operators);
+				session.setAttribute("deleteOperator_view", "hidden");
+				request.getRequestDispatcher("/operatorList.jsp").forward(request, response);
+			
+			}else {
+				OperatorDao od = new OperatorDao();
+				ArrayList<Operator> operators = od.findAllO();
+				session.setAttribute("operators", operators);
+				request.getRequestDispatcher("/operatorList.jsp").forward(request, response);	
+			}
+			
+			
 		}
 	}
 

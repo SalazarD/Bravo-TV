@@ -5,7 +5,11 @@ import com.utilities.DbCon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class CustomerDao extends AbstractDao<Customer> {
 
@@ -20,7 +24,28 @@ public class CustomerDao extends AbstractDao<Customer> {
 	protected Customer getNewBean() {
 		return new Customer();
 	}
-
+	public boolean deleteUserWithEmail(String email) {
+		String sql="DELETE FROM case_customer\r\n" + 
+				"WHERE email = ?";
+		int resultset;
+		Connection connect=DbCon.getConnection();	
+		try
+		{
+			PreparedStatement stmt=connect.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY); 				
+			stmt.setString(1,email);
+			resultset=stmt.executeUpdate();
+			System.out.println("deleted");
+			return true;
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		finally
+		{
+			DbCon.closeConnection();
+		}
+		return false;
+		
+	}
 	public boolean validateCustomer(String email, String password) {
 		boolean exists = false;
 
@@ -125,6 +150,25 @@ public class CustomerDao extends AbstractDao<Customer> {
 
 		return obj;
 	}
+	public Boolean checkExistCustomerEmail(String email) {
+		Connection con = DbCon.getConnection();
+		try {
+			String qry = "select * from "+TABLE_NAME+" where email=?";
+			PreparedStatement st = con.prepareStatement(qry);
+			st.setString(1, email);
+			ResultSet rs = st.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DbCon.closeConnection();
+		}
+
+		return false;
+	}
 
 
 	public ArrayList<Customer> findAllC() {
@@ -173,5 +217,119 @@ public class CustomerDao extends AbstractDao<Customer> {
 
 		return customers;
 	}
+	
+	public ArrayList<Customer> getAllPrepaidCustomers() {
+		ArrayList<Customer> customers = new ArrayList<>();
+		try {
+			Connection con = DbCon.getConnection();
+			String qry = "SELECT * FROM CASE_Customer WHERE pre_paid = ?";
+			PreparedStatement st = con.prepareStatement(qry);
+			st.setBoolean(1, true);
 
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next()) {
+				Customer customer = new Customer();
+				AbstractDao.readBeanFromResultSet(rs, rs.getMetaData(), customer);
+				customers.add(customer);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			DbCon.closeConnection();
+		}
+		return customers;
+	}
+
+	public int findNoC()
+	{
+		int count = 0;
+
+		try
+		{
+			Connection con = DbCon.getConnection();
+			String qry = "SELECT COUNT(*) FROM CASE_Customer";
+			PreparedStatement st = con.prepareStatement(qry);
+
+			ResultSet rs = st.executeQuery(qry);
+			
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DbCon.closeConnection();
+		}
+
+		return count;
+	}
+
+	
+
+	//4
+	public JSONArray totalCustomerCreated_WithinYear() {
+		
+		JSONArray array = new JSONArray();
+		try {
+			Connection conn = DbCon.getConnection();
+			Statement st = conn.createStatement();
+			ResultSet rSet = st.executeQuery("select monthname(customer_creation_date) as month, count(*) from CASE_Customer group by month;");
+			while (rSet.next()) {
+				JSONObject record = new JSONObject();
+				record.put("month", rSet.getString("month"));
+				record.put("count", rSet.getString("count(*)"));
+				array.put(record);
+				
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		finally {
+
+			DbCon.closeConnection();
+		}
+
+		return array;
+	}
+	
+	
+	//3
+	public JSONArray RetailerWiseCount_customer() {
+		
+		JSONArray array = new JSONArray();
+		try {
+			Connection conn = DbCon.getConnection();
+			Statement st = conn.createStatement();
+			ResultSet rSet = st.executeQuery("select CASE_Retailer.retailer_name as name, count(*) as total from CASE_Customer \r\n" + 
+					" join CASE_Retailer on CASE_Retailer.retailer_id = CASE_Customer.assigned_retailer_id\r\n" + 
+					" group by CASE_Retailer.retailer_id;");
+			while (rSet.next()) {
+				JSONObject record = new JSONObject();
+				record.put("name", rSet.getString("name"));
+				record.put("count", rSet.getString("total"));
+				array.put(record);
+				
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		finally {
+
+			DbCon.closeConnection();
+		}
+
+		return array;
+	}
 }

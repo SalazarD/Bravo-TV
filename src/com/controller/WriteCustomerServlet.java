@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -44,9 +45,8 @@ public class WriteCustomerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-
 		Customer customer = new Customer();
-
+		
 		//get the parameters
 		customer.setFirst_name(request.getParameter("firstname"));
 		customer.setLast_name(request.getParameter("lastname"));
@@ -58,7 +58,7 @@ public class WriteCustomerServlet extends HttpServlet {
 		customer.setZip_code(Integer.parseInt(request.getParameter("zip")));
 		customer.setCity(request.getParameter("city"));
 		customer.setState_province(request.getParameter("state"));
-		customer.setPre_paid(Boolean.getBoolean(request.getParameter("prePaid")));
+		customer.setPre_paid(Boolean.parseBoolean(request.getParameter("prePaid")));
 		customer.setBalance(new BigDecimal(request.getParameter("balance")));
 		customer.setAssigned_operator_id(Integer.parseInt(request.getParameter("O_name")));
 		customer.setAssigned_retailer_id(Integer.parseInt(request.getParameter("R_name")));
@@ -67,28 +67,37 @@ public class WriteCustomerServlet extends HttpServlet {
 
 		CustomerDao customerService = new CustomerDao();
 		LoginDao authTable = new LoginDao();
-		
-		if (action.equals("add")) {
-			customer.setCustomer_creation_date(new Timestamp(System.currentTimeMillis()));
-			customerService.create(customer);
-			authTable.insertUser(customer.getEmail(), "defaultpassword", "customer", true);
-			System.out.println("Added!");
-
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Customer added!");
-			request.getRequestDispatcher("List").forward(request, response);
-		}
-		else if (action.equals("update")) {
-			customer.setCustomer_id(Integer.parseInt(request.getParameter("customerId")));
-			//System.out.println("Date: " + customer.getCustomer_creation_date());
-			customer.setCustomer_creation_date(Timestamp.valueOf(request.getParameter("date")));
-			System.out.println("Update " + customer);
-			customerService.update(customer);
-
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Customer updated.");
-			request.getRequestDispatcher("List").forward(request, response);
-
+		if(customerService.checkExistCustomerEmail(request.getParameter("email"))==false || action.equals("update")) {
+				if (action.equals("add")) {
+					customer.setCustomer_creation_date(new Timestamp(System.currentTimeMillis()));
+					customerService.create(customer);
+					authTable.insertUser(customer.getEmail(), "defaultpassword", "customer", true);
+					System.out.println("Added!");
+	
+					HttpSession session = request.getSession();
+					session.setAttribute("message", "Customer added!");
+					request.getRequestDispatcher("List").forward(request, response);
+				}
+				else if (action.equals("update")) {
+					String newEmail=request.getParameter("email");
+					String oldEmail=request.getParameter("oldEmail");
+					
+					customer.setCustomer_id(Integer.parseInt(request.getParameter("customerId")));
+					customer.setCustomer_creation_date(Timestamp.valueOf(request.getParameter("date")));
+					customerService.update(customer);
+					authTable.updateUser(oldEmail, newEmail);
+					HttpSession session = request.getSession();
+					if(session.getAttribute("user_type").equals("customer")) {
+						session.setAttribute("user_name", newEmail);						
+					}
+					request.getRequestDispatcher("List").forward(request, response);
+				}
+		}else {
+		 PrintWriter out = response.getWriter();
+         out.println("<script type=\"text/javascript\">");
+         out.println("alert('Email already exist, try a different email!!!!!!');");
+         out.println("location='/BravoTV/customer.jsp';");
+         out.println("</script>");	
 		}
 
 	}

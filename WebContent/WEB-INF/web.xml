@@ -127,4 +127,31 @@
   		<servlet-name>GetChannelServlet</servlet-name>
   		<url-pattern>/GetChannelServlet</url-pattern>
   	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>GenerateBillServlet</servlet-name>
+  		<servlet-class>com.controller.GenerateBillServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>GenerateBillServlet</servlet-name>
+  		<url-pattern>/GenerateBillServlet</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>DeductBalanceServlet</servlet-name>
+  		<servlet-class>com.controller.DeductBalanceServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>DeductBalanceServlet</servlet-name>
+  		<url-pattern>/DeductBalance</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>DisplayReportsServlet</servlet-name>
+  		<servlet-class>com.controller.DisplayReportsServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>DisplayReportsServlet</servlet-name>
+  		<url-pattern>/DisplayReportsServlet</url-pattern>
+  	</servlet-mapping>
 </web-app>

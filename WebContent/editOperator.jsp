@@ -63,6 +63,9 @@ String shift = startTime.format(new Date());
 	crossorigin="anonymous"></script>
 
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
 	<jsp:include page="./menu.jsp" />
 	<form name="editOperator"
 		action="${pageContext.request.contextPath}/OperatorReg/Add"
@@ -153,6 +156,7 @@ String shift = startTime.format(new Date());
 					</div>
 
 					<input type="hidden" name="operator_id" value="${operator.operator_id}"><br /> 
+					<input type="hidden" name="oldEmail" value="${operator.email}"><br /> 
 					<input type="hidden" name="action" value="update" />
 
 
@@ -161,5 +165,19 @@ String shift = startTime.format(new Date());
 			</div>
 		</div>
 	</form>
+	</c:when>
+		<c:when test="${user_type == 'customer'}">
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/homepage.jsp">Customer does not have access to this page</a>
+			</h1>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>	  		
+  		</c:otherwise>
+	</c:choose>
 </body>
 </html>

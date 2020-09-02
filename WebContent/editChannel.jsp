@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,10 @@
 <title>Update Channel</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
+  	
 	<jsp:include page="./menu.jsp" />
 	<form name="EditChannel"
 		action="${pageContext.request.contextPath}/ChannelServlet" method="POST">
@@ -55,12 +60,12 @@
 						<label for="exampleInputEmail1">Channel Charge Type</label>
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="chargeType"
-								value="fta" ${channel.channel_charge_type == 'fta' ? 'checked' : ''}> <label class="form-check-label"
+								value="fta" ${channel.channel_charge_type == 'fta' ? 'checked' : ''} required> <label class="form-check-label"
 								for="exampleRadios1">FTA</label>
 						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="chargeType"
-								value="paid" ${channel.channel_charge_type == 'paid' ? 'checked' : ''}> <label class="form-check-label"
+								value="paid" ${channel.channel_charge_type == 'paid' ? 'checked' : ''} required> <label class="form-check-label"
 								for="exampleRadios1">Paid</label>
 						</div>
 					</div>
@@ -78,5 +83,16 @@
 			</div>
 		</div>
 	</form>
+	</c:when>
+		<c:when test="${user_type == 'customer'}">
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/homepage.jsp">Customer does not have access to this page</a>
+			</h1>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />
+  		</c:otherwise>
+	</c:choose>
 </body>
 </html>
