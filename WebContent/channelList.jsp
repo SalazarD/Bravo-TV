@@ -14,6 +14,17 @@
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+	function deleteThis(record) {
+		if (confirm("are you sure you want to delete this record")) {
+			window.location.href = "${pageContext.request.contextPath}/ChannelServlet?deleteId="
+					+ record;
+		} else {
+			console.log("nope")
+		}
+	}
+</script>
+
 <meta charset="ISO-8859-1">
 <title>Channel List</title>
 </head>
@@ -57,9 +68,10 @@
 												d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 </svg></a></td>
 								<td class="noBorder"><a type="button" name="delBtn"
-									href="${pageContext.request.contextPath}/ChannelServlet?deleteId=${channel.channel_id}"
-									${deleteChannel_view}><svg width="1em" height="1em"
-											viewBox="0 0 16 16" class="bi bi-x-square" fill="red"
+									${deleteChannel_view} class="button btn btn-primary"
+									onclick="deleteThis('${channel.channel_id}')"><svg
+											width="1em" height="1em" viewBox="0 0 16 16"
+											class="bi bi-x-square" fill="red"
 											xmlns="http://www.w3.org/2000/svg">
 								  <path fill-rule="evenodd"
 												d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
