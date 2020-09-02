@@ -87,15 +87,15 @@
 						<div class="form-row">
 							<div class="col">
 								<input type="text" class="form-control" name="length"
-									placeholder="Length">
+									placeholder="Length" required>
 							</div>
 							<div class="col">
 								<input type="text" class="form-control" name="breadth"
-									placeholder="Breadth">
+									placeholder="Breadth" required>
 							</div>
 							<div class="col">
 								<input type="text" class="form-control" name="width"
-									placeholder="Width">
+									placeholder="Width" required>
 							</div>
 						</div>
 					</div>
