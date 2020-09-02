@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bean.Channel;
 import com.dao.ChannelDao;
+import com.dao.ChannelPackageDao;
 
 import java.util.List;
 
@@ -110,8 +111,23 @@ public class ChannelServlet extends HttpServlet {
 			}
 			
 			else if(action.equals("update")) {
-				channel.setChannel_id(Integer.parseInt(request.getParameter("channelId")));
+				
+				// Get channel ID
+				int channel_id = Integer.parseInt(request.getParameter("channelId"));
+				
+				// Need old details...
+				Channel oldDetails = new Channel();
+				oldDetails.setChannel_id(channel_id);
+				cd.read(oldDetails);
+				
+				// Set new details...
+				channel.setChannel_id(channel_id);
 				cd.update(channel);
+				
+				// Update packages associated with this channel
+				BigDecimal oldCost = oldDetails.getChannel_charge();
+				BigDecimal newCost = channel.getChannel_charge();
+				new ChannelPackageDao().updatePackageCostsHavingChannel(channel_id, oldCost, newCost);
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("message", "Channel updated.");
