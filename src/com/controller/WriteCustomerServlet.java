@@ -58,7 +58,7 @@ public class WriteCustomerServlet extends HttpServlet {
 		customer.setZip_code(Integer.parseInt(request.getParameter("zip")));
 		customer.setCity(request.getParameter("city"));
 		customer.setState_province(request.getParameter("state"));
-		customer.setPre_paid(Boolean.getBoolean(request.getParameter("prePaid")));
+		customer.setPre_paid(Boolean.parseBoolean(request.getParameter("prePaid")));
 		customer.setBalance(new BigDecimal(request.getParameter("balance")));
 		customer.setAssigned_operator_id(Integer.parseInt(request.getParameter("O_name")));
 		customer.setAssigned_retailer_id(Integer.parseInt(request.getParameter("R_name")));
@@ -87,7 +87,9 @@ public class WriteCustomerServlet extends HttpServlet {
 					customerService.update(customer);
 					authTable.updateUser(oldEmail, newEmail);
 					HttpSession session = request.getSession();
-					session.setAttribute("message", "Customer updated.");
+					if(session.getAttribute("user_type").equals("customer")) {
+						session.setAttribute("user_name", newEmail);						
+					}
 					request.getRequestDispatcher("List").forward(request, response);
 				}
 		}else {

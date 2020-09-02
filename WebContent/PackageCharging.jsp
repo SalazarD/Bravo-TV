@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></script>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Package and Charging</title>
 </head>
 <body>
 <body>
@@ -30,10 +30,10 @@
 							<div class="form-row">
 								<div class="col" style="text-align: center">
 									<a class="btn btn-primary"
-										href="/BravoTV/AO_PackageCharging.jsp">Generate Bills</a>
+										href="/BravoTV/GenerateBillServlet">Generate Bills</a>
 								</div>
 								<div class="col" style="text-align: center">
-									<a class="btn btn-primary" href="/BravoTV/deductBalance.jsp">Deduct
+									<a class="btn btn-primary" href="/BravoTV/DeductBalance">Deduct
 										Balance</a>
 								</div>
 							</div>

@@ -14,6 +14,37 @@
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+	function updateTotal() {
+		total = 0.00;
+	    
+	    <c:forEach items="${purchaseMap}" var="entry">
+		if ($("#checkbox_${entry.key.package_id}").is(":checked")) {
+			total += ${entry.key.package_cost};
+		}
+	    </c:forEach>
+		
+		document.getElementById("totalAmount").value = total;
+	}
+	
+	function checkboxChanged(package_id) {
+		if ($("#checkbox_"+package_id).is(":checked")) {
+			$("#table_row_"+package_id).show();
+		} else {
+			$("#table_row_"+package_id).hide();
+		}
+		updateTotal();
+	}
+	
+	window.onload = function() {
+	    <c:forEach items="${purchaseMap}" var="entry">
+	    checkboxChanged("${entry.key.package_id}");
+	    </c:forEach>
+		updateTotal();
+	};
+</script>
+
+
 <meta charset="ISO-8859-1">
 <title>View Bill For Post Paid Customer</title>
 </head>
@@ -22,8 +53,9 @@
 	<c:choose>
   	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
 	<jsp:include page="./menu.jsp" />
-	<form name="P_SetupBoxT"
-		action="${pageContext.request.contextPath}/P_SetupBoxT" method="POST">
+	<form name="GenerateBill"
+		action="${pageContext.request.contextPath}/GenerateBillServlet"
+		method="POST">
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -33,84 +65,113 @@
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Bill Number</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
-					</div>
-					<div class="form-group">
 						<label for="exampleInputEmail1">Customer Name</label> <input
-							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							type="text" name="emailC" id="emailC" class="form-control"
+							aria-describedby="emailHelp" value="${bill.customer_name}"
+							readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Set Top Box Type</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${bill.stb_type}" readonly>
 					</div>
 
-					<div>
-						<h5 style="text-align: center">Package Details</h5>
+
+
+					<div class="container">
+						<div class="card">
+							<div class="card-body">
+								<h5 style="text-align: center">Package Details</h5>
+								<br>
+								<div>
+									<c:forEach items="${purchaseMap}" var="entry">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox"
+												name="packageIds" id="checkbox_${entry.key.package_id}"
+												value="${entry.key.package_id}"
+												onchange="checkboxChanged(${entry.key.package_id})"
+												${entry.value ? "checked" : ""}> <label
+												class="form-check-label"><c:out
+													value="${entry.key.package_name}" /></label>
+										</div>
+									</c:forEach>
+								</div>
+
+								<br>
+
+								<table class="table">
+									<thead class="thead-dark">
+										<tr>
+											<th scope="col">Package Name</th>
+											<th scope="col">Channel Details</th>
+											<th scope="col">Total Package Cost</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${purchaseMap}" var="entry">
+											<tr id="table_row_${entry.key.package_id}"
+												style="display: none">
+												<td><c:out value="${entry.key.package_name}" /></td>
+												<td>
+													<table class="table table-bordered">
+														<th>Channel Name</th>
+														<th>Channel Cost</th>
+														<c:forEach items="${packageMap.get(entry.key.package_id)}"
+															var="channel">
+															<tr>
+																<td>${channel.channel_name}</td>
+																<td>${channel.channel_charge}</td>
+															</tr>
+														</c:forEach>
+													</table>
+												</td>
+												<td><c:out value="${entry.key.package_cost}" /></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 
-					<table class="table table-striped">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Package Name</th>
-								<th scope="col">Package Cost</th>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- Mock data to display (lines 61 to 65) -->
-							<tr>
-								<td>HBO</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<td>Netflix</td>
-								<td>10</td>
-							</tr>
-							<c:forEach var="customer" items="${customers}">
-								<tr>
-									<td><c:out value="${customer.packageName}" /></td>
-									<td><c:out value="${customer.packageCost}" /></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
 
+					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Other Chargers</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${bill.other_charges}" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Tax</label> <input type="text"
-							class="form-control" aria-describedby="emailHelp" placeholder="">
+							class="form-control" aria-describedby="emailHelp"
+							value="${bill.tax}" readonly>
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Total Amount</label> <input
 							type="text" class="form-control" aria-describedby="emailHelp"
-							placeholder="">
+							value="${bill.total_amount}" readonly>
 					</div>
 
-					<div class="form-group row">
-						<label for="example-date-input" class="col-2 col-form-label">Bill
-							Generation Day</label>
-						<div class="col-10">
-							<input class="form-control" type="date" id="example-date-input">
-						</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Generation Date</label> <input
+							type="text" class="form-control" aria-describedby="emailHelp"
+							value="${bill.generation_date}" readonly>
 					</div>
 
-					<div class="form-group row">
-						<label for="example-date-input" class="col-2 col-form-label">Bill
-							Payment Day</label>
-						<div class="col-10">
-							<input class="form-control" type="date" id="example-date-input">
-						</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Due Date</label> <input
+							type="text" class="form-control" aria-describedby="emailHelp"
+							value="${bill.due_date}" readonly>
 					</div>
+
+					<div class="form-group">
+						<input type="text" id="totalAmount" class="form-control"
+							aria-describedby="emailHelp" value="${bill.total_amount}" hidden>
+					</div>
+
 				</div>
 			</div>
 		</div>
