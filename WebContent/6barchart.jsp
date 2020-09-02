@@ -27,7 +27,7 @@
 			// set the data
 			chart.data(obj);
 			// set chart title
-			chart.title("Total Number of Retailers in each state");
+			chart.title("Month-wise total Retailers created for last 12 months");
 			// set the container element 
 			chart.container("container");
 			// initiate chart display

@@ -33,12 +33,12 @@
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Report Name:</label> <select
 							name="chart" class="form-control" id="topBoxType" required>
-							<option value="1">Total number of operators in each shift (pie chart)</option>
-							<option value="2">Month-wise total Operators created for last 12 months (bar chart)</option>
-							<option value="3">Retailer-wise total count of Customers (pie chart)</option>
-							<option value="4">Month-wise total Customers created for last 12 months (bar chart)</option>
-							<option value="5">Total number of retailers in each State/Province (pie chart)</option>
-							<option value="6">Month-wise total Retailers created for last 12 months (bar chart)</option>
+							<option value="1" ${toDisplay == '1' ? 'selected' : ''}>Total number of operators in each shift (pie chart)</option>
+							<option value="2" ${toDisplay == '2' ? 'selected' : ''}>Month-wise total Operators created for last 12 months (bar chart)</option>
+							<option value="3" ${toDisplay == '3' ? 'selected' : ''}>Retailer-wise total count of Customers (pie chart)</option>
+							<option value="4" ${toDisplay == '4' ? 'selected' : ''}>Month-wise total Customers created for last 12 months (bar chart)</option>
+							<option value="5" ${toDisplay == '5' ? 'selected' : ''}>Total number of retailers in each State/Province (pie chart)</option>
+							<option value="6" ${toDisplay == '6' ? 'selected' : ''}>Month-wise total Retailers created for last 12 months (bar chart)</option>
 						</select>
 					</div>
 					<div>
