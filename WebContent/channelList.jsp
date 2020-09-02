@@ -15,6 +15,16 @@
 	crossorigin="anonymous"></script>
 
 <meta charset="ISO-8859-1">
+<script type="text/javascript">
+	function deleteThis(record) {
+		if(confirm("are you sure you want to delete this record")){
+			window.location.href="${pageContext.request.contextPath}/ChannelServlet?deleteId="+record;
+
+		}else{
+			console.log("nope")
+		}
+	}
+</script>
 <title>Channel List</title>
 </head>
 <body>
@@ -49,8 +59,8 @@
                             href="${pageContext.request.contextPath}/GetChannelServlet?id=${channel.channel_id}"><button
                                     type="button" class="btn btn-primary" ${editChannel_view}>Edit</button></a></td>
                         <td class="noBorder">
-                           <a type="button" name="delBtn" href="${pageContext.request.contextPath}/ChannelServlet?deleteId=${channel.channel_id}"  
-                           ${deleteChannel_view} class="button btn btn-primary">Delete</a>
+                           <a type="button" name="delBtn" ${deleteChannel_view}
+                            class="button btn btn-primary" onclick="deleteThis('${channel.channel_id}')">Delete</a>
                         </td>
                     </tr>
 

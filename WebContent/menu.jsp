@@ -73,8 +73,8 @@
 						SetTop Box</a>
 				</div></li>
 
-			<li class="nav-item" ${charge_view}><a class="nav-link"
-				href="${pageContext.request.contextPath}/PackageCharging.jsp">Package
+			<li class="nav-item" ${display_charging_view}><a class="nav-link"
+				href="${pageContext.request.contextPath}/PackageCharging.jsp" >Package
 					& Charging</a></li>
 
 			<li class="nav-item dropdown"><a

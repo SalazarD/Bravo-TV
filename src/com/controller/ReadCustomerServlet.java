@@ -49,7 +49,6 @@ public class ReadCustomerServlet extends HttpServlet {
 
 		} else if (deleteId != null) {
 			//delete user with email because we dont have user ID in case_auth table
-			System.out.println(deleteId);
 			String deleteEmail = deleteId;
 			CustomerDao cd = new CustomerDao();
 			LoginDao logindao= new LoginDao();
