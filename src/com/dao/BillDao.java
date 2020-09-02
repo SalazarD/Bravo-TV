@@ -121,7 +121,8 @@ public class BillDao extends AbstractDao<Bill> {
 		try
 		{
 			Connection con = DbCon.getConnection();
-			String qry = "SELECT * FROM CASE_Bill WHERE stb_type != 0";
+			//String qry = "SELECT * FROM CASE_Bill WHERE stb_type != 0";
+			String qry = "SELECT * FROM ilp_case_study.case_bill WHERE stb_type != 0 AND bill_id IN (SELECT max(bill_id) FROM ilp_case_study.case_bill GROUP BY customer_name);";
 			PreparedStatement st = con.prepareStatement(qry);
 
 			ResultSet rs = st.executeQuery(qry);
