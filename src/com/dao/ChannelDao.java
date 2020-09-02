@@ -46,6 +46,8 @@ public class ChannelDao extends AbstractDao<Channel> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			DbCon.closeConnection();
 		}
 		return c;
 	}
