@@ -114,21 +114,9 @@ String date = simpleDateFormat.format(new Date());
 							class="form-control" placeholder="Enter Service Charges" required>
 					</div>
 					<div class="form-group">
-						<label for="inventoryList">Inventory List:</label> <br> <label
-							class="btn btn-secondary"> Choose File <input type="file"
-							hidden>
-						</label>
-					</div>
-					<div class="form-group">
 						<label>Date</label>
 						<%=date%>
 					</div>
-					<div class="form-group">
-						<label>Total Cost of Inventory:</label>
-
-						<%=inventoryCost%>
-					</div>
-
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Register" />
 					</div>
