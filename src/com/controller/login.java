@@ -50,7 +50,8 @@ public class login extends HttpServlet {
 			    break;
 			  case "customer":
 				  logindao.viewPremission(session, request,"show", "hidden","show","hidden","show","hidden","show","hidden","hidden","hidden","hidden");
-				  session.setAttribute("display_reports_view","hidden");		
+				  session.setAttribute("display_reports_view","hidden");
+				  session.setAttribute("display_charging_view","hidden");
 				  if(logindao.checkFirstTimeUser(user_name, user_password)) {
 					  response.sendRedirect("./ChangePassword.jsp");
 				  }else {

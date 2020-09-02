@@ -61,13 +61,13 @@ String shift = startTime.format(new Date());
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email ID</label> <input
-							type="text" class="form-control" name="email"
+							type="email" class="form-control" name="email"
 							aria-describedby="emailHelp" placeholder="Enter Email ID"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Phone Number</label> <input
-							type="text" class="form-control" name="phone"
+							type="number" class="form-control" name="phone"
 							aria-describedby="emailHelp" placeholder="Enter Phone Number"
 							required>
 					</div>
@@ -75,7 +75,7 @@ String shift = startTime.format(new Date());
 					<div class="form-group">
 						<label for="inputAddress">Address</label> <input type="text"
 							class="form-control" name="address_1" id="inputAddress"
-							placeholder="1234 Main St">
+							placeholder="1234 Main St" required>
 					</div>
 					<div class="form-group">
 						<label for="inputAddress2">Address 2</label> <input type="text"
@@ -100,7 +100,7 @@ String shift = startTime.format(new Date());
 							</div>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="inputZip">Zip</label> <input type="text"
+							<label for="inputZip">Zip</label> <input type="number"
 								class="form-control" name="zip" id="inputZip">
 						</div>
 					</div>
