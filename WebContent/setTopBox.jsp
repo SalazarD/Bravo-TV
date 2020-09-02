@@ -23,6 +23,10 @@
 <title>Set Top Box</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
+  	
 	<jsp:include page="./menu.jsp" />
 	<form name="SetTopBox"
 		action="${pageContext.request.contextPath}/SetTopBox" method="post" enctype="multipart/form-data">
@@ -155,6 +159,22 @@
 		</div>
 		</div>
 	</form>
+	</c:when>
+	
+		<c:when test="${user_type == 'customer'}">
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/homepage.jsp">Customer does not have access to this page</a>
+			</h1>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />
+  			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>			  		
+  		</c:otherwise>
+	</c:choose>
+	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

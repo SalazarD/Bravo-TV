@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +18,22 @@
 <title>Homepage</title>
 </head>
 <body>
-	<jsp:include page="./menu.jsp" />
-	<br>
-	<h1 style="text-align: center">
-		Welcome Admin
-		<h1>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	
+	<c:choose>
+  		<c:when test="${user_type == 'admin' || user_type == 'customer' || user_type == 'operator'}">
+		<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+			Welcome <c:out value = "${user_type}"/>
+			</h1>
+  		</c:when>
+  		<c:otherwise>
+		<jsp:include page="./menu.jsp" />
+		<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>	
+  		</c:otherwise>
+	</c:choose>
+
 </body>
 </html>

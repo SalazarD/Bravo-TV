@@ -41,7 +41,7 @@ public class login extends HttpServlet {
 			session.setAttribute("user_type", user_type);
 			switch(user_type) {
 			  case "admin":
-				  logindao.viewPremission(session, request, "show","show","show","show","show","show","show","show","show","show");
+				  logindao.viewPremission(session, request, "show","show","show","show","show","show","show","show","show","show","show");
 				  if(logindao.checkFirstTimeUser(user_name, user_password)) {
 					  response.sendRedirect("./ChangePassword.jsp");
 				  }else {
@@ -49,7 +49,7 @@ public class login extends HttpServlet {
 				  }
 			    break;
 			  case "customer":
-				  logindao.viewPremission(session, request,"show", "hidden","show","hidden","show","hidden","show","hidden","hidden","hidden");
+				  logindao.viewPremission(session, request,"show", "hidden","show","hidden","show","hidden","show","hidden","hidden","hidden","hidden");
 				  if(logindao.checkFirstTimeUser(user_name, user_password)) {
 					  response.sendRedirect("./ChangePassword.jsp");
 				  }else {
@@ -57,7 +57,7 @@ public class login extends HttpServlet {
 				  }
 				break;
 			  case "operator":
-				  logindao.viewPremission(session, request, "show","show","show","show","show","show","show","show","hidden","show");
+				  logindao.viewPremission(session, request, "show","show","show","show","show","show","show","show","hidden","show","show");
 				  if(logindao.checkFirstTimeUser(user_name, user_password)) {
 					  response.sendRedirect("./ChangePassword.jsp");
 				  }else {

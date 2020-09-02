@@ -15,9 +15,12 @@
 
 <meta charset="ISO-8859-1">
 <title>Login</title>
+
 </head>
 <body>
-
+	<%
+    session.invalidate();
+	%>
 	<form name="login" action="${pageContext.request.contextPath}/login"
 		method="POST">
 		<div class="container">

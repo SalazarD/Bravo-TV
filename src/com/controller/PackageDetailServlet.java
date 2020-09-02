@@ -58,6 +58,7 @@ public class PackageDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.print("inserting ");
 		ChannelPackage channelpack = new ChannelPackage();
 		ChannelPackageDao packDao=new ChannelPackageDao();
 		if(packDao.packageNameExist(request.getParameter("packageName"))==false) {

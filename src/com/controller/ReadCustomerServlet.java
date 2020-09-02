@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bean.Customer;
 import com.dao.CustomerDao;
+import com.dao.LoginDao;
 
 /**
  * Servlet implementation class ReadCustomerServlet
@@ -36,31 +38,57 @@ public class ReadCustomerServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String idString = request.getParameter("id");
 		String deleteId = request.getParameter("deleteId");
+		HttpSession session = request.getSession();
+
 		if (idString != null) {
 			Integer id = Integer.parseInt(idString);
 			CustomerDao cd = new CustomerDao();
 			Customer s = cd.findById(id);
-			HttpSession session = request.getSession();
 			session.setAttribute("customer", s);
 			request.getRequestDispatcher("/editCustomer.jsp").forward(request, response);
 
 		} else if (deleteId != null) {
-			Integer id = Integer.parseInt(deleteId);
+			//delete user with email because we dont have user ID in case_auth table
+			System.out.println(deleteId);
+			String deleteEmail = deleteId;
 			CustomerDao cd = new CustomerDao();
-			Customer customer = new Customer();
-			customer.setCustomer_id(id);
-			cd.delete(customer);
+			LoginDao logindao= new LoginDao();
+			
+			cd.deleteUserWithEmail(deleteEmail);
+			logindao.deleteUser(deleteEmail);
 			response.sendRedirect("./List");
 		}
 		else {
-			CustomerDao cd = new CustomerDao();
-			ArrayList<Customer> customers = cd.findAllC();
-			HttpSession session = request.getSession();
-			session.setAttribute("customers", customers);
-			System.out.print(session.getAttribute("user_type"));
-			request.getRequestDispatcher("/customerList.jsp").forward(request, response);
+			//when create customer, check user_type. 
+			if(session.getAttribute("user_type")!=null) {
+					if(session.getAttribute("user_type").equals("customer")) {
+						System.out.print(session.getAttribute("user_type").equals("customer"));
+						CustomerDao cd = new CustomerDao();
+						ArrayList<Customer> customers = new ArrayList<Customer>();
+						customers.add(cd.getCustomer(session.getAttribute("user_name").toString()));
+						session.setAttribute("customers", customers);
+						session.setAttribute("deleteCustomer_view", "hidden");
+						request.getRequestDispatcher("/customerList.jsp").forward(request, response);		
+					}
+					else{
+						CustomerDao cd = new CustomerDao();
+						ArrayList<Customer> customers = cd.findAllC();
+						session.setAttribute("customers", customers);
+						System.out.print(session.getAttribute("user_type"));
+						request.getRequestDispatcher("/customerList.jsp").forward(request, response);	
+					}
+			}
+			else {
+				 PrintWriter out = response.getWriter();
+		         out.println("<script type=\"text/javascript\">");
+		         out.println("alert('Registration success');");
+		         out.println("location='/BravoTV/index.jsp';");
+		         out.println("</script>");			
+		         }
+			}
+			
 		}
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

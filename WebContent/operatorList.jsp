@@ -18,6 +18,9 @@
 <title>Display Operator</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
 	<jsp:include page="./menu.jsp" />
 	<div class="card-body">
 		<table class="table">
@@ -58,7 +61,7 @@
 </svg></a>
 						</td>
 						<td>
-							<a class="button" href="${pageContext.request.contextPath}/OperatorReg/List?deleteId=${operator.operator_id}">
+							<a class="button" href="${pageContext.request.contextPath}/OperatorReg/List?deleteId=${operator.email}" ${deleteOperator_view}>
 								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square" fill="red" xmlns="http://www.w3.org/2000/svg">
 								  <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
 								  <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -72,5 +75,20 @@
 			</tbody>
 		</table>
 	</div>
+	</c:when>
+	
+		<c:when test="${user_type == 'customer'}">
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/homepage.jsp">Customer does not have access to this page</a>
+			</h1>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />  
+			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>			
+  		</c:otherwise>
+	</c:choose>
 </body>
 </html>

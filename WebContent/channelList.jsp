@@ -18,6 +18,9 @@
 <title>Channel List</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'|| user_type == 'customer'}">
 	<jsp:include page="./menu.jsp" />
 	<div class="card-body">
 		<table class="table">
@@ -44,9 +47,10 @@
                         <td><c:out value="${channel.channel_charge}" /></td>
                         <td class="noBorder"><a
                             href="${pageContext.request.contextPath}/GetChannelServlet?id=${channel.channel_id}"><button
-                                    type="button" class="btn btn-primary">Edit</button></a></td>
+                                    type="button" class="btn btn-primary" ${editChannel_view}>Edit</button></a></td>
                         <td class="noBorder">
-                           <a type="button" name="delBtn" href="${pageContext.request.contextPath}/ChannelServlet?deleteId=${channel.channel_id}"  class="button btn btn-primary">Delete</a>
+                           <a type="button" name="delBtn" href="${pageContext.request.contextPath}/ChannelServlet?deleteId=${channel.channel_id}"  
+                           ${deleteChannel_view} class="button btn btn-primary">Delete</a>
                         </td>
                     </tr>
 
@@ -54,6 +58,14 @@
             </tbody>
 		</table>
 	</div>
+	</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>	  		
+  		</c:otherwise>
+	</c:choose>
 </body>
 
 <script type = text/javascript>
