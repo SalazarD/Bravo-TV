@@ -106,6 +106,8 @@ public class CustomerDao extends AbstractDao<Customer> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			DbCon.closeConnection();
 		}
 		return c;
 	}

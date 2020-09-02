@@ -110,6 +110,8 @@ public class BillDao extends AbstractDao<Bill> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			DbCon.closeConnection();
 		}
 		return b;
 	}

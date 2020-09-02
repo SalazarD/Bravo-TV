@@ -53,6 +53,8 @@ public class OperatorDao extends AbstractDao<Operator> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			DbCon.closeConnection();
 		}
 		return o;
 	}
@@ -104,8 +106,9 @@ public class OperatorDao extends AbstractDao<Operator> {
 		JSONArray array = new JSONArray();
 		try {
 			Connection conn = DbCon.getConnection();
-			Statement st = conn.createStatement();
-			ResultSet rSet = st.executeQuery("SELECT monthname(operator_creation_date) as month, count(*) FROM CASE_Operator group by month;");
+			String sql = "SELECT monthname(operator_creation_date) as month, count(*) FROM CASE_Operator group by month";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rSet = ps.executeQuery();
 			while (rSet.next()) {
 				JSONObject record = new JSONObject();
 				record.put("month", rSet.getString("month"));
@@ -134,8 +137,9 @@ public class OperatorDao extends AbstractDao<Operator> {
 		JSONArray array = new JSONArray();
 		try {
 			Connection conn = DbCon.getConnection();
-			Statement st = conn.createStatement();
-			ResultSet rSet = st.executeQuery("select date_format(shift_start, '%H:%i:%s') as shift, count(*) as count from CASE_Operator group by shift_start;");
+			String sql = "select date_format(shift_start, '%H:%i:%s') as shift, count(*) as count from CASE_Operator group by shift_start";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rSet = ps.executeQuery();
 			while (rSet.next()) {
 				JSONObject record = new JSONObject();
 				record.put("shift", rSet.getString("shift"));
