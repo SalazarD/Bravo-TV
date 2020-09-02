@@ -60,9 +60,9 @@
 				<div class="card-body">
 					<h5>Find Customer</h5>
 						<div class="form-group">
-							<input type="text" class="form-control" name="customer_id"
+							<input type="number" class="form-control" name="customer_id"
 							aria-describedby="emailHelp" placeholder="Enter Customer ID"
-							required value="${customer_id}">
+							required value="${customer_id}" autocomplete="off">
 						</div>
 					<button type="submit" class="btn btn-primary">Continue</button>
 				</div>
@@ -115,7 +115,7 @@
 										</c:forEach>
 									</table>
 								</td>
-								<td><c:out value="${entry.key.package_cost}" /></td>
+								<td>${entry.key.package_cost}</td>
 							</tr>
 							</c:forEach>
 						</tbody>

@@ -57,14 +57,14 @@ String date = simpleDateFormat.format(new Date());
 							placeholder="Enter Retailer Name" required>
 					</div>
 					<div class="form-group">
-						<label for="contact1">Contact 1:</label> <input type="text"
+						<label for="contact1">Contact 1:</label> <input type="number"
 							name="contact1" id="contact1" class="form-control"
 							placeholder="Enter Contact 1" required>
 					</div>
 					<div class="form-group">
-						<label for="contact2">Contact 2:</label> <input type="text"
+						<label for="contact2">Contact 2:</label> <input type="number"
 							name="contact2" id="contact2" class="form-control"
-							placeholder="Enter Contact 2" required>
+							placeholder="Enter Contact 2">
 					</div>
 					<div class="form-group">
 						<label for="address1">Address 1:</label> <input type="text"
@@ -77,7 +77,7 @@ String date = simpleDateFormat.format(new Date());
 							placeholder="Enter Address 2">
 					</div>
 					<div class="form-group">
-						<label for="zipCode">Pincode/Zipcode:</label> <input type="text"
+						<label for="zipCode">Pincode/Zipcode:</label> <input type="number"
 							name="zipcode" id="zipcode" class="form-control"
 							placeholder="Enter zip code" required>
 					</div>
@@ -114,19 +114,8 @@ String date = simpleDateFormat.format(new Date());
 							class="form-control" placeholder="Enter Service Charges" required>
 					</div>
 					<div class="form-group">
-						<label for="inventoryList">Inventory List:</label> <br> <label
-							class="btn btn-secondary"> Choose File <input type="file"
-							hidden>
-						</label>
-					</div>
-					<div class="form-group">
 						<label>Date</label>
 						<%=date%>
-					</div>
-					<div class="form-group">
-						<label>Total Cost of Inventory:</label>
-
-						<%=inventoryCost%>
 					</div>
 
 					<div class="form-group">

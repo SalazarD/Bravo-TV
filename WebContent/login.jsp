@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></script>
 
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Login Page</title>
 
 </head>
 <body>
@@ -38,7 +38,7 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Password</label> <input
-								type="text" class="form-control" name="password"
+								type="password" class="form-control" name="password"
 								aria-describedby="emailHelp" placeholder="Enter Password"
 								required>
 						</div>

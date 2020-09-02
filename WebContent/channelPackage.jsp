@@ -140,7 +140,7 @@
 							available from Date</label>
 						<div class="col-10">
 							<input class="form-control" type="date" value=""
-								id="example-date-input" name="available_date">
+								id="example-date-input" name="available_date" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -148,7 +148,7 @@
 							available to Date</label>
 						<div class="col-10">
 							<input class="form-control" type="date" value=""
-								id="example-date-input" name="to_date">
+								id="example-date-input" name="to_date" required>
 						</div>
 					</div>
 					<div class="form-group">

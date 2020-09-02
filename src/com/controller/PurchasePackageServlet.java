@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bean.Channel;
 import com.bean.ChannelPackage;
+import com.bean.Customer;
 import com.dao.ChannelPackageDao;
 import com.dao.CustomerDao;
 import com.dao.PackageMapDao;
@@ -88,22 +89,34 @@ public class PurchasePackageServlet extends HttpServlet {
 			request.getRequestDispatcher("/additionalPackagesOperator.jsp").forward(request, response);
 		}
 		else {
-
-			customer_id = Integer.valueOf(request.getParameter("customer_id"));
-
-			// Make the map (keeping default packages)
-			for (ChannelPackage cp : purchaseDao.getPurchasedPackages(customer_id)) {
-				packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
-				purchaseMap.put(cp, true);
-			}
-			for (ChannelPackage cp : purchaseDao.getNonPurchasedPackages(customer_id)) {
-				packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
-				purchaseMap.put(cp, false);
-			}
+			Customer c = new Customer();
+			boolean success;
 			
-			request.setAttribute("customer_id", customer_id);
-			request.setAttribute("purchaseMap", purchaseMap);
-			request.setAttribute("packageMap", packageMap);
+			// Search must yield an actual customer
+			try {
+				customer_id = Integer.valueOf(request.getParameter("customer_id"));
+				c.setCustomer_id(customer_id);
+				success = new CustomerDao().read(c);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				success = false;
+			}
+			if (success) {
+
+				// Make the map (keeping default packages)
+				for (ChannelPackage cp : purchaseDao.getPurchasedPackages(customer_id)) {
+					packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
+					purchaseMap.put(cp, true);
+				}
+				for (ChannelPackage cp : purchaseDao.getNonPurchasedPackages(customer_id)) {
+					packageMap.put(cp.getPackage_id(), packageMapDao.getAllChannels(cp.getPackage_id()));
+					purchaseMap.put(cp, false);
+				}
+				
+				request.setAttribute("customer_id", customer_id);
+				request.setAttribute("purchaseMap", purchaseMap);
+				request.setAttribute("packageMap", packageMap);
+			}
 			
 			request.getRequestDispatcher("/additionalPackagesOperator.jsp").forward(request, response);
 		}

@@ -18,6 +18,9 @@
 <title>Display reports</title>
 </head>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
 	<jsp:include page="./menu.jsp" />
 	<form action="${pageContext.request.contextPath}/DisplayReportsServlet" method="POST">
 		<div class="container">
@@ -30,12 +33,12 @@
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">Report Name:</label> <select
 							name="chart" class="form-control" id="topBoxType" required>
-							<option value="1">Total number of operators in each shift (pie chart)</option>
-							<option value="2">Month-wise total Operators created for last 12 months (bar chart)</option>
-							<option value="3">Retailer-wise total count of Customers (pie chart)</option>
-							<option value="4">Month-wise total Customers created for last 12 months (bar chart)</option>
-							<option value="5">Total number of retailers in each State/Province (pie chart)</option>
-							<option value="6">Month-wise total Retailers created for last 12 months (bar chart)</option>
+							<option value="1" ${toDisplay == '1' ? 'selected' : ''}>Total number of operators in each shift (pie chart)</option>
+							<option value="2" ${toDisplay == '2' ? 'selected' : ''}>Month-wise total Operators created for last 12 months (bar chart)</option>
+							<option value="3" ${toDisplay == '3' ? 'selected' : ''}>Retailer-wise total count of Customers (pie chart)</option>
+							<option value="4" ${toDisplay == '4' ? 'selected' : ''}>Month-wise total Customers created for last 12 months (bar chart)</option>
+							<option value="5" ${toDisplay == '5' ? 'selected' : ''}>Total number of retailers in each State/Province (pie chart)</option>
+							<option value="6" ${toDisplay == '6' ? 'selected' : ''}>Month-wise total Retailers created for last 12 months (bar chart)</option>
 						</select>
 					</div>
 					<div>
@@ -109,6 +112,20 @@
 				</div>
 			</div>
 		</c:otherwise>
+	</c:choose>
+	</c:when>
+		<c:when test="${user_type == 'customer'}">
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/homepage.jsp">Customer does not have access to this page</a>
+			</h1>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />
+  			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>			  		
+  		</c:otherwise>
 	</c:choose>
 </body>
 </html>

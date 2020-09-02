@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,9 @@
 </head>
 <body>
 <body>
+	<c:set var = "user_type" scope = "session" value = "${user_type}"/>
+	<c:choose>
+  	<c:when test="${user_type == 'admin' || user_type == 'operator'}">
 	<jsp:include page="./menu.jsp" />
 	<div>
 		<div>
@@ -43,5 +47,19 @@
 			</div>
 		</div>
 	</div>
+	</c:when>
+		<c:when test="${user_type == 'customer'}">
+			<jsp:include page="./menu.jsp" />
+			<h1 style="text-align: center">
+				<a href="/BravoTV/homepage.jsp">Customer does not have access to this page<br>Please contact a local Operator/Retailer</a>
+			</h1>
+		</c:when>
+  		<c:otherwise>
+			<jsp:include page="./menu.jsp" />
+  			<h1 style="text-align: center">
+				<a href="/BravoTV/login.jsp">Please Login With Your Email/Password</a>
+			</h1>			  		
+  		</c:otherwise>
+	</c:choose>
 </body>
 </html>

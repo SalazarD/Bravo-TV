@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public class DeductBalanceServlet extends HttpServlet {
 				packageCostTotal = packageCostTotal.add(cp.getPackage_cost());
 			}
 			long numDaysInMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
-			packageCostTotal = packageCostTotal.divide(BigDecimal.valueOf(numDaysInMonth));
+			packageCostTotal = packageCostTotal.divide(new BigDecimal(numDaysInMonth), RoundingMode.FLOOR);
 			deductionMap.put(customer, packageCostTotal);
 		}
 		

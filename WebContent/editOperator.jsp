@@ -91,13 +91,13 @@ String shift = startTime.format(new Date());
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email ID</label> <input
-							type="text" class="form-control" name="email"
+							type="email" class="form-control" name="email"
 							aria-describedby="emailHelp" value="${operator.email}"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Phone Number</label> <input
-							type="text" class="form-control" name="phone"
+							type="number" class="form-control" name="phone"
 							aria-describedby="emailHelp" value="${operator.phone}"
 							required>
 					</div>
@@ -145,7 +145,7 @@ String shift = startTime.format(new Date());
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Max No. of Customers to be
-							managed</label> <input type="text" class="form-control"
+							managed</label> <input type="number" class="form-control"
 							name="max_customers" aria-describedby="emailHelp"
 							value="${operator.max_customers}" required>
 					</div>

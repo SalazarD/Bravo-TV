@@ -45,13 +45,13 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Video Carrier Frequency
-							MHz</label> <input type="text" class="form-control" name="video"
+							MHz</label> <input type="number" class="form-control" name="video"
 							aria-describedby="emailHelp"
 							placeholder="Enter Video Carrier Frequency" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Audio Carrier Frequency
-							MHz</label> <input type="text" class="form-control" name="audio"
+							MHz</label> <input type="number" class="form-control" name="audio"
 							aria-describedby="emailHelp"
 							placeholder="Enter Audio Carrier Frequency" required>
 					</div>
@@ -70,7 +70,7 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Channel Charge</label> <input
-							type="text" class="form-control" name="charge"
+							type="number" class="form-control" name="charge"
 							aria-describedby="emailHelp" placeholder="Enter Channel Charge"
 							required>
 					</div>

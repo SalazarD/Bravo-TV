@@ -105,12 +105,12 @@ public class GenerateBillServlet extends HttpServlet {
 		Bill bills = new Bill();
 		BillDao bd = new BillDao();
 		CustomerDao cd = new CustomerDao();
-		int sizeC = cd.findNoC() + 1;
-		System.out.println("Test: " + sizeC);
+		//int sizeC = cd.findNoC() + 1;
+		//System.out.println("Test: " + sizeC);
 
 		bd.deleteExistingData();
 		
-		for(int i = 1; i < sizeC; i++)
+		for(int i = 1; i <= 20; i++)
 		{
 			bd.generateForCustomer(i, bills);
 			bd.create(bills);		

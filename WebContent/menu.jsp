@@ -73,7 +73,7 @@
 						SetTop Box</a>
 				</div></li>
 
-			<li class="nav-item" ${charge_view}><a class="nav-link"
+			<li class="nav-item" ${display_charging_view}><a class="nav-link"
 				href="${pageContext.request.contextPath}/PackageCharging.jsp">Package
 					& Charging</a></li>
 
@@ -107,7 +107,7 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link"
-				href="${pageContext.request.contextPath}/displayreports.jsp"${display_reports_view}>Display reports</a>
+				href="${pageContext.request.contextPath}/displayreports.jsp"${display_reports_view}>Display Reports</a>
 			</li>
 
 		</ul>

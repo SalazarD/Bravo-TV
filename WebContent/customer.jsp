@@ -61,13 +61,13 @@ String shift = startTime.format(new Date());
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email ID</label> <input
-							type="text" class="form-control" name="email"
+							type="email" class="form-control" name="email"
 							aria-describedby="emailHelp" placeholder="Enter Email ID"
 							required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Phone Number</label> <input
-							type="text" class="form-control" name="phone"
+							type="number" class="form-control" name="phone"
 							aria-describedby="emailHelp" placeholder="Enter Phone Number"
 							required>
 					</div>
@@ -75,7 +75,7 @@ String shift = startTime.format(new Date());
 					<div class="form-group">
 						<label for="inputAddress">Address</label> <input type="text"
 							class="form-control" name="address_1" id="inputAddress"
-							placeholder="1234 Main St">
+							placeholder="1234 Main St" required>
 					</div>
 					<div class="form-group">
 						<label for="inputAddress2">Address 2</label> <input type="text"
@@ -100,7 +100,7 @@ String shift = startTime.format(new Date());
 							</div>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="inputZip">Zip</label> <input type="text"
+							<label for="inputZip">Zip</label> <input type="number"
 								class="form-control" name="zip" id="inputZip">
 						</div>
 					</div>
@@ -126,22 +126,30 @@ String shift = startTime.format(new Date());
 							class="form-check-label" for="prePaidFalse">No</label>
 					</div>
 					<br></br>
+					<%
+						if(session.getAttribute("user_type")==null ||session.getAttribute("user_type").equals("customer") ){
+							session.setAttribute("OperatorID_RetailerID_Balance_View","hidden");
+						}
+					%>
+					<div ${OperatorID_RetailerID_Balance_View}>
 					<div class="form-group">
 						<label for="exampleInputBalance">Balance</label> <input
 							type="text" class="form-control" name="balance"
-							aria-describedby="emailHelp" placeholder="" required>
+							aria-describedby="emailHelp" placeholder="" required value=0>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Operator Id</label> <input
 							type="text" class="form-control" name="O_name"
-							aria-describedby="emailHelp" placeholder="" required>
+							aria-describedby="emailHelp" placeholder="" required value=0 >
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputEmail1">Retailer Id</label> <input
 							type="text" class="form-control" name="R_name"
-							aria-describedby="emailHelp" placeholder="" required>
+							aria-describedby="emailHelp" placeholder="" required value=0 >
 					</div>
+					</div>
+					
 					<input type="hidden" name="customerId" value="${customer.customer_id}"><br />
 					<input type="hidden" name="action" value="add" />
 					<button type="submit" class="btn btn-primary">Register</button>
