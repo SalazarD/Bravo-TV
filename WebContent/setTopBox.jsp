@@ -157,10 +157,8 @@
 
 			</div>
 		</div>
-		</div>
 	</form>
 	</c:when>
-	
 		<c:when test="${user_type == 'customer'}">
 			<jsp:include page="./menu.jsp" />
 			<h1 style="text-align: center">
