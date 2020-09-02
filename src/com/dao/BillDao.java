@@ -58,7 +58,7 @@ public class BillDao extends AbstractDao<Bill> {
 			packageCostTotal = packageCostTotal.add(cp.getPackage_cost());
 		}
 
-		String stbID = null;
+		String stbID = "0";
 		BigDecimal setTopBoxCost = BigDecimal.ZERO;
 		StbDao stbD = new StbDao();
 		for (Stb stb : stbD.findAllP(customer_id)) {
@@ -121,7 +121,7 @@ public class BillDao extends AbstractDao<Bill> {
 		try
 		{
 			Connection con = DbCon.getConnection();
-			String qry = "SELECT * FROM CASE_Bill";
+			String qry = "SELECT * FROM CASE_Bill WHERE stb_type != 0";
 			PreparedStatement st = con.prepareStatement(qry);
 
 			ResultSet rs = st.executeQuery(qry);
