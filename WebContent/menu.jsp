@@ -107,7 +107,7 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link"
-				href="${pageContext.request.contextPath}/displayreports.jsp"${display_reports_view}>Display reports</a>
+				href="${pageContext.request.contextPath}/displayreports.jsp"${display_reports_view}>Display Reports</a>
 			</li>
 
 		</ul>

@@ -46,13 +46,13 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Video Carrier Frequency
-							MHz</label> <input type="text" class="form-control" name="video"
+							MHz</label> <input type="number" class="form-control" name="video"
 							aria-describedby="emailHelp"
 							value="${channel.video_carrier_frequency}" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Audio Carrier Frequency
-							MHz</label> <input type="text" class="form-control" name="audio"
+							MHz</label> <input type="number" class="form-control" name="audio"
 							aria-describedby="emailHelp"
 							value="${channel.audio_carrier_frequency}" required>
 					</div>
