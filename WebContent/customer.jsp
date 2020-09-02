@@ -126,17 +126,17 @@ String shift = startTime.format(new Date());
 							class="form-check-label" for="prePaidFalse">No</label>
 					</div>
 					<br></br>
+					<%
+						if(session.getAttribute("user_type")==null ||session.getAttribute("user_type").equals("customer") ){
+							session.setAttribute("OperatorID_RetailerID_Balance_View","hidden");
+						}
+					%>
+					<div ${OperatorID_RetailerID_Balance_View}>
 					<div class="form-group">
 						<label for="exampleInputBalance">Balance</label> <input
 							type="text" class="form-control" name="balance"
-							aria-describedby="emailHelp" placeholder="" required>
+							aria-describedby="emailHelp" placeholder="" required value=0>
 					</div>
-					<%
-						if(session.getAttribute("user_type")==null ||session.getAttribute("user_type").equals("customer") ){
-							session.setAttribute("OperatorID_RetailerID_View","hidden");
-						}
-					%>
-					<div ${OperatorID_RetailerID_View}>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Operator Id</label> <input
 							type="text" class="form-control" name="O_name"
