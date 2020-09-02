@@ -148,22 +148,21 @@ public class ChannelPackageDao extends AbstractDao<ChannelPackage> {
 		String sql=" select * from case_channel_package where package_name=?";
 		Connection connect=DbCon.getConnection();
 		ResultSet resultset=null;
-		try
-		{
+		boolean success = false;
+		try {
 			PreparedStatement stmt=connect.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY); 				
 			stmt.setString(1, packageName);
 			resultset=stmt.executeQuery();
-			while(resultset.next()) {
-				return true;
-			}
+			success = resultset.next();
 		}catch(Exception e){
 			System.out.println(e);
+			success = false;
 		}
 		finally
 		{
 			DbCon.closeConnection();
 		}
-		return false;
+		return success;
 	}
 	
 	//query for all channel mapped with package 
@@ -197,5 +196,34 @@ public class ChannelPackageDao extends AbstractDao<ChannelPackage> {
 		}		
 		return packagemapping;
 	}
+
 	
+	/**
+	 * Updates the costs of the channel packages that have the given channel.
+	 * @param c The channel
+	 * @return True if the update is successful; False otherwise
+	 */
+	public boolean updatePackageCostsHavingChannel(int channel_id, BigDecimal oldCost, BigDecimal newCost) {
+		Connection connect = DbCon.getConnection();
+		boolean success = true;
+		try {
+			String sql = "UPDATE CASE_Channel_Package "
+					   + "SET package_cost = package_cost + ? - ? "
+					   + "WHERE package_id IN (SELECT package_id FROM CASE_Package_Map WHERE channel_id = ?)";
+			PreparedStatement ps = connect.prepareStatement(sql);
+			ps.setBigDecimal(1, newCost);
+			ps.setBigDecimal(2, oldCost);
+			ps.setInt(3, channel_id);
+			
+			ps.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			success = false;
+		}
+		finally {
+			DbCon.closeConnection();
+		}
+		return success;
+	}
 }
