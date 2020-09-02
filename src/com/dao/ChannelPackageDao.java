@@ -208,7 +208,7 @@ public class ChannelPackageDao extends AbstractDao<ChannelPackage> {
 		boolean success = true;
 		try {
 			String sql = "UPDATE CASE_Channel_Package "
-					   + "SET package_cost = package_cost + ? - ? "
+					   + "SET package_cost = (package_cost + ? - ?) "
 					   + "WHERE package_id IN (SELECT package_id FROM CASE_Package_Map WHERE channel_id = ?)";
 			PreparedStatement ps = connect.prepareStatement(sql);
 			ps.setBigDecimal(1, newCost);
